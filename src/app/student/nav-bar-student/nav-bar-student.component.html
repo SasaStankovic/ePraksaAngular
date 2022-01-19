@@ -1,0 +1,29 @@
+<div class="container">
+  <div id="navbar-custom" class="sticky12">
+    <!---- NAV MENI ------------------------------------------------>
+    <div class="topnav" id="myTopnav">
+      <div class="container">
+        <div class="logo-klasa">
+          <a class="active"><img src="../../../assets//resources/ePraksaLogo602x197.PNG" alt="logoAlt"></a>
+        </div>
+        <div class="dropdown-klasa">
+          <button class="dropbtn" id="dropbtn-ID" (click)="profilDropdown()">Profil
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content-klasa" id="dropdown-content-klasa-ID">
+            <a [routerLink]="[ '/student/profil' ]" routerLinkActive="router-link-active">Prikaži profil</a>
+            <a href="#">Uredi profil</a>
+            <a (click)="logOut()">Odjavi se</a>
+          </div>
+         
+        </div>
+        <a href="./odbijanjePrakse.html">Izvještaji</a>
+        <a [routerLink]="['/student']" routerLinkActive="router-link-active">Prakse</a>
+        <a href="./odbijanjePrakse.html">Moji konkursi</a>
+        <a href="./prijavaNaPraksu.html">Ocjeni praksu</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" (click)="myFunction()"><img></a>
+        <!-- tri crtice -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+ }
+
+:root 
+{
+    --zelena: #5FB34F;
+    --zelenaMouseOver: #327825;
+    --plavaMouseOver:#66bfb6;
+    --bojaMenija: #105c6e;
+    --plavaOtkaziButton : #5BA7B9;
+    --plavaZaLinkoveFooter: #4AD5D4;
+    --crvenaZaButtone: #F81A1A;
+    --bojaTamnoZelenaSlova: #105c6e;
+    --sivaBackground:#E5E5E5;
+    --zelenaCheckbox:#5fb34f;
+}

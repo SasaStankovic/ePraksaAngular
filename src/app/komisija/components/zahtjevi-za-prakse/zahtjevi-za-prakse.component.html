@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Zahtjevi za odobravanje praksi</h1>
+  <hr>
+  <div class="sadrzaj" id="sadrzajdiv">
+    <div *ngFor="let item of prakseList; index as i" class="prakseContent">
+      <app-prikazprakse [praksa]="prakseList[i]"></app-prikazprakse>
+    </div>
+  </div>
+</div>

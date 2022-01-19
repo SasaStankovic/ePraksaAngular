@@ -1,0 +1,88 @@
+.header1 label{
+    font-size: 20px;
+    font-weight: bold;
+}
+hr{
+    opacity: 1;
+    margin-top: 0;
+}
+
+.header2 label{
+    margin-right: 10px;
+}
+button{
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    padding:5px 15px;
+}
+.btnDodaj{
+    background-color: var(--plavaZaLinkoveFooter);
+}
+
+.btnDodaj:hover{
+    background-color: var(--plavaMouseOver);
+}
+
+.form{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: var(--sivaBackground);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+form label{
+    margin:0 5px;
+}
+
+form hr{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.izvjestaj{
+    width: 100%;
+    border:none;
+    background-color: var(--sivaBackground);
+    resize: none;
+}
+
+.btnUredi{
+    background-color: var(--plavaZaLinkoveFooter);
+}
+
+.btnUredi:hover{
+    background-color: var(--plavaMouseOver);
+}
+.btnUredi:disabled{
+    background-color:#b6bebe;
+}
+.btnSacuvaj{
+    background-color: var(--zelena);
+}
+
+.btnSacuvaj:hover{
+    background-color: var(--zelenaMouseOver);
+}
+
+.btnObrisi{
+    background-color: red;
+}
+
+.btnObrisi:hover{
+    background-color: #f86969;
+}
+
+.buttons{
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.danger-text{
+    color: red;
+    font-size: 20px;
+}

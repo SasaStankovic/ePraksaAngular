@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <div class="container">
+    <h1>Prijava na sistem</h1>
+    <hr>
+    <div class="grid">
+      <label>Email:</label>
+      <input type="email" formControlName="email" placeholder="Studentski emali">
+      <span *ngIf="form.get('email')?.hasError('email')" class="danger-text">Unesite studentski email!</span>
+
+      <span [hidden]="hide">Pogresni pristupni podaci!</span>
+
+      <label>Lozinka:</label>
+      <input type="password" formControlName="password" placeholder="Lozinka">
+      <span *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched" class="danger-text">Unesite lozinku!</span>
+      <input (click)="login()" type="submit" value="Prijavi se" class="prijavaBtn">
+    </div>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+.parent {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  background-color: var(--sivaBackground);
+  border-radius: 10px;
+  height: fit fit-content;
+  grid-gap: 10px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  color: white;
+  border-radius: 25px;
+  border: none;
+  height: fit-content;
+  padding: 10px 15px;
+}
+
+.dnevnikRada {
+  background-color: var(--plavaZaLinkoveFooter);
+}
+
+.izvejstajMentora {
+  background-color: var(--zelena);
+}
+
+.izvejstajMentora:hover {
+  background-color: var(--zelenaMouseOver);
+}
+
+.student {
+  justify-self: flex-start;
+}
+
+.dnevnikRada:hover {
+  background-color: var(--plavaMouseOver);
+}
+a{
+text-decoration: none;
+  color:black
+}
+a:hover {
+  color: var(--plavaZaLinkoveFooter);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .parent {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+
+}

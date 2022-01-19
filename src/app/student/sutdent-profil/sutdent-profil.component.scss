@@ -1,0 +1,95 @@
+ 
+  a:hover{
+    color: var(--plavaZaLinkoveFooter);
+  }
+
+  
+  .div{
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    padding: 15px 25px 15px 25px;
+    margin-bottom: 1em;
+  }
+
+  .div p{
+    margin-bottom: 0;
+  }
+  
+  .navBar{
+    background-color: #105C6E;
+    color: white;
+  }
+  
+  .lblProfil{
+    font-size: 29px;
+    font-weight: bold;
+    margin-left: 25px;
+  }
+  
+  .topdiv hr{
+    opacity: 1;
+    margin: 10px 0 !important;
+    height: 2px;
+  }
+  
+  .licniPodaci {
+    background-color: var(--zelena);
+    color: white;
+    font-size: 20px;
+  }
+  .licniPodaci a{
+    color: white;
+  }  
+  .licniPodaci a:hover{
+    color: var(--plavaZaLinkoveFooter);
+  } 
+  
+  .lbl{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 25px;
+  }
+  
+  .lblNested{
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+  .vline{
+    display: flex;
+    height: 200px;
+  }
+  
+  .iskustvo label{
+    // margin: 10px;
+    display: block;
+  }
+
+  .iskustvo p{
+    margin-bottom: 1em;
+  }
+
+  .kontent label{
+    display: block !important;
+    
+  }
+
+  @media  all and (max-width: 991px) {
+    .vline{
+      display: none !important;
+    }
+    .col-md-2{
+      display: none !important;
+    }
+  }
+  
+  @media  all and (max-width: 768px) {
+    .vline{
+      display: none !important;
+    }
+    .col-md-2{
+      display: none !important;
+    }
+  }
+  

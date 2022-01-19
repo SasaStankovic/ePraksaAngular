@@ -1,0 +1,197 @@
+hr {
+  color: white !important;
+  opacity: 1 !important;
+  height: 1px !important;
+}
+
+h1,
+h2,
+p {
+  text-align: center;
+  color: white;
+}
+
+.imglogo {
+  height: 60px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav li {
+
+  font-size: 18px;
+}
+
+.nav li button {
+  color: white;
+  border: 0;
+}
+
+.nav li button:hover {
+  opacity: 0.8;
+}
+
+
+.row1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #105c6e;
+}
+
+
+.hiring {
+  background-image: url("../../assets/resources/hiring.svg");
+  height: 400px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 1%;
+}
+
+.oNama{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #5BA7B9;
+  padding: 2%;
+  align-items: center;
+
+}
+
+
+.aboutImg {
+  background-image: url("../../assets/resources/about.svg");
+  height: 300px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.imgProgres {
+  background-image: url("../../assets/resources/progress.svg");
+  height: 300px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.zatoTxt {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #5fb34f;
+  padding: 2%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.logo img {
+  width: 250px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
+}
+
+.main-banner {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+  background-color: #105c6e;
+}
+
+
+.dropdown {
+  display: inline-block;
+  color: white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--zelena);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown button {
+  background-color: var(--zelena);
+  width: 160px;
+  height: 40px;
+  font-size: 1em;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.5s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-content a {
+  width: 160px;
+  padding: 15px 0 15px 25px;
+  text-decoration: none;
+  display: block;
+  border-radius: none;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--zelenaMouseOver);
+  border-radius: 25px;
+  transition-duration: 300ms;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 30px;
+}
+
+@media (max-width: 992px) {
+
+  .hiring {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutImg {
+    display: none;
+  }
+
+  .imgProgres {
+    display: none;
+  }
+
+  .hiring {
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .nav-bar {
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 300px) {
+
+  .nav-bar button {
+    width: fit-content;
+    padding: 0 25px 0 25px;
+    height: 40px;
+  }
+
+  .imglogo {
+    height: 50px;
+  }
+}

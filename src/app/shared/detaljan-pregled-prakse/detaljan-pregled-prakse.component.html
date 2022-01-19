@@ -1,0 +1,116 @@
+<div id="popUp-Id" class="popUp-klasa">
+  <form class="popUp-content-klasa animate-popUp" method="get">
+
+    <div class="naslov-iznad-hr">
+      <div class="row align-items-center">
+        <div class="col">
+          <label for="">{{praksa.kompanija}}</label>
+        </div>
+        <div class="col al">
+          <button type="reset" class="otkaziBtn" (click)="closePopUp()"></button>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <!------------------------------------------>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Vrsta Prakse:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.vrstaPrakse}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Godina fakulteta:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.godinaFakulteta}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Period trajanja prakse:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.periodTrajanja}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Ukupan broj radnih sati:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.brojRadnihSati}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Oblast rada prakse:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.oblastRada}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Smjer:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.smjer}}</p>
+      </div>
+    </div>
+    <div class="naslov-pasusa">
+      <p>Plan rada prakse i planirane aktivnosti:</p>
+    </div>
+    <div class="pasus">
+      <p>{{praksa.planRada}}</p>
+    </div>
+    <div class="naslov-pasusa">
+      <p>Detalji:</p>
+    </div>
+    <div class="pasus">
+      <p>{{praksa.detalji}}</p>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Potrebni dokumenti za apliciranje:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.dokumenti}}</p>
+      </div>
+    </div>
+    <div class="sadrzaj">
+      <div class="stavke-prakse">
+        <p>Link do prakse:</p>
+      </div>
+      <div class="sadrzaj vrijednost-stavke">
+        <a [attr.href]="praksa.linkDoPrakse" target="_blank">link</a>
+      </div>
+    </div>
+    <div class="sadrzaj stavke-prakse">
+      <div class="">
+        <p>Rok za prijavu:</p>
+      </div>
+      <div class="vrijednost-stavke">
+        <p>{{praksa.rokPrijave}}</p>
+      </div>
+    </div>
+    <!------------------------------------------>
+    <!-- <div class="center"> -->
+
+    <div class="row">
+      <div class="col-4 d-flex justify-content-end">
+        <button class="potvrdiBtn"  [hidden]="isStudent">Odobri praksu</button>
+      </div>
+      <div class="col-4 d-flex justify-content-center">
+        <button onclick="apliciraj()" class="potvrdiBtn" [hidden]="!isStudent">Apliciraj</button>
+      </div>
+      <div class="col-4 d-flex justify-content-start">
+        <button class="OtkaziPraksuBtn"  [hidden]="isStudent">Otkazi praksu</button>
+      </div>
+    </div>
+    <!-- </div> -->
+  </form>
+</div>

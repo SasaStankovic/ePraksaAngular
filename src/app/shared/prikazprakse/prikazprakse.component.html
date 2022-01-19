@@ -1,0 +1,23 @@
+<div class="praksa">
+  <label for="" class="lbl">{{praksa.kompanija}}</label>
+  <div class="vrsta">
+    <label for="" class="lbl">Vrsta prakse: </label>
+    <label for="" class="lblinner">{{praksa.vrstaPrakse}}</label>
+  </div>
+  <div class="linija">
+    <hr>
+  </div>
+  <div class="period">
+    <label for="" class="lbl">Period trajanja prakse: </label>
+    <label for="" class="lblinner">{{praksa.periodTrajanja}}</label>
+  </div>
+  <div class="divSmjer">
+    <label for="" class="lbl">Smjer: </label>
+    <label for="" class="lblinner">{{praksa.smjer}}</label>
+  </div>
+  <label for="" class="lbl">O praksi:</label>
+  <div class="oPraksi">
+    <p> {{praksa.oPraksi}}</p>
+  </div>
+  <button (click)="showPopUp()" class="btnPogledajPraksu">Detaljan pregled</button>
+</div>

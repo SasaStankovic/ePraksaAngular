@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="topdiv">
+        <label for="" class="lblProfil">Profil</label>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <!-- licni podaci -->
+  <div class="row">
+
+    <div class="col-sm-12">
+      <label for="" class="lbl">Lični podaci</label>
+      <div class="licniPodaci div">
+        <div class="row align-items-center">
+          <!-- Slika -->
+          <div class="col-md-2 d-flex justify-content-center">
+            <img src="../../../assets/resources/profileIcon100x100.svg" alt="">
+          </div>
+          <!-- podaci 1 -->
+          <div class="col-md">
+            <div class="">
+              <label for="" class="lblNested">Ime:</label>
+              <label for="">{{student.ime}}</label>
+            </div>
+            <div class="">
+              <label for="" class="lblNested">Prezime:</label>
+              <label for="">{{student.prezime}} </label>
+            </div>
+            <div class="">
+              <label class="lblNested">Datim rođenja:</label>
+              <label for="">{{student.datumRodjenja}}</label>
+            </div>
+            <div class="">
+              <label for="" class="lblNested">Portfolio:</label>
+              <a [attr.href]="student.portfolioLink" target="_blank">link do portfolia</a>
+            </div>
+          </div>
+
+          <!-- vertikalna linija -->
+          <div class="col-sm-1 vline">
+            <div class="vline">
+              <div class="vr"></div>
+            </div>
+          </div>
+          <!-- podaci 2 -->
+          <div class="col-md">
+            <div class="">
+              <label class="lblNested">Broj indeksa:</label>
+              <label for="">{{student.indeks}}</label>
+            </div>
+
+            <div class="">
+              <label  class="lblNested">Adresa stanovanja:</label>
+              <label >{{student.adresa}}</label>
+            </div>
+
+            <div class="col">
+              <label  class="lblNested">Email:</label>
+              <label >{{student.mail}}</label>
+            </div>
+            <div class="col">
+              <label  class="lblNested">Telefon:</label>
+              <label >{{student.tel}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O meni -->
+  <div class="row">
+    <div class="col-sm-12">
+      <label for="" class="lbl">O meni</label>
+      <div class="div">
+        <!-- Element O meni -->
+        <p>{{student.oMeni}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Obrazovanje i vjestine-->
+  <div class="row">
+    <div class="col-md-9">
+      <!-- Obrazovanje -->
+      <label for="" class="lbl">Obrazovanje</label>
+      <div class="div">
+        <div>
+          <div class="row">
+            <div class="col">
+              <label class="lblNested">Fakultet:</label>
+              <label for="">{{student.fakultet}}</label>
+            </div>
+
+            <div class="col">
+              <label class="lblNested">Godina:</label>
+              <label for="">{{student.godina}}</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label class="lblNested">Smjer:</label>
+              <label for="">{{student.smjer}}</label>
+            </div>
+            <div class="col">
+              <label class="lblNested">Ciklus:</label>
+              <label for="">{{student.ciklus}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Obrazovanje end -->
+
+      <!--Div sa radnim iskustvima -->
+      <div class="col-sm-12">
+        <label for="" class="lbl">Radno iskustvo</label>
+        <div class="div">
+          <!-- Ekement za radno iskustvo -->
+          <div class="iskustvo" *ngFor="let item of student.radnoIskustvo; index as i">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="" class="lblNested">{{student.radnoIskustvo[i].period}}</label>
+              </div>
+              <div class="col-md-9">
+                <label class="lblNested">{{student.radnoIskustvo[i].firma}}</label>
+                <label class="lblNested">{{student.radnoIskustvo[i].pozicija}}</label>
+                <p>{{student.radnoIskustvo[i].opis}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Element za prikaz projekta -->
+      <div class="col">
+        <label for="" class="lbl">Projekti</label>
+        <div class="div">
+          <!-- Element za projekat -->
+          <div *ngFor="let item of student.projekti">
+            <div class="row my-2">
+              <div class="col-3">
+                <label class="lblNested">{{item.period}}</label>
+              </div>
+              <div class="col-9">
+                <label class="lblNested">{{item.naziv}}</label>
+                <p>{{item.opis}}</p>
+                <a [attr.href]="item.link" target="_blank">link do projekta</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vjestine -->
+    <div class="col">
+      <div class="row">
+        <div class="col kontent">
+          <label class="lbl">Vjestine</label>
+          <div class="div">
+            <label *ngFor="let item of student.vjestine">-{{item}}</label>
+          </div>
+        </div>
+      </div>
+      <!-- strani jezici -->
+      <div class="row">
+        <div class="kontent">
+          <label class="lbl">Strani jezici</label>
+          <div class="div">
+            <label *ngFor="let item of student.jezici">-{{item}}</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- hobiji -->
+      <div class="row">
+        <div class="kontent">
+          <label for="" class="lbl">Hobiji</label>
+          <div class="div">
+            <label *ngFor="let item of student.hobiji" >-{{item}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vjestine end -->
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <label for="" class="lbl">Ocjene na praksama</label>
+      <div class="licniPodaci div">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto repellendus, aliquam et nostrum hic eaque
+        beatae amet voluptatum assumenda? Quidem impedit optio dolore ut qui expedita labore ullam doloribus
+        voluptatibus!
+      </div>
+    </div>
+  </div>
+</div>

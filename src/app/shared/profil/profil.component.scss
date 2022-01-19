@@ -1,0 +1,61 @@
+.sadrzaj{
+  margin-top: 4%;
+  margin-bottom: 1%;
+}
+
+.profilKolona
+{
+  font-weight: bold; 
+  margin-top: 14%;
+  margin-bottom: 3%;
+  padding: 10%;
+  text-align: left;
+}
+
+.profilKolona 
+{
+  word-wrap: normal;
+  margin-bottom: 20px;
+}
+
+.treca{
+  text-align: left;
+  padding-top: 0%;
+}
+
+.line {
+  display: inline-block;
+  width: 100%;
+  border-top: 2px solid rgb(191, 191, 191);
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width:900px)
+{
+  .profilKolona {
+    margin-bottom: 0;
+  }
+
+  .treca {
+    padding-top: 0%;
+  }
+
+}
+
+@media (max-width: 767px)
+{
+   .Ime-prezime-kolona {
+    display: none;
+  }
+  
+  .kolone-u-sredini {
+    margin: 0%;
+  }
+
+  .profilKolona
+  {
+    text-align: center;
+    margin-top: 0%;
+  }
+}

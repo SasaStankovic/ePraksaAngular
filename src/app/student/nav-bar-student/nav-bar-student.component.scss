@@ -1,0 +1,213 @@
+  .sticky12 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-bottom: 1em;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: var(--bojaMenija);
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .topnav a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    margin-top: 17px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .topnav .logo-klasa {
+    float: left;
+  }
+  
+  .active img {
+    margin: -23px;
+    margin-right: 0;
+    padding-bottom: 0px;
+    margin-bottom: -26px !important;
+    width: 180px;
+  }
+  
+  .topnav .icon {
+    display: none;
+    padding: 9px;
+    margin-top: 19px !important;
+    margin-bottom: 25px !important;
+    width: 20px;
+    height: 20px;
+    background: url(../../../assets/resources/triCrtice.svg) no-repeat scroll 0 0;
+    background-size: 20px;
+  }
+  
+  .topnav .dropdown-klasa {
+    float: right;
+    overflow: hidden;
+    margin: 8px;
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+  
+  .dropdown-klasa .dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 10px 16px;
+    padding-top: 9px;
+    background-color: var(--zelena);
+    font-family: inherit;
+    margin-top: 8px;
+    border-radius: 25px;
+    width: 130px;
+  }
+  
+  .dropdown-content-klasa {
+    display: none;
+    position: absolute;
+    background-color: var(--zelena);
+    width: 130px;
+    z-index: 1;
+    margin: 0;
+    border-radius: 0 0 25px 25px !important;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .dropdown-content-klasa a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: inherit;
+    border-radius: none;
+  }
+  
+  .topnav a:hover {
+    color: white;
+    opacity: 0.4;
+  }
+  
+  .logo-klasa a:hover {
+    opacity: 1;
+  }
+  
+  .dropdown-content-klasa a:hover {
+    background-color: var(--zelenaMouseOver);
+    color: white;
+    margin: 0;
+    border-radius: 25px;
+    margin: inherit;
+    opacity: 1;
+    transition-duration: 300ms;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 4% !important;
+      top: 0;
+      margin: 0px;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+  
+    /* ˇ ovaj dio se odnosi na navMeni kad nije aktivan, tj. kada nije kliknuto na 3 crtice i nije prikazan dropdown ˇ */
+    .topnav a,
+    .dropdown-klasa .dropbtn {
+      display: none;
+      margin: 0px;
+      padding: 10px;
+      border-radius: 0 !important;
+    }
+  
+    .logo-klasa a {
+      display: block;
+      padding-left: 25px;
+      margin-top: 17px;
+      margin-bottom: -20px !important;
+    }
+  
+    .active img {
+      padding: 0px;
+      margin-top: -20px;
+      margin-bottom: 20px !important;
+      width: 150px;
+    }
+  
+    .topnav a.icon {
+      display: block;
+      position: absolute;
+      right: 4% !important;
+      top: 0;
+    }
+  
+    .dropdown-content-klasa {
+      width: auto;
+      border-radius: 0 !important;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+  
+    /* ˇ ovaj dio se odnosi na aktivan navMeni, tj. kada je kliknuto na 3 crtice i dropdown je prikazan ˇ */
+    .topnav.responsive {
+      position: relative;
+      margin: 0px;
+    }
+  
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 4% !important;
+      top: 0;
+      margin: 0px;
+    }
+  
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+      margin: 0px;
+    }
+  
+    .topnav.responsive .logo-klasa {
+      float: none;
+      display: block;
+      text-align: left;
+      margin: 0px;
+    }
+  
+    .topnav.responsive a img {
+      margin-top: -3px;
+      margin-bottom: 15px !important;
+    }
+  
+    .topnav.responsive .dropdown-klasa {
+      float: none;
+      margin-bottom: 0px;
+    }
+  
+    .topnav.responsive .dropdown-content-klasa {
+      position: relative;
+      border-radius: 0px;
+      margin: 0px;
+    }
+  
+    .topnav.responsive .dropdown-klasa .dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border-radius: 0px;
+      margin: 0;
+    }
+  }
