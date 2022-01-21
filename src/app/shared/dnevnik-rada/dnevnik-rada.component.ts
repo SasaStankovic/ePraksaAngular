@@ -9,7 +9,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class DnevnikRadaComponent implements OnInit {
 
   form!: FormGroup;
-  disabled = !true;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -17,10 +16,10 @@ export class DnevnikRadaComponent implements OnInit {
     this.form = this.formBuilder.group({
       'dnevnikRada': new FormArray([
         this.formBuilder.group({
-          'dan': new FormControl({value: '',disabled:this.disabled}, [Validators.required]),
-          'od': new FormControl({value: '',disabled:this.disabled}, Validators.required),
-          'do': new FormControl({value: '',disabled:this.disabled}, Validators.required),
-          'izvjestaj': new FormControl({value: '',disabled:this.disabled},Validators.required)
+          'dan': new FormControl({value: '',disabled:false}, [Validators.required]),
+          'od': new FormControl({value: '',disabled:false}, Validators.required),
+          'do': new FormControl({value: '',disabled:false}, Validators.required),
+          'izvjestaj': new FormControl({value: '',disabled:false},Validators.required)
         })
       ])
     });
@@ -35,7 +34,8 @@ export class DnevnikRadaComponent implements OnInit {
       dan: '',
       od: '',
       do: '',
-      izvjestaj:''
+      izvjestaj:'',
+      disabled: true
     });
     this.dnevnikRada.push(input);
   }
@@ -44,14 +44,15 @@ export class DnevnikRadaComponent implements OnInit {
     this.dnevnikRada.removeAt(index);
   }
 
-  save(){
-    if(this.dnevnikRada.valid)
+  save(index: number){
+    // if(this.dnevnikRada.controls[index].valid)
     {
-      this.disabled = true;
-      console.log("Sacuvano"+this.disabled);
+      console.log("index:"+index);
+      console.log(this.dnevnikRada.controls[index].get('disabled'));
+      // console.log("Sacuvano"+this.disabled);
     }
   }
-  uredi(){
-    this.disabled = !this.disabled;
+  uredi(index:number){
+    // this.disabled = !this.disabled;
   }
 }

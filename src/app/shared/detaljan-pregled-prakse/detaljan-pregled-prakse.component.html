@@ -102,7 +102,7 @@
 
     <div class="row">
       <div class="col-4 d-flex justify-content-end">
-        <button class="potvrdiBtn"  [hidden]="isStudent">Odobri praksu</button>
+        <button class="potvrdiBtn"  [hidden]="isStudent" (click)="approveInternship()">Odobri praksu</button>
       </div>
       <div class="col-4 d-flex justify-content-center">
         <button onclick="apliciraj()" class="potvrdiBtn" [hidden]="!isStudent">Apliciraj</button>

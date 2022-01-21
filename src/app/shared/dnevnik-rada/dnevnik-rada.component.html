@@ -21,7 +21,6 @@
 
   <form [formGroup]="form" onsubmit="return false">
     <div formArrayName="dnevnikRada">
-
       <ng-container *ngFor="let item of dnevnikRada.controls; let i = index;" [formGroupName]="i">
         <div class="form">
           <div class="row">
@@ -78,8 +77,8 @@
                   <label>19.1.2022</label>
                 </div>
                 <div class="col-md buttons">
-                  <button class="btnUredi" (click)="uredi()" [disabled]='!disabled'>Uredi</button>
-                  <button class="btnSacuvaj" (click)="save()" [disabled]='disabled'>Sacuvaj</button>
+                  <button class="btnUredi" (click)="uredi(i)" >Uredi</button>
+                  <button class="btnSacuvaj" (click)="save(i)" >Sacuvaj</button>
                   <button class="btnObrisi" (click)="delete(i)"> Izbrisi</button>
                 </div>
               </div>

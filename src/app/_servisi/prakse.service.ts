@@ -15,4 +15,8 @@ export class PrakseService {
   getZahtjeviZaPrakse(){
     return this.httpPrakse.get("http://localhost:3000/zahtjevi-za-prakse");
   }
+
+  approveInternship(){
+    
+  }
 }

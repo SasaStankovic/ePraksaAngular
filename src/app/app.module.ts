@@ -13,13 +13,17 @@ import { AuthGuard } from './_guards/auth.guard';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KomisijaModule } from './komisija/komisija.module';
+import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
+import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     ProfilComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    WrapperComponent,
+    NavBarFirmaComponent
     
   ],
   imports: [

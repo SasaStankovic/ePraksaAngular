@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren:()=>import('./komisija/komisija.module').then(m=>m.KomisijaModule)
   },
   {
+    path:'firma',
+    loadChildren:()=>import('./firma/firma.module').then(m=>m.FirmaModule)
+  },
+  {
     path: '**', redirectTo:'', pathMatch:'full'
   }
 ];

@@ -40,5 +40,8 @@ export class DetaljanPregledPrakseComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  approveInternship(){
+    
+  }
 
 }
