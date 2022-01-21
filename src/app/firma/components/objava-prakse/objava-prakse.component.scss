@@ -1,0 +1,131 @@
+h3 {
+  margin: 5px 0px 5px 15px;
+  font-weight: bold;
+  color: var(--bojaMenija);
+}
+
+.daljeBtn {
+  background-color: var(--zelena) !important;
+  color: white !important;
+  border-radius: 10px;
+  
+}
+
+.btnNazad {
+  background-color: var(--bojaMenija) !important;
+  color: white !important;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+::ng-deep.mat-step-header .mat-step-icon-selected {
+  background-color: var(--bojaMenija) !important;
+}
+
+::ng-deep.mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--bojaMenija) !important;
+}
+
+.example-radio-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #e5e5e5;
+  padding: 15px;
+  border-radius: 10px;
+  width: 30%;
+  min-width: fit-content;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.section2 {
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  padding: 15px;
+  width: 30%;
+  min-width: fit-content;
+  margin-bottom: 10px;
+}
+
+.section2 label {
+  margin-left: 5px;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  opacity: 0 !important;
+  background-color: var(--zelena) !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: var(--zelena) !important;
+  /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--zelena) !important;
+  /*outer ring color change*/
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+  border: var(--bojaMenija) 1px solid;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #5FB34F;
+}
+
+.section2 input+label {
+  cursor: pointer;
+}
+
+.section2 div {
+  display: flex;
+  align-items: center;
+}
+
+.section2 label {
+  margin-right: 10px;
+}
+
+.mat-input-element {
+  border-color: red;
+}
+
+.width {
+  width: 80%;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+}
+
+.centered-text-klasa {
+  text-align: center;
+}
+
+.bi-calendar-date+.datepicker_input {
+  padding-left: 3.5rem;
+  z-index: 3;
+}
+
+.kalendar_layout {
+  background: url(/resources/DateIcondatePickerIcon.svg) no-repeat scroll 5px 7px;
+  cursor: pointer;
+  padding-left: 45px !important;
+}
