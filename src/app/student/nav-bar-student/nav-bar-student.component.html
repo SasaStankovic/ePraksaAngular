@@ -13,7 +13,7 @@
           <div class="dropdown-content-klasa" id="dropdown-content-klasa-ID">
             <a [routerLink]="[ '/student/profil' ]" routerLinkActive="router-link-active">Prikaži profil</a>
             <a href="#">Uredi profil</a>
-            <a (click)="logOut()">Odjavi se</a>
+            <a [routerLink]="['']" (click)="logOut()">Odjavi se</a>
           </div>
          
         </div>

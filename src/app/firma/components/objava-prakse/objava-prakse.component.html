@@ -12,7 +12,7 @@
           <input matInput placeholder="Naziv prakse" formControlName="nazivPrakse" required>
         </mat-form-field>
         <div>
-          <button class="daljeBtn" mat-raised-button matStepperNext>Dalje</button>
+          <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="firstFormGroup.invalid">Dalje</button>
         </div>
       </form>
     </mat-step>
@@ -24,8 +24,8 @@
         <section>
           <h3>Vrsta prakse:</h3>
           <mat-radio-group formControlName="vrstaPrakse" aria-labelledby="lvlVrstaID" class="example-radio-group">
-            <mat-radio-button value="strucna">Strucna</mat-radio-button>
-            <mat-radio-button value="ljetna">Ljetna</mat-radio-button>
+            <mat-radio-button value="strucna" (click)="strucnaPraksaSelecte()">Strucna</mat-radio-button>
+            <mat-radio-button value="ljetna" (click)="ljetnaPraksaSelected()">Ljetna</mat-radio-button>
           </mat-radio-group>
         </section>
         <h3>Smjer:</h3>
@@ -51,56 +51,56 @@
         <h3>Godina fakulteta:</h3>
         <section class="section2">
           <div>
-            <input type="checkbox" id="ckbI" formControlName="SI">
+
+            <input type="checkbox" id="ckbI" formControlName="god1">
             <label for="ckbI">I</label>
 
-            <input type="checkbox" id="ckbII" formControlName="RI">
+            <input type="checkbox" id="ckbII" formControlName="god2">
             <label for="ckbII">II</label>
 
-            <input type="checkbox" id="ckbIII" formControlName="EL">
+            <input type="checkbox" id="ckbIII" formControlName="god3">
             <label for="ckbIII">III</label>
 
-
-            <input type="checkbox" id="ckbIV" formControlName="TEL">
+            <input type="checkbox" id="ckbIV" formControlName="god4">
             <label for="ckbIV">IV</label>
           </div>
         </section>
         <div *ngIf="secondFormGroup?.get('vrstaPrakse')?.value == 'strucna'">
-            <mat-form-field appearance="fill">
-                <mat-label>Broj randih sati prakse</mat-label>
-                <input matInput placeholder="Broj randih sati prakse" formControlName="brojSati" required>
-              </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Broj randih sati prakse</mat-label>
+            <input matInput placeholder="Broj randih sati prakse" formControlName="brojSati">
+          </mat-form-field>
         </div>
-        
+
         <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
-        <button class="daljeBtn" mat-raised-button matStepperNext>Dalje</button>
+        <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="secondFormGroup.invalid">Dalje</button>
 
       </form>
     </mat-step>
 
     <mat-step label="Oblast i program rada prakse">
-      <form>
+      <form [formGroup]="thirdForm">
         <div>
           <h3>Oblast rada:</h3>
         </div>
         <mat-form-field class="width" appearance="fill">
           <mat-label>Oblast rada prakse</mat-label>
-          <textarea rows="5" matInput></textarea>
+          <textarea formControlName="oblastRada" rows="5" matInput></textarea>
         </mat-form-field>
         <h3>Program rada prakse:</h3>
         <mat-form-field class="width" appearance="fill">
           <mat-label>Program rada prakse</mat-label>
-          <textarea rows="8" matInput></textarea>
+          <textarea formControlName="programRada" rows="8" matInput></textarea>
         </mat-form-field>
         <div>
         </div>
         <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
-        <button class="daljeBtn" mat-raised-button matStepperNext>Dalje</button>
+        <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="thirdForm.invalid">Dalje</button>
       </form>
     </mat-step>
 
     <mat-step label="Detalji o praksi">
-      <form>
+      <form [formGroup]="fourthForm">
         <div>
           <h3>Detalji o praksi:</h3>
         </div>
@@ -108,7 +108,7 @@
           <div class="col">
             <mat-form-field class="width" appearance="fill">
               <mat-label>Detalji o praksi</mat-label>
-              <textarea rows="8" matInput></textarea>
+              <textarea formControlName="detalji" rows="8" matInput required></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -118,7 +118,7 @@
             <h3>Reklamni tekst</h3>
             <mat-form-field class="width" appearance="fill">
               <mat-label>Reklamni tekst o praksi</mat-label>
-              <textarea rows="8" matInput></textarea>
+              <textarea formControlName="reklamniTekst" rows="8" matInput required></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -129,7 +129,7 @@
             <h3>Strucni mentor</h3>
             <mat-form-field appearance="fill">
               <mat-label>Strucni mentor</mat-label>
-              <mat-select>
+              <mat-select formControlName="mentor" required>
                 <mat-option *ngFor="let item of mentori" [value]="item.id">
                   {{item.ime}} {{item.prezime}}
                 </mat-option>
@@ -140,7 +140,7 @@
             <h3>Grad:</h3>
             <mat-form-field appearance="fill">
               <mat-label>Mjesto odrzavanaj prakse</mat-label>
-              <input matInput placeholder="Mjesto odrzavanaj prakse" required>
+              <input formControlName="grad" matInput placeholder="Mjesto odrzavanaj prakse" required>
             </mat-form-field>
           </div>
         </div>
@@ -161,46 +161,78 @@
             <h3>Link do prakse:</h3>
             <mat-form-field appearance="fill">
               <mat-label>Link</mat-label>
-              <input matInput placeholder="Link do prakse" required>
+              <input formControlName="link" matInput placeholder="Link do prakse">
             </mat-form-field>
           </div>
         </div>
         <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
-        <button class="daljeBtn" mat-raised-button matStepperNext>Dalje</button>
+        <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="fourthForm.invalid">Dalje</button>
       </form>
     </mat-step>
 
     <mat-step>
       <ng-template matStepLabel>Datumi i rokovi</ng-template>
-      <form>
+      <form [formGroup]="fifthForm">
         <div class="row">
           <h3>Period trajanja prakse:</h3>
           <div class="col">
-            <mat-form-field class="example-form-field" appearance="fill">
+            <mat-form-field appearance="fill" class="example-form-field">
               <mat-label>Period trajanja prakse</mat-label>
-              <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker"
-                [comparisonStart]="campaignTwo.value.start" [comparisonEnd]="campaignTwo.value.end">
-                <input matStartDate placeholder="Start date" formControlName="start">
-                <input matEndDate placeholder="End date" formControlName="end">
+              <mat-date-range-input [rangePicker]="rangePicker" required>
+                <input matStartDate placeholder="Start date" formControlName="periodOd">
+                <input matEndDate placeholder="End date" formControlName="periodDo">
               </mat-date-range-input>
-              <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-              <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+              <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #rangePicker>
+                <mat-date-range-picker-actions>
+                  <button mat-button matDateRangePickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                </mat-date-range-picker-actions>
+              </mat-date-range-picker>
             </mat-form-field>
           </div>
         </div>
+
         <div class="row">
           <div class="col">
-            <h3>Rok trajanja konkursa:</h3>
-            <mat-form-field appearance="fill">
-              <mat-label>Izaberite datum</mat-label>
-              <input matInput [matDatepicker]="picker">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+            <mat-form-field appearance="fill" class="example-form-field">
+              <mat-label>Rok prijave na konkurs</mat-label>
+              <input matInput [matDatepicker]="datepicker" formControlName="rok">
+              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
             </mat-form-field>
           </div>
         </div>
         <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
+        <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="fifthForm.invalid">Dalje</button>
       </form>
     </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Objavi oglas</ng-template>
+      <div class="row">
+        <div class="col">
+          <ng-container
+            *ngIf="secondFormGroup?.get('vrstaPrakse')?.value == 'strucna'; then strucnaInfo; else ljetnaInfo;">
+          </ng-container>
+          <ng-template #strucnaInfo>
+            <div> Oglas za strucnu praksu mora biti odobren od strane strucne komisije.</div>
+          </ng-template>
+
+          <ng-template #ljetnaInfo>
+           <div> Vas oglas je uspjesno objavljen!</div>
+          </ng-template>
+          <button class="btnNazad" mat-raised-button matStepperPrevious>Otkazi</button>
+          <button class="daljeBtn" mat-raised-button (click)="submitData()">Objavi</button>
+        </div>
+      </div>
+    </mat-step>
   </mat-vertical-stepper>
+
 </div>
+
