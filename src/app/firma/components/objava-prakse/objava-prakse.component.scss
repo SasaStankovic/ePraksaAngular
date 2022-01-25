@@ -4,6 +4,15 @@ h3 {
   color: var(--bojaMenija);
 }
 
+hr{
+  opacity: 1;
+}
+lbl{
+  margin: 10px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
 .daljeBtn {
   background-color: var(--zelena) !important;
   color: white !important;
@@ -107,7 +116,7 @@ input[type="checkbox"]:checked {
 }
 
 .width {
-  width: 80%;
+  width: 100%;
 }
 
 .parent {
