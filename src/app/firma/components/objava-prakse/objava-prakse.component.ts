@@ -1,6 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
+import { Router, RouterLink } from '@angular/router';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
   selector: 'app-objava-prakse',
@@ -23,6 +27,7 @@ export class ObjavaPrakseComponent implements OnInit {
     periodTrajanja: "",
     smjer: [""],
     oPraksi: "",
+    mentor:"",
     godinaFakulteta: "",
     brojRadnihSati: "",
     oblastRada: "",
@@ -30,7 +35,8 @@ export class ObjavaPrakseComponent implements OnInit {
     detalji: "",
     dokumenti: [""],
     linkDoPrakse: "",
-    rokPrijave: ""
+    rokPrijave: "",
+    grad: "",
   }
 
   mentori = [
@@ -40,9 +46,10 @@ export class ObjavaPrakseComponent implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder,
-    private praksaServis: PrakseService) {
+    private praksaServis: PrakseService,
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
-  }
 
   ngOnInit(): void {
     this.firstFormGroup = this.formBuilder.group({
@@ -91,7 +98,7 @@ export class ObjavaPrakseComponent implements OnInit {
 
 
   ljetnaPraksaSelected() {
-    
+
   }
 
   strucnaPraksaSelecte() {
@@ -148,12 +155,29 @@ export class ObjavaPrakseComponent implements OnInit {
     this.praksa.linkDoPrakse = this.fourthForm.value['link'];
     this.praksa.rokPrijave = this.fifthForm.value['rok'];
 
-    this.praksaServis.postInternShip(this.praksa).subscribe(data => {
-      console.log(data);
-    }, (err) => {
-      console.log(err);
-    });
+    this.praksa.mentor = this.fourthForm.value['mentor'];
+    this.praksa.grad = this.fourthForm.value['grad'];
 
+    console.log(this.praksa);
+
+    this.praksaServis.postInternShip(this.praksa).subscribe({
+      next: (d)=>{
+        this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
+        this.router.navigateByUrl('/firma');
+      },
+      // complete: ()=>{ console.log("Uspjesno");
+      // },
+      error: (err)=>{console.log("Greska!"+err);}});
+  }
+  
+
+  cancel(){
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
+    this.thirdForm.reset();
+    this.fourthForm.reset();
+    this.fifthForm.reset();
+    this.router.navigateByUrl('/firma');
   }
 
 }

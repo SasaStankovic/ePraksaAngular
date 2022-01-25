@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KomisijaModule } from './komisija/komisija.module';
 import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
 import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
-
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-f
     KomisijaModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

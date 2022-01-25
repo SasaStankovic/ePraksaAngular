@@ -227,7 +227,7 @@
           <ng-template #ljetnaInfo>
            <div> Vas oglas je uspjesno objavljen!</div>
           </ng-template>
-          <button class="btnNazad" mat-raised-button matStepperPrevious>Otkazi</button>
+          <button class="btnNazad" mat-raised-button (click)="cancel()">Otkazi</button>
           <button class="daljeBtn" mat-raised-button (click)="submitData()">Objavi</button>
         </div>
       </div>
