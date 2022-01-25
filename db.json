@@ -1,0 +1,225 @@
+{
+  "prakse": [
+    {
+      "id": 1,
+      "kompanija": "InvenIT Solutions",
+      "vrstaPrakse": "strucna",
+      "periodTrajanja": "1.1.2022 - 1.2.2022",
+      "smjer": "Softversko inzenjerstvo",
+      "oPraksi": "I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono",
+      "godinaFakulteta": 3,
+      "brojRadnihSati": 150,
+      "oblastRada": "Web programiranje npr",
+      "planRada": "praksa je isplanirana na sledeci nacin aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "detalji": "Studenti treec i cetvrte godine mogu da posalju prijave za praksu, praksa ce biti u BL bla bla bla",
+      "dokumenti": "CV, Motivaciono pismo",
+      "linkDoPrakse": "https://www.youtube.com/watch?v=F189FFy8RcE&ab_channel=AcoPejovic",
+      "rokPrijave": "1.12.2021."
+    },
+    {
+      "id": 2,
+      "kompanija": "Firma 2",
+      "vrstaPrakse": "strucna",
+      "periodTrajanja": "1.3.2022 - 1.4.2022",
+      "smjer": "Racunarsko inzenjerstvo",
+      "oPraksi": "OPIS O DRUGOJ RPAKSI I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono",
+      "godinaFakulteta": 4,
+      "brojRadnihSati": 150,
+      "oblastRada": "Programiranje mikrokontrolera",
+      "planRada": "praksa je isplanirana na sledeci nacin aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "detalji": "Studenti treec i cetvrte godine mogu da posalju prijave za praksu, praksa ce biti u BL bla bla bla",
+      "dokumenti": "CV",
+      "linkDoPrakse": "https://www.youtube.com/watch?v=F189FFy8RcE&ab_channel=AcoPejovic",
+      "rokPrijave": "1.2.2021."
+    }
+  ],
+  "student": {
+    "indeks": "1171/18",
+    "ime": "Bojan",
+    "prezime": "Peric",
+    "datumRodjenja": "03.06.1999",
+    "mail": "bojan.peric@student.etf.unibl.org",
+    "adresa": "Simeuna Djaka 14, Banja Luka",
+    "portfolioLink": "https://github.com/BojanPericBP",
+    "tel": "065/297-722",
+    "oMeni": "Mirka ljubavi jedina moja tiii ko te sada dirkaaa i ko ti pod prozore dolazi da ti svirka miiirkaaa mozda bi i sretno ziveli samo da si ti nasla pravi put do mog tuznog srrrrcaaa. Rekoh da cu im pomoci kolko je u mojoj moci ali ja sam pevac tek",
+    "fakultet": "Elektrotehnicki",
+    "smjer": "Softversko inzenjerstvo",
+    "godina": 3,
+    "ciklus": "I",
+    "vjestine": [
+      "Java",
+      "C",
+      "C++",
+      "C#",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "Angul...",
+      "git",
+      "scrum",
+      "MVC",
+      "Rest",
+      "Figma",
+      "Trello"
+    ],
+    "jezici": [
+      "Engleski",
+      "Srpski"
+    ],
+    "hobiji": [
+      "Speedcubing",
+      "Tehnologija",
+      "Racunari"
+    ],
+    "radnoIskustvo": [
+      {
+        "period": "Jul 2018 - Sep 2018",
+        "firma": "Lanaco company",
+        "pozicija": "Developer",
+        "opis": "Summer Internship 2018, razvoj android aplikacije baby book ko da sam i ja leteo s njim krilima teskim olovnim i video svet skriven iza zlatnih oblaka. O zagrli me sad jako najbolje sto znas, i nemoj crnoj ptici da me daaas, oo neee ne brini procice za tren, ja sam samo malo lud i zaljubljeeen."
+      },
+      {
+        "period": "Nov 2021",
+        "firma": "Quizlet",
+        "pozicija": "contributor",
+        "opis": "Rjesavanje zadataka iz oblasti struktura podataka i algoritma koristenjem programskog jezika Java"
+      }
+    ],
+    "projekti": [
+      {
+        "period": "Mar 2021",
+        "naziv": "ISA Simulator (C#)",
+        "opis": "Simulator instrukcionog seta vlastitog procesora",
+        "link": "https://github.com/BojanPericBP/ISA-Simulator"
+      },
+      {
+        "period": "Jul 2021",
+        "naziv": "Railway traffic simulator",
+        "opis": "Simulator zeljeznickog saobracaja u Java GUI multithread aplikaciji",
+        "link": "https://github.com/BojanPericBP/Java2021/tree/Verzija_2"
+      },
+      {
+        "period": "Sep 2021",
+        "naziv": "Cache memory simulator (C#)",
+        "opis": "Simulator kes memorije",
+        "link": "https://github.com/BojanPericBP/Cache-simulator"
+      }
+    ]
+  },
+  "postojeciKorisnici": [
+    {
+      "email": "student@2",
+      "password": "student",
+      "rola": "student"
+    },
+    {
+      "email": "komisija@2",
+      "password": "komisija",
+      "rola": "komisija"
+    },
+    {
+      "email": "firma@2",
+      "password": "firma",
+      "rola": "firma"
+    },
+    {
+      "email": "mentor@2",
+      "password": "mentor",
+      "rola": "mentor"
+    }
+  ],
+  "praktikanti": [
+    {
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "ime": "Dragan",
+      "prezime": "Draganovic"
+    },
+    {
+      "ime": "Ivan",
+      "prezime": "Ivanovic"
+    },
+    {
+      "ime": "Mara",
+      "prezime": "Maric"
+    },
+    {
+      "ime": "Zeljko",
+      "prezime": "Marjanovic"
+    }
+  ],
+  "zahtjevi-za-prakse": [
+    {
+      "id": 1,
+      "kompanija": "InvenIT Solutions",
+      "vrstaPrakse": "ljetna",
+      "periodTrajanja": "1.1.2022 - 1.2.2022",
+      "smjer": "Softversko inzenjerstvo",
+      "oPraksi": "I ove godine organizujemo LJETNU praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono",
+      "godinaFakulteta": 3,
+      "brojRadnihSati": 150,
+      "oblastRada": "Web programiranje",
+      "planRada": "praksa je isplanirana na sledeci nacin bbbbbbb praksa je isplanirana na sledeci nacin bbbbbbb bbbbbbbbb bbbb bbbbbbbbbbb bbbbbbbbbb bbb bbbbbbbbb bbbbbbbb bbbbbbbbb bbbb bbbbbbbbbbb bbbbbbbbbb bbb bbbbbbbbb bbbbbbbb",
+      "detalji": "Studenti treec i cetvrte godine mogu da posalju prijave za praksu, praksa ce biti u BL bla bla bla",
+      "dokumenti": "CV, Motivaciono pismo",
+      "linkDoPrakse": "https://www.youtube.com/watch?v=F189FFy8RcE&ab_channel=AcoPejovic",
+      "rokPrijave": "1.12.2021."
+    },
+    {
+      "id": 2,
+      "kompanija": "Firma 3",
+      "vrstaPrakse": "ljetna",
+      "periodTrajanja": "1.3.2022 - 1.4.2022",
+      "smjer": "Racunarsko inzenjerstvo",
+      "oPraksi": "OPIS O DRUGOJ RPAKSI I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono",
+      "godinaFakulteta": 4,
+      "brojRadnihSati": 150,
+      "oblastRada": "Programiranje mikrokontrolera",
+      "planRada": " praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaa aaaaa praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaa aaaaa praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaa aaaaa",
+      "detalji": "Studenti treec i cetvrte godine mogu da posalju prijave za praksu, praksa ce biti u BL bla bla bla",
+      "dokumenti": "CV",
+      "linkDoPrakse": "https://www.youtube.com/watch?v=F189FFy8RcE&ab_channel=AcoPejovic",
+      "rokPrijave": "1.2.2021."
+    },
+    {
+      "id": 3,
+      "kompanija": "Firma 4",
+      "vrstaPrakse": "ljetna4",
+      "periodTrajanja": "1.3.2022 - 1.4.2022",
+      "smjer": "Racunarsko inzenjerstvo",
+      "oPraksi": "OPIS O DRUGOJ RPAKSI I ove godine organizujemo praksu za studente elektrotehnickog fakulteta. Ako ste mladi, ambiciozni i volite bla bla bla lorem ovde ne radiiiiiiii lorem vamo lorem tamo lorem ovo lorem ono",
+      "godinaFakulteta": 4,
+      "brojRadnihSati": 150,
+      "oblastRada": "Programiranje mikrokontrolera",
+      "planRada": " praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa aaaaaaaaaaa 11111111111111 aaaaaaa aaaaa praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaa aaaaa praksa je isplanirana na sledeci nacin aaaaaaaaaaaa aaaaaaa 11111111111111 aaaaaaaaaaaaaaa aaaaaaa 11111111111111",
+      "detalji": "Studenti treec i cetvrte godine mogu da posalju prijave za praksu, praksa ce biti u BL bla bla bla",
+      "dokumenti": "CV",
+      "linkDoPrakse": "https://www.youtube.com/watch?v=F189FFy8RcE&ab_channel=AcoPejovic",
+      "rokPrijave": "1.2.2021."
+    }
+  ],
+  "zahtjevZaPraksu": [
+    {
+      "nazivPrakse": "",
+      "kompanija": "",
+      "vrstaPrakse": "ljetna",
+      "periodTrajanja": "-",
+      "smjer": [],
+      "oPraksi": null,
+      "mentor": null,
+      "godinaFakulteta": [],
+      "brojRadnihSati": null,
+      "oblastRada": "",
+      "planRada": "",
+      "detalji": null,
+      "dokumenti": [],
+      "linkDoPrakse": null,
+      "rokPrijave": "",
+      "grad": null,
+      "id": 1
+    }
+  ]
+}
