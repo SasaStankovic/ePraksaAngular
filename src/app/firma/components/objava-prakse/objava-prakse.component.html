@@ -34,8 +34,8 @@
             <section>
               <h3>Vrsta prakse:</h3>
               <mat-radio-group formControlName="vrstaPrakse" aria-labelledby="lvlVrstaID" class="example-radio-group">
-                <mat-radio-button value="strucna" (click)="strucnaPraksaSelecte()">Strucna</mat-radio-button>
-                <mat-radio-button value="ljetna" (click)="ljetnaPraksaSelected()">Ljetna</mat-radio-button>
+                <mat-radio-button value="strucna" >Strucna</mat-radio-button>
+                <mat-radio-button value="ljetna" >Ljetna</mat-radio-button>
               </mat-radio-group>
             </section>
             <h3>Smjer:</h3>
@@ -78,13 +78,14 @@
             <div *ngIf="secondFormGroup?.get('vrstaPrakse')?.value == 'strucna'">
               <mat-form-field appearance="fill">
                 <mat-label>Broj randih sati prakse</mat-label>
-                <input matInput placeholder="Broj randih sati prakse" formControlName="brojSati">
+                <input matInput required type="number" placeholder="Broj randih sati prakse" formControlName="brojSati">
               </mat-form-field>
             </div>
-
+            <span *ngIf="secondFormInvalid()" class="danger-text">
+              <p>{{errorMessage}}</p>
+            </span>
             <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
-            <button class="daljeBtn" mat-raised-button matStepperNext
-              [disabled]="secondFormGroup.invalid">Dalje</button>
+            <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="secondFormInvalid()">Dalje</button>
 
           </form>
         </mat-step>

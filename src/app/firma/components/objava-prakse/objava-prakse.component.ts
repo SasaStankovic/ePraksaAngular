@@ -4,7 +4,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
-import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
   selector: 'app-objava-prakse',
@@ -27,7 +26,7 @@ export class ObjavaPrakseComponent implements OnInit {
     periodTrajanja: "",
     smjer: [""],
     oPraksi: "",
-    mentor:"",
+    mentor: "",
     godinaFakulteta: "",
     brojRadnihSati: "",
     oblastRada: "",
@@ -38,6 +37,8 @@ export class ObjavaPrakseComponent implements OnInit {
     rokPrijave: "",
     grad: "",
   }
+
+  errorMessage = "Popunite sva polja!";
 
   mentori = [
     { id: 'id1', ime: 'Ime1', prezime: 'Prezime1' },
@@ -55,6 +56,7 @@ export class ObjavaPrakseComponent implements OnInit {
     this.firstFormGroup = this.formBuilder.group({
       'nazivPrakse': new FormControl("", [Validators.required])
     });
+
 
     this.secondFormGroup = this.formBuilder.group({
       'vrstaPrakse': new FormControl('', Validators.required),
@@ -96,18 +98,41 @@ export class ObjavaPrakseComponent implements OnInit {
     }
   }
 
+  secondFormInvalid(): boolean {
 
-  ljetnaPraksaSelected() {
+    if (this.secondFormGroup.value['SI'] || this.secondFormGroup.value['RI'] ||
+      this.secondFormGroup.value['EL'] || this.secondFormGroup.value['TEL']) {
 
+      if (this.secondFormGroup.value['god1'] || this.secondFormGroup.value['god2'] ||
+        this.secondFormGroup.value['god3'] || this.secondFormGroup.value['god4']) {
+
+        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'strucna' &&
+          this.secondFormGroup.value['brojSati'] >= 150 && this.secondFormGroup.value['god4'])
+          return false;
+          else
+          this.errorMessage = "U strucnoj praksi mora ucestvovati cetvrta godina studija!";
+
+        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'strucna' &&
+          this.secondFormGroup.value['brojSati'] == null ||
+          this.secondFormGroup.value['brojSati'] < 150)
+          this.errorMessage = "Minimalan broj sati za strucnu praksu je 150!";
+          if (this.secondFormGroup.get('vrstaPrakse')?.value === 'ljetna')
+            return false;
+      }
+      else
+        this.errorMessage = "Odaberite godinu studija!";
+    }
+    else
+      this.errorMessage = "Za koje smjerove je praksa namjenjena?";
+    return true;
   }
 
-  strucnaPraksaSelecte() {
-    
+  fourthFormInvalid():boolean{
+
+    return true;
   }
 
   submitData() {
-
-
 
     this.praksa.nazivPrakse = this.firstFormGroup.value['nazivPrakse'];
     this.praksa.vrstaPrakse = this.secondFormGroup.value['vrstaPrakse'];
@@ -161,17 +186,18 @@ export class ObjavaPrakseComponent implements OnInit {
     console.log(this.praksa);
 
     this.praksaServis.postInternShip(this.praksa).subscribe({
-      next: (d)=>{
+      next: (d) => {
         this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
         this.router.navigateByUrl('/firma');
       },
       // complete: ()=>{ console.log("Uspjesno");
       // },
-      error: (err)=>{console.log("Greska!"+err);}});
+      error: (err) => { console.log("Greska!" + err); }
+    });
   }
-  
 
-  cancel(){
+
+  cancel() {
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     this.thirdForm.reset();

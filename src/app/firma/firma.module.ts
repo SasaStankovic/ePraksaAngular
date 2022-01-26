@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FirmaRoutingModule } from './firma-routing.module';
 import { ObjavaPrakseComponent } from './components/objava-prakse/objava-prakse.component';
 
-
 import { MatButtonModule} from '@angular/material/button';
 import { MatStepperModule} from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,12 +13,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-// import {} from '@angular/material/';
+import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prijave-na-konkurs.component';
 
 
 @NgModule({
   declarations: [
     ObjavaPrakseComponent,
+    PrijaveNaKonkursComponent,
   ],
   imports: [
     CommonModule,

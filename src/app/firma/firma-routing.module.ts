@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ObjavaPrakseComponent } from './components/objava-prakse/objava-prakse.component';
+import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prijave-na-konkurs.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 const routes: Routes = [
@@ -9,6 +10,9 @@ const routes: Routes = [
     children:[
       {
         path:'objava-prakse', component:ObjavaPrakseComponent
+      },
+      {
+        path:'prijave-na-konkurs', component: PrijaveNaKonkursComponent
       }
     ]
   }

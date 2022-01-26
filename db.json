@@ -220,6 +220,27 @@
       "rokPrijave": "",
       "grad": null,
       "id": 1
+    },
+    {
+      "nazivPrakse": "",
+      "kompanija": "",
+      "vrstaPrakse": "ljetna",
+      "periodTrajanja": "-",
+      "smjer": [
+        "Racunarsko inzenjerstvo"
+      ],
+      "oPraksi": null,
+      "mentor": null,
+      "godinaFakulteta": [],
+      "brojRadnihSati": null,
+      "oblastRada": "",
+      "planRada": "",
+      "detalji": null,
+      "dokumenti": [],
+      "linkDoPrakse": null,
+      "rokPrijave": "",
+      "grad": null,
+      "id": 2
     }
   ]
 }

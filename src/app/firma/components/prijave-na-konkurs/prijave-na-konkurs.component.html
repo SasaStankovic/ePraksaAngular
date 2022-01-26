@@ -1,0 +1,28 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <Label>Aktivni konkursi</Label>
+            <hr>
+        </div>
+    </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Konkursi</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let konkurs of aktivniKonkursi;" [value]="konkurs.id">
+        {{konkurs.naziv}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+
+  <!-- <mat-label>Strucni mentor</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let item of aktivniKonkursi" [value]="item.id">
+      {{item.naziv}}
+    </mat-option>
+  </mat-select> -->
+</div>
