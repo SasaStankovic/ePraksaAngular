@@ -242,5 +242,57 @@
       "grad": null,
       "id": 2
     }
+  ],
+  "prijave-na-konkurs":[
+    {
+      "idKonkursa":"11",
+      "studenti":[
+        {
+          "idStudenta":"1",
+          "ime": "Bojan",
+          "prezime": "Peric"
+        },
+        {
+          "idStudenta":"2",
+          "ime": "Marko",
+          "prezime": "Markovic"
+        },
+        {
+          "idStudenta":"3",
+          "ime": "Dragan",
+          "prezime": "Draganovic"
+        },
+        {
+          "idStudenta":"4",
+          "ime": "Ivan",
+          "prezime": "Ivanovic"
+        }
+      ]
+    },
+    {
+      "idKonkursa":"12",
+      "studenti":[
+        {
+          "idStudenta":"5",
+          "ime": "Bojana",
+          "prezime": "Peric"
+        },
+        {
+          "idStudenta":"6",
+          "ime": "Marina",
+          "prezime": "Maric"
+        },
+        {
+          "idStudenta":"7",
+          "ime": "Dragana",
+          "prezime": "Draganovic"
+        },
+        {
+          "idStudenta":"8",
+          "ime": "Mara",
+          "prezime": "Martic"
+        }
+      ]
+    }
   ]
 }
