@@ -5,7 +5,10 @@ import { PrikazprakseComponent } from './prikazprakse/prikazprakse.component';
 import { DetaljanPregledPrakseComponent } from './detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { DnevnikRadaComponent } from './dnevnik-rada/dnevnik-rada.component';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OdbijanjeComponent } from './odbijanje/odbijanje.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -14,11 +17,15 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     PrikazprakseComponent,
     DetaljanPregledPrakseComponent,
     DnevnikRadaComponent,
+    OdbijanjeComponent,
   ],
   imports: [
     CommonModule,
     MatDialogModule,
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports:[FooterComponent,PrikazprakseComponent,DetaljanPregledPrakseComponent, DnevnikRadaComponent]
 })

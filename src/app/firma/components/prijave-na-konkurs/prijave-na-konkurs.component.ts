@@ -16,14 +16,15 @@ import { StudentService } from 'src/app/_servisi/student.service';
 })
 export class PrijaveNaKonkursComponent implements OnInit {
 
+
   student!: Student;
 
-  isVisible!:boolean;
-  indexStudenta!:number;
+  isVisible!: boolean;
+  indexStudenta!: number;
 
   podaciOKonkursu = {
-    idKonkursa:"",
-    studenti:[{id:"",ime:"",prezime:""}]
+    idKonkursa: "",
+    studenti: [{ id: "", ime: "", prezime: "" }]
   }
 
   unsubscribe!: any;
@@ -33,9 +34,9 @@ export class PrijaveNaKonkursComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-              private firmaService: FirmaService,
-              private studentService:StudentService,
-              private dialog: MatDialog) {
+    private firmaService: FirmaService,
+    private studentService: StudentService,
+    private dialog: MatDialog) {
     this.selectKonkurs = formBuilder.group({
       konkurs: [null]
     });
@@ -58,8 +59,7 @@ export class PrijaveNaKonkursComponent implements OnInit {
         this.isVisible = true;
       });
     }
-    else if(this.selectedKonkurs == "12")
-    {
+    else if (this.selectedKonkurs == "12") {
       this.unsubscribe = this.firmaService.getAplikacije12(this.selectedKonkurs).subscribe((res: any) => {
         this.podaciOKonkursu = res;
         console.log(this.podaciOKonkursu);
@@ -76,10 +76,10 @@ export class PrijaveNaKonkursComponent implements OnInit {
 
 
 
-  getStudent(i:number){
+  getStudent(i: number) {
     console.log(this.podaciOKonkursu.studenti[i]);
     // this.studentService.getStudentById(i.toString());
-    this.studentService.getProfileData().subscribe((res:any)=>{
+    this.studentService.getProfileData().subscribe((res: any) => {
       this.student = res;
       console.log(this.student);
     });
