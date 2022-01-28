@@ -24,12 +24,12 @@
   <div class="aplikacija" *ngFor="let item of podaciOKonkursu.studenti; let i = index;">
     <div class="row align-items-center">
       <div class="col-md-6 imeFlex">
-        <button  class="ime" (click)="getStudent(i)">{{item.ime}} {{item.prezime}}</button>
+        <a [routerLink]="['/student/profil']" routerLinkActive="router-link-active"  class="ime" (click)="getStudent(i)">{{item.ime}} {{item.prezime}}</a>
       </div>
       <div class="col-md-6 flex">
         <button class="pismo">Pismo</button>
         <button class="btnOdobri">Odobri</button>
-        <button >Odbi</button>
+        <button (click)="showPopUp()">Odbi</button>
       </div>
     </div>
   </div>

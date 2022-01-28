@@ -14,14 +14,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prijave-na-konkurs.component';
-import { ListaAplikacijaComponent } from './components/prijave-na-konkurs/lista-aplikacija/lista-aplikacija.component';
-
 
 @NgModule({
   declarations: [
     ObjavaPrakseComponent,
-    PrijaveNaKonkursComponent,
-    ListaAplikacijaComponent,
+    PrijaveNaKonkursComponent
   ],
   imports: [
     CommonModule,

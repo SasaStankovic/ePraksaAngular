@@ -11,7 +11,8 @@ import { SutdentProfilComponent } from './sutdent-profil/sutdent-profil.componen
 export const routes: Routes = [
   {
     path: '', component: StudentComponent,
-    canActivate:[AuthGuard, StudentGuard],
+    // canActivate:[AuthGuard, StudentGuard],
+    canActivate:[AuthGuard],
     children: [
       {
         path: '', component: PocetnaStranaComponent

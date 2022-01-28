@@ -1,8 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { OdbijanjeComponent } from 'src/app/shared/odbijanje/odbijanje.component';
+import { Student } from 'src/app/tipovi/Student';
 import { FirmaService } from 'src/app/_servisi/firma.service';
 import { StudentService } from 'src/app/_servisi/student.service';
 
@@ -13,7 +16,8 @@ import { StudentService } from 'src/app/_servisi/student.service';
 })
 export class PrijaveNaKonkursComponent implements OnInit {
 
-  
+  student!: Student;
+
   isVisible!:boolean;
   indexStudenta!:number;
 
@@ -27,19 +31,15 @@ export class PrijaveNaKonkursComponent implements OnInit {
   selectedKonkurs = "Odaberite konkurs!";
   selectKonkurs!: FormGroup;
 
-  students!: Array<Object>;
-  student!: {
-    ime: String,
-    prezime: String
-  }
 
   constructor(private formBuilder: FormBuilder,
               private firmaService: FirmaService,
-              private studentService:StudentService) {
+              private studentService:StudentService,
+              private dialog: MatDialog) {
     this.selectKonkurs = formBuilder.group({
       konkurs: [null]
     });
-
+    this.student = new Student;
   }
 
   ngOnInit(): void {
@@ -79,8 +79,20 @@ export class PrijaveNaKonkursComponent implements OnInit {
   getStudent(i:number){
     console.log(this.podaciOKonkursu.studenti[i]);
     // this.studentService.getStudentById(i.toString());
-    this.studentService.getProfileData();
+    this.studentService.getProfileData().subscribe((res:any)=>{
+      this.student = res;
+      console.log(this.student);
+    });
   }
+
+  showPopUp() {
+    this.dialog.open(OdbijanjeComponent, {
+      // data: {
+      //   data: this.praksa
+      // }
+    });
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe.unsubscribe();
   }
