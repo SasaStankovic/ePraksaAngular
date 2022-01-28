@@ -10,20 +10,27 @@
   <mat-form-field [formGroup]="selectKonkurs" appearance="fill">
     <mat-label>Konkursi</mat-label>
     <mat-select formControlName="konkurs" >
-      <mat-option *ngFor="let konkurs of aktivniKonkursi;" (click)="log()" [value]="konkurs.id" >
+      <mat-option *ngFor="let konkurs of aktivniKonkursi;" (click)="getAplikacije()" [value]="konkurs.id" >
         {{konkurs.naziv}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <ng-container *ngTemplateOutlet="prijave">
-
-  </ng-container>
+  <ng-container *ngIf="isVisible; then prijave"> </ng-container>
 </div>
 
 
 <ng-template #prijave>
-  <div class="aplikacija">
-    <label *ngIf="selectedKonkurs != null;">{{selectedKonkurs}}</label>
+  <div class="aplikacija" *ngFor="let item of podaciOKonkursu.studenti; let i = index;">
+    <div class="row align-items-center">
+      <div class="col-md-6 imeFlex">
+        <button  class="ime" (click)="getStudent(i)">{{item.ime}} {{item.prezime}}</button>
+      </div>
+      <div class="col-md-6 flex">
+        <button class="pismo">Pismo</button>
+        <button class="btnOdobri">Odobri</button>
+        <button >Odbi</button>
+      </div>
+    </div>
   </div>
 </ng-template>
