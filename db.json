@@ -34,6 +34,7 @@
     }
   ],
   "student": {
+    "id":"1",
     "indeks": "1171/18",
     "ime": "Bojan",
     "prezime": "Peric",
@@ -243,7 +244,7 @@
       "id": 2
     }
   ],
-  "prijave-na-konkurs":[
+  "prijave-na-konkurs-11":
     {
       "idKonkursa":"11",
       "studenti":[
@@ -269,13 +270,14 @@
         }
       ]
     },
+  "prijave-na-konkurs-12":
     {
       "idKonkursa":"12",
       "studenti":[
         {
           "idStudenta":"5",
-          "ime": "Bojana",
-          "prezime": "Peric"
+          "ime": "Aleksandar",
+          "prezime": "Aleksandrovic"
         },
         {
           "idStudenta":"6",
@@ -294,5 +296,4 @@
         }
       ]
     }
-  ]
 }

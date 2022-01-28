@@ -6,15 +6,19 @@ import { Injectable } from '@angular/core';
 })
 export class StudentService {
 
-  constructor(private httpProfilData: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   url="http://localhost:3000/student";
 
   getProfileData(){
-    return this.httpProfilData.get(this.url);
+    return this.http.get(this.url);
   }
 
   getPraktikanti(){
-    return this.httpProfilData.get("http://localhost:3000/praktikanti");
+    return this.http.get("http://localhost:3000/praktikanti");
+  }
+
+  getStudentById(id:string){
+    return this.http.post<any>(this.url,id);
   }
 }

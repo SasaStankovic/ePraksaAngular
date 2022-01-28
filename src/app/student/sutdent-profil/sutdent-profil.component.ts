@@ -1,5 +1,7 @@
 import { ArrayType } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
+import { Student } from 'src/app/tipovi/Student';
+
 import { StudentService } from 'src/app/_servisi/student.service';
 
 @Component({
@@ -9,31 +11,12 @@ import { StudentService } from 'src/app/_servisi/student.service';
 })
 export class SutdentProfilComponent implements OnInit {
 
+student!:Student;
 
-test:Array<any> = [{period: String, firma: String}];
-
-  student = {
-    indeks: String,
-    ime: String,
-    prezime: String,
-    datumRodjenja: String,
-    mail: String,
-    adresa: String,
-    portfolioLink: String,
-    tel: String,
-    oMeni: String,
-    fakultet: String,
-    smjer: String,
-    godina:Number,
-    ciklus: String,
-    vjestine:[{item: String}],
-    jezici: [{item: String}],
-    hobiji: [{item: String}],
-    radnoIskustvo:[{period: String, firma: String, pozicija: String, opis: String}],
-    projekti:[{period: String, naziv: String, opis: String, link: String}]
+  constructor(private profileData:StudentService) { 
+    this.student = new Student();
+    console.log("Student ime:"+this.student.ime);
   }
-
-  constructor(private profileData:StudentService) { }
 
   ngOnInit(): void {
     this.profileData.getProfileData().subscribe((result:any)=>{
