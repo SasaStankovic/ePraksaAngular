@@ -14,15 +14,15 @@ export class KomisijaGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    let user = localStorage.getItem('user');
-    if(user!=null){
-      let tmp = JSON.parse(user).rola;
-      if(tmp!== "komisija")
-      {
-        this.router.navigateByUrl('/welcome');
-        return false;
-      }
-    }
+    // let user = localStorage.getItem('user');
+    // if(user!=null){
+    //   let tmp = JSON.parse(user).rola;
+    //   if(tmp!== "komisija")
+    //   {
+    //     this.router.navigateByUrl('/welcome');
+    //     return false;
+    //   }
+    // }
     return true;
   }
 

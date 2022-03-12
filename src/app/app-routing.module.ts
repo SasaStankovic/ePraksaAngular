@@ -16,11 +16,11 @@ const routes: Routes = [
     loadChildren:()=>import('./student/student.module').then(m=>m.StudentModule)
   },
   {
-    path:'komisija',
+    path:'commission_member',
     loadChildren:()=>import('./komisija/komisija.module').then(m=>m.KomisijaModule)
   },
   {
-    path:'firma',
+    path:'company',
     loadChildren:()=>import('./firma/firma.module').then(m=>m.FirmaModule)
   },
   {

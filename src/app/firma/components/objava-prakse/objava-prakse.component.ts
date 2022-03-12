@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Praksa } from 'src/app/tipovi/praksa';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
@@ -19,24 +20,7 @@ export class ObjavaPrakseComponent implements OnInit {
   fourthForm!: FormGroup;
   fifthForm!: FormGroup;
 
-  praksa = {
-    nazivPrakse: "",
-    kompanija: "",
-    vrstaPrakse: "",
-    periodTrajanja: "",
-    smjer: [""],
-    oPraksi: "",
-    mentor: "",
-    godinaFakulteta: "",
-    brojRadnihSati: "",
-    oblastRada: "",
-    planRada: "",
-    detalji: "",
-    dokumenti: [""],
-    linkDoPrakse: "",
-    rokPrijave: "",
-    grad: "",
-  }
+  praksa = new Praksa();
 
   errorMessage = "Popunite sva polja!";
 
@@ -94,7 +78,7 @@ export class ObjavaPrakseComponent implements OnInit {
 
     let praksa;
     if ((praksa = this.secondFormGroup.get('vrstaPrakse')) != null) {
-      praksa.setValue("ljetna");
+      praksa.setValue("LJETNA");
     }
   }
 
@@ -106,17 +90,17 @@ export class ObjavaPrakseComponent implements OnInit {
       if (this.secondFormGroup.value['god1'] || this.secondFormGroup.value['god2'] ||
         this.secondFormGroup.value['god3'] || this.secondFormGroup.value['god4']) {
 
-        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'strucna' &&
+        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'STRUCNA' &&
           this.secondFormGroup.value['brojSati'] >= 150 && this.secondFormGroup.value['god4'])
           return false;
           else
           this.errorMessage = "U strucnoj praksi mora ucestvovati cetvrta godina studija!";
 
-        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'strucna' &&
+        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'STRUCNA' &&
           this.secondFormGroup.value['brojSati'] == null ||
           this.secondFormGroup.value['brojSati'] < 150)
           this.errorMessage = "Minimalan broj sati za strucnu praksu je 150!";
-          if (this.secondFormGroup.get('vrstaPrakse')?.value === 'ljetna')
+          if (this.secondFormGroup.get('vrstaPrakse')?.value === 'LJETNA')
             return false;
       }
       else
@@ -134,11 +118,12 @@ export class ObjavaPrakseComponent implements OnInit {
 
   submitData() {
 
-    this.praksa.nazivPrakse = this.firstFormGroup.value['nazivPrakse'];
-    this.praksa.vrstaPrakse = this.secondFormGroup.value['vrstaPrakse'];
-    this.praksa.periodTrajanja = this.fifthForm.value['periodOd'];
-    this.praksa.periodTrajanja += "-";
-    this.praksa.periodTrajanja += this.fifthForm.value['periodDo'];
+    // this.praksa.nazivPrakse = this.firstFormGroup.value['nazivPrakse'];
+    this.praksa.internshipType = this.secondFormGroup.value['vrstaPrakse'];
+    // this.praksa.startDate = (this.fifthForm.value['periodOd']).toLocaleDateString().replaceAll('/','-'); 
+    // this.praksa.endDate += this.fifthForm.value['periodDo'].toLocaleDateString().replaceAll('/','-');
+    this.praksa.startDate = "2022-03-30";
+    this.praksa.endDate = "2022-03-31";
 
     let smjer: any = [];
 
@@ -150,24 +135,24 @@ export class ObjavaPrakseComponent implements OnInit {
       smjer.push("Elektronika");
     if (this.secondFormGroup.value['TEL'])
       smjer.push("Telekomunikacije");
-    this.praksa.smjer = smjer;
-    this.praksa.oPraksi = this.fourthForm.value['reklamniTekst'];
+    this.praksa.courses = smjer;
+    this.praksa.description = this.fourthForm.value['reklamniTekst'];
 
     let godina: any = [];
     if (this.secondFormGroup.value['god1'])
-      godina.push("I");
+      godina.push(1);
     if (this.secondFormGroup.value['god2'])
-      godina.push("II");
+      godina.push(2);
     if (this.secondFormGroup.value['god3'])
-      godina.push("III");
+      godina.push(3);
     if (this.secondFormGroup.value['god4'])
-      godina.push("VI");
-    this.praksa.godinaFakulteta = godina;
+      godina.push(4);
+    this.praksa.year = godina;
 
-    this.praksa.brojRadnihSati = this.secondFormGroup.value['brojSati'];
-    this.praksa.oblastRada = this.thirdForm.value['oblastRada'];
-    this.praksa.planRada = this.thirdForm.value['programRada'];
-    this.praksa.detalji = this.fourthForm.value['detalji'];
+    this.praksa.workHours = this.secondFormGroup.value['brojSati'];
+    this.praksa.internshipField = this.thirdForm.value['oblastRada'];
+    this.praksa.schedule = this.thirdForm.value['programRada'];
+    this.praksa.details = this.fourthForm.value['detalji'];
 
     let dokumenti = [];
 
@@ -176,12 +161,18 @@ export class ObjavaPrakseComponent implements OnInit {
     if (this.fourthForm.value['motPismo'])
       dokumenti.push("Motivaciono pismo");
 
-    this.praksa.dokumenti = dokumenti;
-    this.praksa.linkDoPrakse = this.fourthForm.value['link'];
-    this.praksa.rokPrijave = this.fifthForm.value['rok'];
+      //TODO zamjeniti ovo za cv i za pismo treba biti true i false
+    this.praksa.requiredCV = true;
+    this.praksa.link = this.fourthForm.value['link'];
+    // this.praksa.submissionDue = (this.fifthForm.value['rok'].toLocaleDateString()).replaceAll('/','-');
+    this.praksa.submissionDue = "2022-03-20";
+    // this.praksa.mentorId = this.fourthForm.value['mentor'];
+    //TODO Dohvatanje mentora svih i dodjela IDa
+    this.praksa.mentorId = 13;
+    //TODO dohvatanje ida iz storagea
+    this.praksa.companyId = 22;
 
-    this.praksa.mentor = this.fourthForm.value['mentor'];
-    this.praksa.grad = this.fourthForm.value['grad'];
+    // this.praksa.city = this.fourthForm.value['grad'];
 
     console.log(this.praksa);
 
@@ -194,6 +185,7 @@ export class ObjavaPrakseComponent implements OnInit {
       // },
       error: (err) => { console.log("Greska!" + err); }
     });
+    
   }
 
 
@@ -203,7 +195,7 @@ export class ObjavaPrakseComponent implements OnInit {
     this.thirdForm.reset();
     this.fourthForm.reset();
     this.fifthForm.reset();
-    this.router.navigateByUrl('/firma');
+    this.router.navigateByUrl('/company');
   }
 
 }
