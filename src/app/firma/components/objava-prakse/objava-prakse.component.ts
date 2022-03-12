@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Praksa } from 'src/app/tipovi/praksa';
+import { Praksa } from 'src/app/tipovi/Praksa';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
