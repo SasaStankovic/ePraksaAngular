@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +14,7 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
 })
 export class ObjavaPrakseComponent implements OnInit {
 
+  today: Date = new Date();
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -33,7 +35,8 @@ export class ObjavaPrakseComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private praksaServis: PrakseService,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private datePipe: DatePipe) { }
 
 
   ngOnInit(): void {
@@ -65,8 +68,8 @@ export class ObjavaPrakseComponent implements OnInit {
       'reklamniTekst': new FormControl(),
       'mentor': new FormControl(),
       'grad': new FormControl(),
-      'cv': new FormControl(),
-      'motPismo': new FormControl(),
+      'cv': new FormControl(true),
+      'motPismo': new FormControl(false),
       'link': new FormControl()
     })
 
@@ -93,15 +96,15 @@ export class ObjavaPrakseComponent implements OnInit {
         if (this.secondFormGroup.get('vrstaPrakse')?.value === 'STRUCNA' &&
           this.secondFormGroup.value['brojSati'] >= 150 && this.secondFormGroup.value['god4'])
           return false;
-          else
+        else
           this.errorMessage = "U strucnoj praksi mora ucestvovati cetvrta godina studija!";
 
         if (this.secondFormGroup.get('vrstaPrakse')?.value === 'STRUCNA' &&
           this.secondFormGroup.value['brojSati'] == null ||
           this.secondFormGroup.value['brojSati'] < 150)
           this.errorMessage = "Minimalan broj sati za strucnu praksu je 150!";
-          if (this.secondFormGroup.get('vrstaPrakse')?.value === 'LJETNA')
-            return false;
+        if (this.secondFormGroup.get('vrstaPrakse')?.value === 'LJETNA')
+          return false;
       }
       else
         this.errorMessage = "Odaberite godinu studija!";
@@ -111,22 +114,17 @@ export class ObjavaPrakseComponent implements OnInit {
     return true;
   }
 
-  fourthFormInvalid():boolean{
+  fourthFormInvalid(): boolean {
 
     return true;
   }
 
   submitData() {
 
-    // this.praksa.nazivPrakse = this.firstFormGroup.value['nazivPrakse'];
+    this.praksa.title = this.firstFormGroup.value['nazivPrakse'];
     this.praksa.internshipType = this.secondFormGroup.value['vrstaPrakse'];
-    // this.praksa.startDate = (this.fifthForm.value['periodOd']).toLocaleDateString().replaceAll('/','-'); 
-    // this.praksa.endDate += this.fifthForm.value['periodDo'].toLocaleDateString().replaceAll('/','-');
-    this.praksa.startDate = "2022-03-30";
-    this.praksa.endDate = "2022-03-31";
-
     let smjer: any = [];
-
+    // this.praksa.internshipId = 10;
     if (this.secondFormGroup.value['SI'])
       smjer.push("Softversko inzenjerstvo");
     if (this.secondFormGroup.value['RI'])
@@ -138,54 +136,57 @@ export class ObjavaPrakseComponent implements OnInit {
     this.praksa.courses = smjer;
     this.praksa.description = this.fourthForm.value['reklamniTekst'];
 
-    let godina: any = [];
+    let godine: any = [];
     if (this.secondFormGroup.value['god1'])
-      godina.push(1);
+      godine.push(1);
     if (this.secondFormGroup.value['god2'])
-      godina.push(2);
+      godine.push(2);
     if (this.secondFormGroup.value['god3'])
-      godina.push(3);
+      godine.push(3);
     if (this.secondFormGroup.value['god4'])
-      godina.push(4);
-    this.praksa.year = godina;
+      godine.push(4);
+    this.praksa.years = godine;
 
     this.praksa.workHours = this.secondFormGroup.value['brojSati'];
     this.praksa.internshipField = this.thirdForm.value['oblastRada'];
     this.praksa.schedule = this.thirdForm.value['programRada'];
     this.praksa.details = this.fourthForm.value['detalji'];
 
-    let dokumenti = [];
-
-    if (this.fourthForm.value['cv'])
-      dokumenti.push("CV");
-    if (this.fourthForm.value['motPismo'])
-      dokumenti.push("Motivaciono pismo");
-
-      //TODO zamjeniti ovo za cv i za pismo treba biti true i false
-    this.praksa.requiredCV = true;
+    this.praksa.requiredCV = this.fourthForm.controls['cv'].value;
+    this.praksa.requiredLetter = this.fourthForm.controls['motPismo'].value;
     this.praksa.link = this.fourthForm.value['link'];
-    // this.praksa.submissionDue = (this.fifthForm.value['rok'].toLocaleDateString()).replaceAll('/','-');
-    this.praksa.submissionDue = "2022-03-20";
+
+    this.praksa.submissionDue = this.datePipe.transform(new Date(this.fifthForm.controls['rok'].value), "yyyy-MM-dd")?.toString();
+    this.praksa.startDate = this.datePipe.transform(new Date(this.fifthForm.controls['periodOd'].value), "yyyy-MM-dd")?.toString();
+    this.praksa.endDate = this.datePipe.transform(new Date(this.fifthForm.controls['periodDo'].value), "yyyy-MM-dd")?.toString();
+
+
     // this.praksa.mentorId = this.fourthForm.value['mentor'];
     //TODO Dohvatanje mentora svih i dodjela IDa
     this.praksa.mentorId = 13;
-    //TODO dohvatanje ida iz storagea
-    this.praksa.companyId = 22;
 
-    // this.praksa.city = this.fourthForm.value['grad'];
+    let companyId;
+    let tmpObj;
+    if ((tmpObj = localStorage.getItem('user')) != null)
+      companyId = JSON.parse(tmpObj).jti;
+    this.praksa.companyId = companyId;
+
+    this.praksa.city = this.fourthForm.value['grad'];
 
     console.log(this.praksa);
 
     this.praksaServis.postInternShip(this.praksa).subscribe({
       next: (d) => {
-        this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
-        this.router.navigateByUrl('/firma');
+        if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
+          this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
+        else
+          this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
+
+        this.router.navigateByUrl('/company');
       },
-      // complete: ()=>{ console.log("Uspjesno");
-      // },
-      error: (err) => { console.log("Greska!" + err); }
+      error: (err) => { console.log("Greska!", err); }
     });
-    
+
   }
 
 

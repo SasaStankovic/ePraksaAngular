@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Praksa } from 'src/app/tipovi/Praksa';
+import { AuthService } from 'src/app/_servisi/auth.service';
+import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
   selector: 'app-detaljan-pregled-prakse',
@@ -9,39 +14,39 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DetaljanPregledPrakseComponent implements OnInit {
 
   isStudent = false;
-  praksa = {
-    id: Number,
-    kompanija: String,
-    vrstaPrakse: String,
-    periodTrajanja: String,
-    smjer: String,
-    oPraksi: String,
-    godinaFakulteta: Number,
-    brojRadnihSati: Number,
-    oblastRada: String,
-    planRada: String,
-    detalji: String,
-    dokumenti: String,
-    linkDoPrakse: String,
-    rokPrijave: String
-  }
+  praksa!: Praksa;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+   private dialog: MatDialog,
+   private prakseServis:PrakseService,
+   private route:ActivatedRoute,
+   private router:Router,
+   private authService:AuthService,
+   private snackBar:MatSnackBar) {
     this.praksa = data.data;
   }
 
   ngOnInit() {
     let item = localStorage.getItem('user');
     if (item !== null)
-      this.isStudent = (JSON.parse(item).rola == "student" ? true : false);
+      this.isStudent = (this.authService.getRole() == "student" ? true : false);
   }
 
   closePopUp() {
     this.dialog.closeAll();
+    this.router.navigate([this.authService.getRole()])
   }
 
   approveInternship(){
-    
+      this.prakseServis.accetpInternship(this.data.data.internshipId).subscribe({
+        next: data=>{
+          this.snackBar.open("Uspjesno ste objavili praksu","Ok");
+          this.dialog.closeAll();
+          this.router.navigate([this.authService.getRole()]);
+          window.location.reload();
+        },
+        error: err=> console.log(err)
+      });
   }
 
 }

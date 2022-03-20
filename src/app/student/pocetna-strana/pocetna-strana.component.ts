@@ -15,6 +15,7 @@ export class PocetnaStranaComponent implements OnInit {
   ngOnInit(): void {
     this.prakse.getPrakse().subscribe((result:any)=>{
       this.prakseList = result;
+      console.log(this.prakseList);
     })
   }
 }

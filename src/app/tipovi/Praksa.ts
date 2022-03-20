@@ -1,10 +1,16 @@
+import { Company } from "./company";
+import { Mentor } from "./mentor";
+
 export class Praksa {
+    internshipId!:number;
+    title!:string;
     companyId!: number;
     courses!:Array<string>;
     cycles!:Array<string>;
+    city!:string
     description!:string;
     details!:string;
-    endDate!: string;
+    endDate!: string|undefined;
     internshipField!:string;
     internshipType!:string;//TODO zamjeniti sa enum tipomn
     link!:string;
@@ -12,8 +18,10 @@ export class Praksa {
     requiredCV!:boolean;
     requiredLetter!: boolean;
     schedule!:string;
-    startDate!:string;
-    submissionDue!:string;
+    startDate!:string|undefined;
+    submissionDue!:string|undefined;
     workHours!:number;
-    year!:number;
+    years!:number[];
+    company!:Company;
+    mentor!:Mentor;
 }

@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 import { KomisijaGuard } from '../_guards/komisija.guard';
 import { KomisijaWrapperComponent } from './components/komisija-wrapper/komisija-wrapper.component';
 import { PregledPraktikanataComponent } from './components/pregled-praktikanata/pregled-praktikanata.component';
@@ -8,14 +9,24 @@ import { ZahtjeviZaPrakseComponent } from './components/zahtjevi-za-prakse/zahtj
 
 const routes: Routes = [
   {
-    path:'',component:KomisijaWrapperComponent,
-    canActivate:[KomisijaGuard],
-    children:[
+    path: '', component: KomisijaWrapperComponent,
+    canActivate: [KomisijaGuard],
+    children: [
       {
-        path:'', component: PregledPraktikanataComponent
+        path: '', component: ZahtjeviZaPrakseComponent,
+        children:[
+          {
+            path: ':id/details',
+            component: DetaljanPregledPrakseComponent
+          },
+        ]
       },
       {
-        path:'zahtjevi-za-prakse', component:ZahtjeviZaPrakseComponent
+        path: 'internship/:id/details',
+        component: DetaljanPregledPrakseComponent
+      },
+      {
+        path: 'spisak_praktikanata', component: PregledPraktikanataComponent
       }
     ]
   }

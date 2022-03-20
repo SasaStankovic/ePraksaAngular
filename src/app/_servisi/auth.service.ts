@@ -21,8 +21,8 @@ export class AuthService {
     private authGuard: AuthGuard,
     private studentGuard: StudentGuard) {
 
-      this.defaultHeaders.set('Accept','application/json');
-      this.defaultHeaders.set('Content-Type','application/json');
+    this.defaultHeaders.set('Accept', 'application/json');
+    this.defaultHeaders.set('Content-Type', 'application/json');
   }
 
   login(user: any) {
@@ -37,22 +37,31 @@ export class AuthService {
       withCredentials: true
     }).subscribe(
       {
-        next: res=>{
-          let tmp:any = jwtDecode(res.token);
-          localStorage.setItem("token",res.token);
-          localStorage.setItem("user",JSON.stringify(tmp));
-          console.log("RUTA>>>",(tmp.role as string).toLowerCase());
-          this.router.navigate([(tmp.role as string).toLowerCase()]);},
-        error: err=>{
+        next: res => {
+          let tmp: any = jwtDecode(res.token);
+          localStorage.setItem("token", res.token);
+          localStorage.setItem("user", JSON.stringify(tmp));
+          console.log("RUTA>>>", (tmp.role as string).toLowerCase());
+          this.router.navigate([(tmp.role as string).toLowerCase()]);
+        },
+        error: err => {
           alert("Pogeršni pristupni podaci!");
         }
       }
     );
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.router.navigate(['welcome']);
+  }
+
+  public getRole(): string {
+    let role = "";
+    let tmp = localStorage.getItem('user');
+    if (tmp != null)
+      role = JSON.parse(tmp).role.toLowerCase();
+    return role;
   }
 }

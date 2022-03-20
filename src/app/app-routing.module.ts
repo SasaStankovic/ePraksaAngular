@@ -13,15 +13,15 @@ const routes: Routes = [
   },
   {
     path: 'student',
-    loadChildren:()=>import('./student/student.module').then(m=>m.StudentModule)
+    loadChildren:()=>import('./student/student.module').then(m=>m.StudentModule),
   },
   {
     path:'commission_member',
-    loadChildren:()=>import('./komisija/komisija.module').then(m=>m.KomisijaModule)
+    loadChildren:()=>import('./komisija/komisija.module').then(m=>m.KomisijaModule),
   },
   {
     path:'company',
-    loadChildren:()=>import('./firma/firma.module').then(m=>m.FirmaModule)
+    loadChildren:()=>import('./firma/firma.module').then(m=>m.FirmaModule),
   },
   {
     path: '**', redirectTo:'', pathMatch:'full'

@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Company } from 'src/app/tipovi/company';
+import { Mentor } from 'src/app/tipovi/mentor';
+import { Praksa } from 'src/app/tipovi/Praksa';
+import { AuthService } from 'src/app/_servisi/auth.service';
 import { DetaljanPregledPrakseComponent } from '../detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 
 
@@ -11,35 +16,22 @@ import { DetaljanPregledPrakseComponent } from '../detaljan-pregled-prakse/detal
 export class PrikazprakseComponent implements OnInit {
 
   @Input()
-  praksa = {
-    id: 0,
-    kompanija: String,
-    vrstaPrakse: String,
-    periodTrajanja: String,
-    smjer: String,
-    oPraksi: String,
-    godinaFakulteta: Number,
-    brojRadnihSati: Number,
-    oblastRada: String,
-    planRada: String,
-    detalji: String,
-    dokumenti: String,
-    linkDoPrakse:  String,
-    rokPrijave: String
-  }
-
-  constructor(private dialog: MatDialog) {
+  praksa!: Praksa;
+  constructor(private dialog: MatDialog,
+    private router:Router, private authService:AuthService) {
 
   }
 
   ngOnInit():void {}
 
   showPopUp() {
+    this.router.navigate([this.authService.getRole()+"/"+this.praksa.internshipId+"/details"]);
     this.dialog.open(DetaljanPregledPrakseComponent, {
       data: {
         data: this.praksa
       }
     });
+    
   }
 
 }

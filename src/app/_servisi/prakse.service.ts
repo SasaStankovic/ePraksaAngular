@@ -15,11 +15,11 @@ export class PrakseService {
   }
 
   getPrakse(){
-   return this.httpPrakse.get("http://localhost:3000/prakse");
+   return this.httpPrakse.get("http://localhost:8080/internships");
   }
 
   getZahtjeviZaPrakse(){
-    return this.httpPrakse.get("http://localhost:3000/zahtjevi-za-prakse");
+    return this.httpPrakse.get("http://localhost:8080/internships?isPublished=false&type=STRUCNA");
   }
 
   postInternShip(obj:any)
@@ -27,6 +27,10 @@ export class PrakseService {
     return this.httpPrakse.post<any>("http://localhost:8080/internships", obj,{
 
     });
+  }
+
+  accetpInternship(id:string){
+    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/acceptance/true",{});
   }
 
   approveInternship(){

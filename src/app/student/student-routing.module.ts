@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
@@ -12,10 +12,16 @@ export const routes: Routes = [
   {
     path: '', component: StudentComponent,
     // canActivate:[AuthGuard, StudentGuard],
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
-        path: '', component: PocetnaStranaComponent
+        path: '', component: PocetnaStranaComponent,
+        children: [
+          {
+            path: ':id/details',
+            component: DetaljanPregledPrakseComponent
+          }
+        ]
       },
       {
         path: 'profil', component: SutdentProfilComponent
@@ -24,7 +30,7 @@ export const routes: Routes = [
         path: 'dnevnik-rada', component: DnevnikRadaComponent
       },
       {
-        path: '**', redirectTo:'', pathMatch:'full'
+        path: '**', redirectTo: '', pathMatch: 'full'
       }
     ]
   }

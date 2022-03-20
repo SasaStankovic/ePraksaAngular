@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-md-10">
-      <mat-vertical-stepper>
+      <mat-vertical-stepper linear="true">
         <mat-step label="Naziv prakse" [stepControl]="firstFormGroup">
           <div>
             <h1>Prvi korak naslov</h1>
@@ -34,8 +34,8 @@
             <section>
               <h3>Vrsta prakse:</h3>
               <mat-radio-group formControlName="vrstaPrakse" aria-labelledby="lvlVrstaID" class="example-radio-group">
-                <mat-radio-button value="STRUCNA" >Strucna</mat-radio-button>
-                <mat-radio-button value="LJETNA" >Ljetna</mat-radio-button>
+                <mat-radio-button value="STRUCNA">Strucna</mat-radio-button>
+                <mat-radio-button value="LJETNA">Ljetna</mat-radio-button>
               </mat-radio-group>
             </section>
             <h3>Smjer:</h3>
@@ -75,7 +75,7 @@
                 <label for="ckbIV">IV</label>
               </div>
             </section>
-            <div *ngIf="secondFormGroup?.get('vrstaPrakse')?.value == 'strucna'">
+            <div *ngIf="secondFormGroup?.get('vrstaPrakse')?.value == 'STRUCNA'">
               <mat-form-field appearance="fill">
                 <mat-label>Broj randih sati prakse</mat-label>
                 <input matInput required type="number" placeholder="Broj randih sati prakse" formControlName="brojSati">
@@ -156,15 +156,14 @@
                 </mat-form-field>
               </div>
             </div>
-
             <div class="row">
               <div class="col">
                 <h3>Dokumenta za apliciranje na konkurs:</h3>
                 <section class="section2">
                   <div>
-                    <input type="checkbox" id="ckbCV">
+                    <input type="checkbox" id="ckbCV" formControlName="cv">
                     <label for="ckbCV">CV</label>
-                    <input type="checkbox" id="ckbMP">
+                    <input type="checkbox" id="ckbMP" formControlName="motPismo">
                     <label for="ckbMP">Motivaciono pismo</label>
                   </div>
                 </section>
@@ -190,8 +189,8 @@
               <div class="col">
                 <mat-form-field appearance="fill" class="example-form-field">
                   <mat-label>Period trajanja prakse</mat-label>
-                  <mat-date-range-input [rangePicker]="rangePicker" required>
-                    <input matStartDate placeholder="Start date" formControlName="periodOd">
+                  <mat-date-range-input [rangePicker]="rangePicker" required [min]="today">
+                    <input matStartDate placeholder="Start date" formControlName="periodOd" >
                     <input matEndDate placeholder="End date" formControlName="periodDo">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
@@ -209,7 +208,7 @@
               <div class="col">
                 <mat-form-field appearance="fill" class="example-form-field">
                   <mat-label>Rok prijave na konkurs</mat-label>
-                  <input matInput [matDatepicker]="datepicker" formControlName="rok">
+                  <input matInput [matDatepicker]="datepicker" formControlName="rok" [max]="this.fifthForm.controls['periodOd'].value" [min]="today">
                   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                   <mat-datepicker #datepicker>
                     <mat-datepicker-actions>
@@ -220,6 +219,7 @@
                 </mat-form-field>
               </div>
             </div>
+
             <button class="btnNazad" mat-raised-button matStepperPrevious>Nazad</button>
             <button class="daljeBtn" mat-raised-button matStepperNext [disabled]="fifthForm.invalid">Dalje</button>
           </form>
@@ -237,7 +237,7 @@
               </ng-template>
 
               <ng-template #ljetnaInfo>
-                <div> Vas oglas je uspjesno objavljen!</div>
+                <div *ngIf="this.secondFormGroup.controls['vrstaPrakse'].value == 'STRUCNA'" style="margin:10px;"> Prije objavljivanja oglas ce biti pregledan od strane strucne komisije!</div>
               </ng-template>
               <button class="btnNazad" mat-raised-button (click)="cancel()">Otkazi</button>
               <button class="daljeBtn" mat-raised-button (click)="submitData()">Objavi</button>
@@ -247,5 +247,4 @@
       </mat-vertical-stepper>
     </div>
   </div>
-
 </div>

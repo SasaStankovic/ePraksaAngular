@@ -4,7 +4,7 @@
     <div class="naslov-iznad-hr">
       <div class="row align-items-center">
         <div class="col">
-          <label for="">{{praksa.kompanija}}</label>
+          <label for="">{{praksa.company.name}}</label>
         </div>
         <div class="col al">
           <button type="reset" class="otkaziBtn" (click)="closePopUp()"></button>
@@ -18,7 +18,7 @@
         <p>Vrsta Prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.vrstaPrakse}}</p>
+        <p>{{praksa.internshipType}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -26,7 +26,7 @@
         <p>Godina fakulteta:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.godinaFakulteta}}</p>
+        <p>{{praksa.years}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -34,7 +34,7 @@
         <p>Period trajanja prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.periodTrajanja}}</p>
+        <p>{{praksa.startDate}} - {{praksa.endDate}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -42,7 +42,7 @@
         <p>Ukupan broj radnih sati:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.brojRadnihSati}}</p>
+        <p>{{praksa.workHours}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -50,7 +50,7 @@
         <p>Oblast rada prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.oblastRada}}</p>
+        <p>{{praksa.internshipField}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -58,27 +58,28 @@
         <p>Smjer:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.smjer}}</p>
+        <p>{{praksa.courses}}</p>
       </div>
     </div>
     <div class="naslov-pasusa">
       <p>Plan rada prakse i planirane aktivnosti:</p>
     </div>
     <div class="pasus">
-      <p>{{praksa.planRada}}</p>
+      <p>{{praksa.schedule}}</p>
     </div>
     <div class="naslov-pasusa">
       <p>Detalji:</p>
     </div>
     <div class="pasus">
-      <p>{{praksa.detalji}}</p>
+      <p>{{praksa.details}}</p>
     </div>
-    <div class="sadrzaj">
+    <div *ngIf="praksa.requiredCV || praksa.requiredLetter" class="sadrzaj">
       <div class="stavke-prakse">
         <p>Potrebni dokumenti za apliciranje:</p>
       </div>
-      <div class="vrijednost-stavke">
-        <p>{{praksa.dokumenti}}</p>
+      <div  class="vrijednost-stavke">
+        <label style="padding-right:10px;" *ngIf="praksa.requiredCV">Biografija</label>
+        <label *ngIf="praksa.requiredLetter">Motivaciono pismo</label>
       </div>
     </div>
     <div class="sadrzaj">
@@ -86,7 +87,7 @@
         <p>Link do prakse:</p>
       </div>
       <div class="sadrzaj vrijednost-stavke">
-        <a [attr.href]="praksa.linkDoPrakse" target="_blank">link</a>
+        <a [attr.href]="praksa.link" target="_blank">link</a>
       </div>
     </div>
     <div class="sadrzaj stavke-prakse">
@@ -94,7 +95,7 @@
         <p>Rok za prijavu:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.rokPrijave}}</p>
+        <p>{{praksa.submissionDue}}</p>
       </div>
     </div>
     <!------------------------------------------>

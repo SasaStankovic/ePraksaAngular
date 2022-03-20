@@ -16,6 +16,7 @@ import { KomisijaModule } from './komisija/komisija.module';
 import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
 import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatSnackBarModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
