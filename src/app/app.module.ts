@@ -17,6 +17,9 @@ import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
 import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
+import { MentorWrapperComponent } from './mentor/mentor-wrapper/mentor-wrapper.component';
+import { NavBarMentorComponent } from './mentor/nav-bar-mentor/nav-bar-mentor.component';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +27,9 @@ import { DatePipe } from '@angular/common';
     ProfilComponent,
     LoginFormComponent,
     WrapperComponent,
-    NavBarFirmaComponent
-    
+    NavBarFirmaComponent,
+    MentorWrapperComponent,
+    NavBarMentorComponent,    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule
   ],
   providers: [AuthGuard,DatePipe],
   bootstrap: [AppComponent]

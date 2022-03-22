@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren:()=>import('./firma/firma.module').then(m=>m.FirmaModule),
   },
   {
+    path:'mentor',
+    loadChildren:()=>import('./mentor/mentor.module').then(m=>m.MentorModule),
+  },
+  {
     path: '**', redirectTo:'', pathMatch:'full'
   }
 ];

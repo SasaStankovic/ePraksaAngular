@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OdbijanjeComponent } from './odbijanje/odbijanje.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PraksaItemComponent } from '../mentor/praksa-item/praksa-item.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
     DetaljanPregledPrakseComponent,
     DnevnikRadaComponent,
     OdbijanjeComponent,
+    PraksaItemComponent,
   ],
   imports: [
     CommonModule,
