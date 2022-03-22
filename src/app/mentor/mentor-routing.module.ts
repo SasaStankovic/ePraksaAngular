@@ -12,10 +12,10 @@ const routes: Routes = [
         path: '', redirectTo: 'internships'
       },
       {
-        path: 'internships', component: PraksaItemDetaildComponent,
-        children: [
-          { path: ':id/details', component: PraksaItemComponent }
-        ]
+        path:'internships', component:PraksaItemComponent
+      },
+      {
+        path: ':id', component:PraksaItemDetaildComponent ,
       },
     ]
   },

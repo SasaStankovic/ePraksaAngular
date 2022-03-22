@@ -6,10 +6,14 @@
     padding: 7px 20px 5px 20px;
     margin-bottom: 1em !important;
     
-    background-image: linear-gradient(to right,#f7f7f7, #e4e4e4 , #f7f7f7);
+    // background-image: linear-gradient(to right,#f7f7f7, #e4e4e4 , #f7f7f7);
 }
 
 .name{
     font-weight: 500;
     font-size: 18px;
+}
+
+.button{
+    float: right;
 }

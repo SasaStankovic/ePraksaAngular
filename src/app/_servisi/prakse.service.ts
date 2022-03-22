@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Praksa } from '../tipovi/Praksa';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,12 @@ export class PrakseService {
     return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/acceptance/true",{});
   }
 
-  approveInternship(){
-    
+  getInternshipByMentorId(id:number){
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?mentorId="+id);
+  }
+
+  getInternshipById(id:number){
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?id="+id);
   }
   
 }

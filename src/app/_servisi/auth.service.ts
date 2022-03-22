@@ -11,6 +11,12 @@ import { StudentGuard } from '../_guards/student.guard';
 })
 export class AuthService {
 
+  userData={
+    id:-1,
+    role: '',
+    token:'',
+  }
+
   private LOGIN_URL = "http://localhost:3000/postojeciKorisnici";
 
   defaultHeaders: HttpHeaders = new HttpHeaders();
@@ -23,6 +29,8 @@ export class AuthService {
 
     this.defaultHeaders.set('Accept', 'application/json');
     this.defaultHeaders.set('Content-Type', 'application/json');
+
+    this.getUserData();
   }
 
   login(user: any) {
@@ -39,6 +47,7 @@ export class AuthService {
       {
         next: res => {
           let tmp: any = jwtDecode(res.token);
+          user.token = tmp;
           localStorage.setItem("token", res.token);
           localStorage.setItem("user", JSON.stringify(tmp));
           console.log("RUTA>>>", (tmp.role as string).toLowerCase());
@@ -57,11 +66,16 @@ export class AuthService {
     this.router.navigate(['welcome']);
   }
 
-  public getRole(): string {
-    let role = "";
+  public getUserData(){
+    let obj;
     let tmp = localStorage.getItem('user');
     if (tmp != null)
-      role = JSON.parse(tmp).role.toLowerCase();
-    return role;
+    {
+      obj = JSON.parse(tmp);
+      this.userData.id = obj.jti;
+      this.userData.role = obj.role.toLowerCase();
+    }
+
+    
   }
 }

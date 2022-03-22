@@ -5,6 +5,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Praksa } from 'src/app/tipovi/Praksa';
+import { Mentor } from 'src/app/tipovi/mentor';
+import { AuthService } from 'src/app/_servisi/auth.service';
+import { FirmaService } from 'src/app/_servisi/firma.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
@@ -13,6 +16,8 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
   styleUrls: ['./objava-prakse.component.scss']
 })
 export class ObjavaPrakseComponent implements OnInit {
+
+  mentors!:Array<Mentor>;
 
   today: Date = new Date();
 
@@ -26,17 +31,14 @@ export class ObjavaPrakseComponent implements OnInit {
 
   errorMessage = "Popunite sva polja!";
 
-  mentori = [
-    { id: 'id1', ime: 'Ime1', prezime: 'Prezime1' },
-    { id: 'id2', ime: 'Ime2', prezime: 'Prezime2' },
-    { id: 'id3', ime: 'Ime3', prezime: 'Prezime3' },
-  ];
 
   constructor(private formBuilder: FormBuilder,
     private praksaServis: PrakseService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    private firmaService: FirmaService,
+    private authService: AuthService,) { }
 
 
   ngOnInit(): void {
@@ -83,6 +85,15 @@ export class ObjavaPrakseComponent implements OnInit {
     if ((praksa = this.secondFormGroup.get('vrstaPrakse')) != null) {
       praksa.setValue("LJETNA");
     }
+
+    let unsub = this.firmaService.getMentors(this.authService.userData.id).subscribe(
+      data=>{
+        console.log(data);
+        this.mentors = data;
+      },err=>console.log(err)
+    );
+
+
   }
 
   secondFormInvalid(): boolean {
@@ -124,7 +135,6 @@ export class ObjavaPrakseComponent implements OnInit {
     this.praksa.title = this.firstFormGroup.value['nazivPrakse'];
     this.praksa.internshipType = this.secondFormGroup.value['vrstaPrakse'];
     let smjer: any = [];
-    // this.praksa.internshipId = 10;
     if (this.secondFormGroup.value['SI'])
       smjer.push("Softversko inzenjerstvo");
     if (this.secondFormGroup.value['RI'])
@@ -161,9 +171,9 @@ export class ObjavaPrakseComponent implements OnInit {
     this.praksa.endDate = this.datePipe.transform(new Date(this.fifthForm.controls['periodDo'].value), "yyyy-MM-dd")?.toString();
 
 
-    // this.praksa.mentorId = this.fourthForm.value['mentor'];
+    this.praksa.mentorId = this.fourthForm.value['mentor'];
     //TODO Dohvatanje mentora svih i dodjela IDa
-    this.praksa.mentorId = 13;
+    // this.praksa.mentorId = 13;
 
     let companyId;
     let tmpObj;

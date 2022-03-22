@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Mentor } from '../tipovi/mentor';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class FirmaService {
 
   sendRazlogOdbijanja(razlog:any){
     return this.http.post<any>("http://localhost:3000/odbijenica",razlog);
+  }
+
+  getMentors(id:number){
+    return this.http.get<Mentor[]>("http://localhost:8080/mentors/"+id+"/");
   }
   
 }

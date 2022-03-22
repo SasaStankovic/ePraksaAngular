@@ -1,7 +1,7 @@
 <ng-container class="container">
     <div class="row align-items-center">
         <div class="col-6 text">
-            Vrsta prakse: STRUCNA
+            Vrsta prakse: {{internship?.internshipType}}
         </div>
         <div class="col-4 align">
             <button class="btnRed align">Zavrsi praksu</button>
@@ -12,7 +12,7 @@
     </div>
     <mat-divider style="margin: 1em 0;"></mat-divider>
 
-    <mat-card class="example-card" *ngFor="let item of list">
+    <mat-card class="example-card" *ngFor="let item of internships">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Ime Prezime</mat-card-title>

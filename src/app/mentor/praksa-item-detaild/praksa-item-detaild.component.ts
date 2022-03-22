@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Praksa } from 'src/app/tipovi/Praksa';
+import { AuthService } from 'src/app/_servisi/auth.service';
+import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
   selector: 'app-praksa-item-detaild',
@@ -7,11 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PraksaItemDetaildComponent implements OnInit {
 
-list =[1,2,3];
+  internship!:Praksa;
+  internships = [1, 2, 3];
+  id = -1;
 
-  constructor() { }
+  constructor(public route: ActivatedRoute,
+              public praksaService: PrakseService) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+    this.praksaService.getInternshipById(this.id).subscribe(
+      {
+        next:data=>{this.internship = data[0];
+          console.log(data)},
+        error: err=>console.log(err),
+      },
+    );
   }
 
 }

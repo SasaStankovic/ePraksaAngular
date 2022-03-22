@@ -6,7 +6,6 @@
       <hr>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-10">
       <mat-vertical-stepper linear="true">
@@ -142,8 +141,8 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Strucni mentor</mat-label>
                   <mat-select formControlName="mentor" required>
-                    <mat-option *ngFor="let item of mentori" [value]="item.id">
-                      {{item.ime}} {{item.prezime}}
+                    <mat-option *ngFor="let item of mentors" [value]="item.id">
+                      {{item.firstName}} {{item.lastName}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

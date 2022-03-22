@@ -29,12 +29,12 @@ export class DetaljanPregledPrakseComponent implements OnInit {
   ngOnInit() {
     let item = localStorage.getItem('user');
     if (item !== null)
-      this.isStudent = (this.authService.getRole() == "student" ? true : false);
+      this.isStudent = (this.authService.userData.role == "student" ? true : false);
   }
 
   closePopUp() {
     this.dialog.closeAll();
-    this.router.navigate([this.authService.getRole()])
+    this.router.navigate([this.authService.userData.role])
   }
 
   approveInternship(){
@@ -42,7 +42,7 @@ export class DetaljanPregledPrakseComponent implements OnInit {
         next: data=>{
           this.snackBar.open("Uspjesno ste objavili praksu","Ok");
           this.dialog.closeAll();
-          this.router.navigate([this.authService.getRole()]);
+          this.router.navigate([this.authService.userData.role]);
           window.location.reload();
         },
         error: err=> console.log(err)

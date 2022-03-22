@@ -1,5 +1,5 @@
 export class Mentor {
-    id!:number;
-    firstName!:string;
-    lastName!:string;
+    id!:Number;
+    firstName!:String;
+    lastName!:String;
 }
