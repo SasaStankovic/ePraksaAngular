@@ -20,6 +20,8 @@ import { DatePipe } from '@angular/common';
 import { MentorWrapperComponent } from './mentor/mentor-wrapper/mentor-wrapper.component';
 import { NavBarMentorComponent } from './mentor/nav-bar-mentor/nav-bar-mentor.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import {MatDividerModule} from '@angular/material/divider';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatDividerModule
+    MatDividerModule,
+    // MatExpansionModule
+
   ],
   providers: [AuthGuard,DatePipe],
   bootstrap: [AppComponent]

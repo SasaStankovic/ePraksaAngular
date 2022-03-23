@@ -4,6 +4,7 @@ import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-praks
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
 import { AuthGuard } from '../_guards/auth.guard';
 import { StudentGuard } from '../_guards/student.guard';
+import { ApplicationComponent } from './application/application.component';
 import { PocetnaStranaComponent } from './pocetna-strana/pocetna-strana.component';
 import { StudentComponent } from './student.component';
 import { SutdentProfilComponent } from './sutdent-profil/sutdent-profil.component';
@@ -15,13 +16,19 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '', component: PocetnaStranaComponent,
-        children: [
+        path:'', redirectTo: 'internships', pathMatch: 'full'
+      },
+      {
+        path: 'internships', component: PocetnaStranaComponent,
+        children:[
           {
             path: ':id/details',
-            component: DetaljanPregledPrakseComponent
-          }
+            component: DetaljanPregledPrakseComponent,
+          },
         ]
+      },
+      {
+        path:'internships/:id/application',component: ApplicationComponent
       },
       {
         path: 'profil', component: SutdentProfilComponent

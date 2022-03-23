@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Kreiranje motivacionog pisma</h1>
+    <mat-divider style="margin-bottom: 5px;"></mat-divider>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" style="width: 70%;">
+            <mat-label>Unesite motivaciono pismo:</mat-label>
+            <textarea formControlName="letter" rows="7" matInput></textarea>
+        </mat-form-field>
+        <br>
+        <button mat-button (click)="submitData()"> apliciraj</button>
+    </form>
+</div>

@@ -24,4 +24,6 @@ export class Praksa {
     years!:number[];
     company!:Company;
     mentor!:Mentor;
+    isPublished!:boolean;
+    isAccepted!:boolean;
 }

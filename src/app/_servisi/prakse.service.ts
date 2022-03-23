@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Praksa } from '../tipovi/Praksa';
+import { Student } from '../tipovi/Student';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,8 @@ export class PrakseService {
     return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?id="+id);
   }
   
+  getStudentsOnInternship(id:number){
+    return this.httpPrakse.get<Student[]>("http://localhost:8080/internships/"+id+"/students");
+  }
+
 }

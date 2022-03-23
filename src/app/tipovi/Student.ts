@@ -1,39 +1,19 @@
+import { CV } from "./cv";
+
 export class Student {
 
-    id!: string;
-    indeks!: string;
-    ime!: string;
-    prezime!: string;
-    datumRodjenja!: string;
-    mail!: string;
-    adresa!: string;
-    portfolioLink!: string;
-    tel!: string;
-    oMeni!: string;
-    fakultet!: string;
-    smjer!: string;
-    godina!: string;
-    ciklus!: string;
-    vjestine!: Array<string>;
-    jezici!: Array<string>;
-    hobiji!: Array<string>;
-    radnoIskustvo!: Array<RadnoIskustvo>;
-    projekti!: Array<Projekat>
+    id!: number;
+    birthDate!: Date;
+    course!:string;
+    cv!:CV;
+    cycle!:string;
+    faculty!:string;
+    firstName!:string;
+    index!:string;
+    jmbg!:string;
+    lastName!:string;
+    year!:number;
 
     constructor() { }
 
-}
-
-class Projekat {
-    period!: String;
-    naziv!: String;
-    opis!: String;
-    link!: String;
-}
-
-class RadnoIskustvo {
-    period!: String;
-    firma!: String;
-    pozicija!: String;
-    opis!: String;
 }

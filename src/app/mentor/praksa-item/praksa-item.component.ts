@@ -24,6 +24,7 @@ export class PraksaItemComponent implements OnInit {
       {
         next:data=>{
           this.internships = data;
+          console.log("prakse>>",data);
           unsub.unsubscribe();
         },
         error:err=>{console.log(err);}

@@ -49,4 +49,9 @@ export class DetaljanPregledPrakseComponent implements OnInit {
       });
   }
 
+
+  apliciraj(){
+    this.dialog.closeAll();
+    this.router.navigate([this.authService.userData.role+'/internships/'+this.data.data.internshipId+'/'+'application']);
+  }
 }

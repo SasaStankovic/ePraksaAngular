@@ -51,6 +51,7 @@ export class AuthService {
           localStorage.setItem("token", res.token);
           localStorage.setItem("user", JSON.stringify(tmp));
           console.log("RUTA>>>", (tmp.role as string).toLowerCase());
+          this.getUserData();
           this.router.navigate([(tmp.role as string).toLowerCase()]);
         },
         error: err => {

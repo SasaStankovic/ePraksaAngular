@@ -23,19 +23,19 @@
           <div class="col-md">
             <div class="">
               <label for="" class="lblNested">Ime:</label>
-              <label for="">{{student.ime}}</label>
+              <label for="">{{student?.firstName}}</label>
             </div>
             <div class="">
               <label for="" class="lblNested">Prezime:</label>
-              <label for="">{{student.prezime}} </label>
+              <label for="">{{student?.lastName}} </label>
             </div>
             <div class="">
               <label class="lblNested">Datim rođenja:</label>
-              <label for="">{{student.datumRodjenja}}</label>
+              <label for="">{{student?.birthDate}}</label>
             </div>
             <div class="">
               <label for="" class="lblNested">Portfolio:</label>
-              <a [attr.href]="student.portfolioLink" target="_blank">link do portfolia</a>
+              <a [attr.href]="student?.cv?.porfolioLink" target="_blank">link do portfolia</a>
             </div>
           </div>
 
@@ -49,21 +49,26 @@
           <div class="col-md">
             <div class="">
               <label class="lblNested">Broj indeksa:</label>
-              <label for="">{{student.indeks}}</label>
+              <label for="">{{student?.index}}</label>
             </div>
 
             <div class="">
               <label  class="lblNested">Adresa stanovanja:</label>
-              <label >{{student.adresa}}</label>
+              <label >Ovdje treba biti adresa</label>
+
+              <!-- <label >{{student?.adresa}}</label> -->
             </div>
 
             <div class="col">
               <label  class="lblNested">Email:</label>
-              <label >{{student.mail}}</label>
+              <label >Ovdje treba biti eMail</label>
+
+              <!-- <label >{{student?.mail}}</label> -->
             </div>
             <div class="col">
               <label  class="lblNested">Telefon:</label>
-              <label >{{student.tel}}</label>
+              <label >Ovdje treba biti telefon</label>
+              <!-- <label >{{student?.tel}}</label> -->
             </div>
           </div>
         </div>
@@ -77,7 +82,7 @@
       <label for="" class="lbl">O meni</label>
       <div class="div">
         <!-- Element O meni -->
-        <p>{{student.oMeni}}</p>
+        <p>{{student?.cv?.introduction}}</p>
       </div>
     </div>
   </div>
@@ -92,23 +97,23 @@
           <div class="row">
             <div class="col">
               <label class="lblNested">Fakultet:</label>
-              <label for="">{{student.fakultet}}</label>
+              <label for="">{{student?.faculty}}</label>
             </div>
 
             <div class="col">
               <label class="lblNested">Godina:</label>
-              <label for="">{{student.godina}}</label>
+              <label for="">{{student?.year}}</label>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
               <label class="lblNested">Smjer:</label>
-              <label for="">{{student.smjer}}</label>
+              <label for="">{{student?.course}}</label>
             </div>
             <div class="col">
               <label class="lblNested">Ciklus:</label>
-              <label for="">{{student.ciklus}}</label>
+              <label for="">{{student?.cycle}}</label>
             </div>
           </div>
         </div>
@@ -120,15 +125,15 @@
         <label for="" class="lbl">Radno iskustvo</label>
         <div class="div">
           <!-- Ekement za radno iskustvo -->
-          <div class="iskustvo" *ngFor="let item of student.radnoIskustvo; index as i">
+          <div class="iskustvo" *ngFor="let item of student?.cv?.workExperience; index as i">
             <div class="row">
               <div class="col-md-3">
-                <label for="" class="lblNested">{{student.radnoIskustvo[i].period}}</label>
+                <label for="" class="lblNested">{{item?.period}}</label>
               </div>
               <div class="col-md-9">
-                <label class="lblNested">{{student.radnoIskustvo[i].firma}}</label>
-                <label class="lblNested">{{student.radnoIskustvo[i].pozicija}}</label>
-                <p>{{student.radnoIskustvo[i].opis}}</p>
+                <label class="lblNested">{{item?.company}}</label>
+                <label class="lblNested">{{item?.position}}</label>
+                <p>{{item?.description}}</p>
               </div>
             </div>
           </div>
@@ -140,14 +145,14 @@
         <label for="" class="lbl">Projekti</label>
         <div class="div">
           <!-- Element za projekat -->
-          <div *ngFor="let item of student.projekti">
+          <div *ngFor="let item of student?.cv?.projects">
             <div class="row my-2">
               <div class="col-3">
-                <label class="lblNested">{{item.period}}</label>
+                <label class="lblNested">{{item?.period}}</label>
               </div>
               <div class="col-9">
-                <label class="lblNested">{{item.naziv}}</label>
-                <p>{{item.opis}}</p>
+                <label class="lblNested">{{item?.name}}</label>
+                <p>{{item.description}}</p>
                 <a [attr.href]="item.link" target="_blank">link do projekta</a>
               </div>
             </div>
@@ -162,7 +167,7 @@
         <div class="col kontent">
           <label class="lbl">Vjestine</label>
           <div class="div">
-            <label *ngFor="let item of student.vjestine">-{{item}}</label>
+            <label *ngFor="let item of student?.cv?.skills">-{{item}}</label>
           </div>
         </div>
       </div>
@@ -171,7 +176,7 @@
         <div class="kontent">
           <label class="lbl">Strani jezici</label>
           <div class="div">
-            <label *ngFor="let item of student.jezici">-{{item}}</label>
+            <label *ngFor="let item of student?.cv?.languages">-{{item}}</label>
           </div>
         </div>
       </div>
@@ -181,7 +186,7 @@
         <div class="kontent">
           <label for="" class="lbl">Hobiji</label>
           <div class="div">
-            <label *ngFor="let item of student.hobiji" >-{{item}}</label>
+            <label *ngFor="let item of student?.cv?.hobbies" >-{{item}}</label>
           </div>
         </div>
       </div>

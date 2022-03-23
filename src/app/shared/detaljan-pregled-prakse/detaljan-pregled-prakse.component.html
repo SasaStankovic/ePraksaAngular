@@ -106,7 +106,7 @@
         <button class="potvrdiBtn"  [hidden]="isStudent" (click)="approveInternship()">Odobri praksu</button>
       </div>
       <div class="col-4 d-flex justify-content-center">
-        <button onclick="apliciraj()" class="potvrdiBtn" [hidden]="!isStudent">Apliciraj</button>
+        <button (click)="apliciraj()" class="potvrdiBtn" [hidden]="!isStudent">Apliciraj</button>
       </div>
       <div class="col-4 d-flex justify-content-start">
         <button class="OtkaziPraksuBtn"  [hidden]="isStudent">Otkazi praksu</button>

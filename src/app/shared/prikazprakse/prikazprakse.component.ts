@@ -25,8 +25,8 @@ export class PrikazprakseComponent implements OnInit {
   ngOnInit():void {}
 
   showPopUp() {
-    console.log(this.authService.userData.role+"/"+this.praksa.internshipId+"/details");
-    this.router.navigate([this.authService.userData.role+"/"+this.praksa.internshipId+"/details"]);
+    console.log(this.authService.userData.role+"/internships/"+this.praksa.internshipId+"/details");
+    this.router.navigate([this.authService.userData.role+"/internships/"+this.praksa.internshipId+"/details"]);
     this.dialog.open(DetaljanPregledPrakseComponent, {
       data: {
         data: this.praksa

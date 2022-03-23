@@ -15,7 +15,7 @@ student!:Student;
 
   constructor(private profileData:StudentService) { 
     this.student = new Student();
-    console.log("Student ime:"+this.student.ime);
+    console.log("Student ime:"+this.student.firstName+" "+this.student.lastName);
   }
 
   ngOnInit(): void {

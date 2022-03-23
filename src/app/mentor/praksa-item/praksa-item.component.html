@@ -1,10 +1,14 @@
 <div *ngFor="let item of internships;" class="">
-    <!-- <div class="parent"> -->
-        <div class="row parent align-items-center">
-            <div class="col name">{{item.title}}</div>
-            <div class="col align-items-center button">
-                <button (click)="viewDetails(item.internshipId);" class="btnGreen">Detaljan pregled</button>
-            </div>
-        </div>
+    <div class="row parent align-items-center">
+      <div class="col-6 name">{{item.title}}</div>
+      <div class="col-2">
+        vrsta prakse: {{item.internshipType}}
+      </div>
+      <div class="col-2">
+        <span *ngIf="item.isAccepted;" style="float: right !important;">stauts: aktivno</span>
+        <span *ngIf="!item.isAccepted;" style="float: right !important;">status: neaktivno</span>
+      </div>
+      <div class="col-2 align-items-center button">
+        <button (click)="viewDetails(item.internshipId);" class="btnGreen">Detaljan pregled</button>
+      </div>
     </div>
-<!-- </div> -->

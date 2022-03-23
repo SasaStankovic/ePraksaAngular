@@ -12,18 +12,16 @@
     </div>
     <mat-divider style="margin: 1em 0;"></mat-divider>
 
-    <mat-card class="example-card" *ngFor="let item of internships">
+    <mat-card class="example-card" *ngFor="let item of students">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Ime Prezime</mat-card-title>
-          <mat-card-subtitle>Student ETF 1171/18</mat-card-subtitle>
+          <mat-card-title>{{item.firstName}} {{item.lastName}}</mat-card-title>
+          <mat-card-subtitle>{{item.faculty}} {{item.index}} godina studija: {{item.year}}</mat-card-subtitle>
         </mat-card-header>
     
         <mat-card-content>
           <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
+            NAPOMENE OD STRANE KOMISIJE ILI MENTORA
           </p>
         </mat-card-content>
         <mat-card-actions>

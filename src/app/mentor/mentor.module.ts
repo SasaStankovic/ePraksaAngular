@@ -7,6 +7,8 @@ import { PraksaItemDetaildComponent } from './praksa-item-detaild/praksa-item-de
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 @NgModule({
   declarations: [
     // NavBarMentorComponent
@@ -18,7 +20,9 @@ import {MatButtonModule} from '@angular/material/button';
     MentorRoutingModule,
     MatDividerModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    // CdkAccordionModule,
   ]
 })
 export class MentorModule { }
