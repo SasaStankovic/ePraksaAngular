@@ -33,7 +33,7 @@ export class PraksaItemComponent implements OnInit {
   }
 
   viewDetails(id:number){
-    this.router.navigate([this.authService.userData.role+"/"+id]);
+    this.router.navigate([this.authService.userData.role+"/internships/"+id+'/details']);
   }
 
 }

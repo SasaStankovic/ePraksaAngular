@@ -47,4 +47,8 @@ export class PrakseService {
     return this.httpPrakse.get<Student[]>("http://localhost:8080/internships/"+id+"/students");
   }
 
+  submitApplication(application:any){
+    return this.httpPrakse.post<any>("http://localhost:8080/applications",application);
+  }
+
 }

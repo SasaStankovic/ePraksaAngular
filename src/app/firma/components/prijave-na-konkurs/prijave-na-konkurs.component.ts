@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { OdbijanjeComponent } from 'src/app/shared/odbijanje/odbijanje.component';
 import { Student } from 'src/app/tipovi/Student';
+import { AuthService } from 'src/app/_servisi/auth.service';
 import { FirmaService } from 'src/app/_servisi/firma.service';
 import { StudentService } from 'src/app/_servisi/student.service';
 
@@ -36,7 +37,8 @@ export class PrijaveNaKonkursComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private firmaService: FirmaService,
     private studentService: StudentService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private authService:AuthService,) {
     this.selectKonkurs = formBuilder.group({
       konkurs: [null]
     });
@@ -79,7 +81,7 @@ export class PrijaveNaKonkursComponent implements OnInit {
   getStudent(i: number) {
     console.log(this.podaciOKonkursu.studenti[i]);
     // this.studentService.getStudentById(i.toString());
-    this.studentService.getProfileData().subscribe((res: any) => {
+    this.studentService.getStudentById(this.authService.userData.id).subscribe((res: any) => {
       this.student = res;
       console.log(this.student);
     });

@@ -4,9 +4,16 @@
     <form [formGroup]="form">
         <mat-form-field appearance="outline" style="width: 70%;">
             <mat-label>Unesite motivaciono pismo:</mat-label>
-            <textarea formControlName="letter" rows="7" matInput></textarea>
+            <textarea formControlName="motivationalLetter" rows="7" matInput></textarea>
         </mat-form-field>
         <br>
-        <button mat-button (click)="submitData()"> apliciraj</button>
+        <div class="row">
+            <div class="col-2">
+                <button class="btnGreen float-left" (click)="submitData()"> apliciraj</button>
+            </div>
+            <div class="col-2">
+                <button class="btnRed float-left" (click)="cancel();">Otkaži</button>
+            </div>
+        </div>
     </form>
 </div>

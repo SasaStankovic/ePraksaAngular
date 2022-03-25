@@ -39,13 +39,11 @@
             </div>
           </div>
 
-          <!-- vertikalna linija -->
           <div class="col-sm-1 vline">
             <div class="vline">
               <div class="vr"></div>
             </div>
           </div>
-          <!-- podaci 2 -->
           <div class="col-md">
             <div class="">
               <label class="lblNested">Broj indeksa:</label>
@@ -54,21 +52,18 @@
 
             <div class="">
               <label  class="lblNested">Adresa stanovanja:</label>
-              <label >Ovdje treba biti adresa</label>
+              <label >{{student.address.city}} {{student.address.street}} {{student.address.number}}</label>
 
-              <!-- <label >{{student?.adresa}}</label> -->
             </div>
 
             <div class="col">
               <label  class="lblNested">Email:</label>
-              <label >Ovdje treba biti eMail</label>
+              <label >{{(student.emails[0]).mail}}</label>
 
-              <!-- <label >{{student?.mail}}</label> -->
             </div>
             <div class="col">
               <label  class="lblNested">Telefon:</label>
-              <label >Ovdje treba biti telefon</label>
-              <!-- <label >{{student?.tel}}</label> -->
+              <label >{{student.numbers[0].number}}</label>
             </div>
           </div>
         </div>

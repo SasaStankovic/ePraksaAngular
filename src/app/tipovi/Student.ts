@@ -1,3 +1,5 @@
+import { Address } from "./address";
+import { Email, PhoneNumber } from "./contacts";
 import { CV } from "./cv";
 
 export class Student {
@@ -13,6 +15,9 @@ export class Student {
     jmbg!:string;
     lastName!:string;
     year!:number;
+    address!:Address;
+    emails!:[Email];
+    numbers!:[PhoneNumber];
 
     constructor() { }
 

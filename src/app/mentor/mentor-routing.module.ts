@@ -11,13 +11,13 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     children: [
       {
-        path: '', redirectTo: 'internships'
+        path: '', redirectTo: 'internships', pathMatch: 'full'
       },
       {
-        path:'internships', component:PraksaItemComponent
+        path:'internships', component:PraksaItemComponent,
       },
       {
-        path: ':id', component:PraksaItemDetaildComponent ,
+        path: 'internships/:id/details', component:PraksaItemDetaildComponent ,
       },
     ]
   },

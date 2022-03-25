@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { SutdentProfilComponent } from 'src/app/student/sutdent-profil/sutdent-profil.component';
 import { Praksa } from 'src/app/tipovi/Praksa';
+import { Student } from 'src/app/tipovi/Student';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 
@@ -16,7 +19,7 @@ export class PraksaItemDetaildComponent implements OnInit {
   id = -1;
 
   constructor(public route: ActivatedRoute,
-    public praksaService: PrakseService) { }
+    public praksaService: PrakseService,) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -38,5 +41,6 @@ export class PraksaItemDetaildComponent implements OnInit {
       },
     );
   }
+
 
 }

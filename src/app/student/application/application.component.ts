@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Praksa } from 'src/app/tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
@@ -17,9 +17,9 @@ internship!:Praksa;
 
   constructor(private formBuilder:FormBuilder,
     private route:ActivatedRoute, private prakseService:PrakseService,
-    private authService:AuthService) { 
+    private authService:AuthService, private router:Router) { 
     this.form = this.formBuilder.group({
-      letter:[null,Validators.required],
+      motivationalLetter:[null,Validators.required],
       studentId:[ authService.userData.id as number ],
       internshipId:[null],
     })
@@ -36,7 +36,14 @@ internship!:Praksa;
   }
 
   submitData(){
-    console.log("SUBMIT DATA>>",this.form.value);
+    this.prakseService.submitApplication(this.form.value).subscribe({
+      next:res=>console.log("Uspjesno",this.form.value),
+      error:err=>console.log(err),
+    });
+  }
+
+  cancel(){
+    this.router.navigate(['student/internships']);
   }
 
 }
