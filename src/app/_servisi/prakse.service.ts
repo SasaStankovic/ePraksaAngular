@@ -40,7 +40,7 @@ export class PrakseService {
   }
 
   getInternshipById(id:number){
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?id="+id);
+    return this.httpPrakse.get<Praksa>("http://localhost:8080/internships/"+id);
   }
   
   getStudentsOnInternship(id:number){
@@ -49,6 +49,14 @@ export class PrakseService {
 
   submitApplication(application:any){
     return this.httpPrakse.post<any>("http://localhost:8080/applications",application);
+  }
+
+  startInternship(id:number){
+    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/activate",{});
+  }
+
+  closeInternship(id:number){
+    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/true",{});
   }
 
 }

@@ -22,7 +22,8 @@ export class DetaljanPregledPrakseComponent implements OnInit {
    private route:ActivatedRoute,
    private router:Router,
    private authService:AuthService,
-   private snackBar:MatSnackBar) {
+   private snackBar:MatSnackBar,
+   private prakseService:PrakseService) {
     this.praksa = data.data;
   }
 
@@ -52,6 +53,23 @@ export class DetaljanPregledPrakseComponent implements OnInit {
 
   apliciraj(){
     this.dialog.closeAll();
-    this.router.navigate([this.authService.userData.role+'/internships/'+this.data.data.internshipId+'/'+'application']);
+    if(this.praksa.requiredLetter)
+      this.router.navigate([this.authService.userData.role+'/internships/'+this.data.data.internshipId+'/'+'application']);
+    else{
+      let submitData = {
+        internshipId:this.praksa.internshipId,
+        motivationalLetter:"",
+        studentId:this.authService.userData.id,
+      }
+      this.prakseService.submitApplication(submitData).subscribe({
+        next: res => { console.log("Uspjesno", submitData); this.snackBar.open("Uspjesno ste poslali prijavu za praksu!","Ok"); this.router.navigate(['/student/internships']); },
+        error: err => console.log(err),
+      });
+    }
   }
+
+  cancel() {
+    this.router.navigate(['student/internships']);
+  }
+
 }

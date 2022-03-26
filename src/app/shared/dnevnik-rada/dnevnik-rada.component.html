@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <form [formGroup]="form" onsubmit="return false">
+  <form [formGroup]="form">
     <div formArrayName="dnevnikRada">
       <ng-container *ngFor="let item of dnevnikRada.controls; let i = index;" [formGroupName]="i">
         <div class="form">

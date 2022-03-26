@@ -52,18 +52,18 @@
 
             <div class="">
               <label  class="lblNested">Adresa stanovanja:</label>
-              <label >{{student.address.city}} {{student.address.street}} {{student.address.number}}</label>
+              <label >{{student?.address?.city}}, {{student?.address?.street}}, {{student?.address?.number}}</label>
 
             </div>
 
             <div class="col">
               <label  class="lblNested">Email:</label>
-              <label >{{(student.emails[0]).mail}}</label>
+              <label *ngFor="let item of student?.emails">{{item.mail}}</label>
 
             </div>
             <div class="col">
               <label  class="lblNested">Telefon:</label>
-              <label >{{student.numbers[0].number}}</label>
+              <label *ngFor="let item of student?.numbers">{{item.number}}</label>
             </div>
           </div>
         </div>

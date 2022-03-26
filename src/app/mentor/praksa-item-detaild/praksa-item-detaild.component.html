@@ -1,13 +1,13 @@
 <ng-container class="container">
     <div class="row align-items-center">
         <div class="col-6 text">
-            Vrsta prakse: {{internship?.internshipType}}
+            Vrsta prakse: {{internship?.internshipType}} Naziv: {{internship?.title}}
         </div>
         <div class="col-4 align">
-            <button class="btnRed align">Zavrsi praksu</button>
+            <button class="btnRed align" (click)="closeInternship()">Zavrsi praksu</button>
         </div>
         <div class="col-2">
-            <button class="btnGreen">Zapocni praksu</button>
+            <button class="btnGreen" (click)="startInternship()">Zapocni praksu</button>
         </div>
     </div>
     <mat-divider style="margin: 1em 0;"></mat-divider>
@@ -25,7 +25,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-stroked-button>PROFIL</button>
+            <button mat-stroked-button (click)="viewStudent(item.id)">PROFIL</button>
           <button mat-stroked-button>IZVJESTAJ</button>
           <button mat-stroked-button>DNEVNIK RADA</button>
         </mat-card-actions>

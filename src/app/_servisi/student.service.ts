@@ -10,7 +10,7 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   getPraktikanti(){
-    return this.http.get("http://localhost:3000/praktikanti");
+    return this.http.get("http://localhost:8080/student/practicants");
   }
 
   getStudentById(id:number){

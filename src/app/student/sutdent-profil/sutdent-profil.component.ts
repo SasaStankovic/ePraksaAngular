@@ -1,5 +1,7 @@
 import { ArrayType } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscribable, Unsubscribable } from 'rxjs';
 import { Student } from 'src/app/tipovi/Student';
 import { AuthService } from 'src/app/_servisi/auth.service';
 
@@ -10,23 +12,31 @@ import { StudentService } from 'src/app/_servisi/student.service';
   templateUrl: './sutdent-profil.component.html',
   styleUrls: ['./sutdent-profil.component.scss']
 })
-export class SutdentProfilComponent implements OnInit {
+export class SutdentProfilComponent implements OnInit, OnDestroy {
 
-student!:Student;
-
-  constructor(private studentService:StudentService,
-              private authService: AuthService) { 
-    this.student = new Student();
-    console.log("Student ime:"+this.student.firstName+" "+this.student.lastName);
+  studentId = -1;
+  student!: Student;
+  unsubscribe!:Unsubscribable;
+  constructor(private studentService: StudentService,
+    private authService: AuthService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.studentService.getStudentById(this.authService.userData.id).subscribe((res:any)=>{
+    this.unsubscribe = this.route.params.subscribe(res => {
+      console.log("student id>>", res);
+      if (res['id'])
+        this.studentId = res['id'];
+      else
+        this.studentId = this.authService.userData.id;
+    })
+
+    this.studentService.getStudentById(this.studentId).subscribe((res: any) => {
       this.student = res;
-      console.log("Student profile data>>",res);
+      console.log("Student profile data>>", res);
     })
   }
 
-  
-
+  ngOnDestroy(): void {
+    this.unsubscribe.unsubscribe();
+  }
 }

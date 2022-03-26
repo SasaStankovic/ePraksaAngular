@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { SutdentProfilComponent } from 'src/app/student/sutdent-profil/sutdent-profil.component';
 import { Praksa } from 'src/app/tipovi/Praksa';
@@ -19,7 +20,8 @@ export class PraksaItemDetaildComponent implements OnInit {
   id = -1;
 
   constructor(public route: ActivatedRoute,
-    public praksaService: PrakseService,) { }
+    public praksaService: PrakseService,
+    public router:Router,public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -27,7 +29,8 @@ export class PraksaItemDetaildComponent implements OnInit {
     this.praksaService.getInternshipById(this.id).subscribe(
       {
         next: data => {
-          this.internship = data[0];
+          console.log("Praksa>>",data);
+          this.internship = data;
           console.log(data);
           this.praksaService.getStudentsOnInternship(this.id).subscribe(
             {
@@ -42,5 +45,25 @@ export class PraksaItemDetaildComponent implements OnInit {
     );
   }
 
+  viewStudent(studentId:number){
+    this.router.navigate(['mentor/students/'+studentId]);
+    console.log('student id',studentId)
+  }
+
+  startInternship(){
+    this.praksaService.startInternship(this.internship.internshipId).subscribe({
+      next: res=>{
+        this.snackBar.open("uspjesno ste zapoceli praksu!","Ok");
+      },
+      error: err=>console.log("GERSKA>>",err),
+    });
+  }
+
+  closeInternship(){
+    this.praksaService.closeInternship(this.internship.internshipId).subscribe({
+      next: res=>{this.snackBar.open("Uspjesno ste zatvorili braksu!","Ok"); this.router.navigate(['/mentor'])},
+      error: err=>{console.log("gerska>>",err)},
+    });
+  }
 
 }

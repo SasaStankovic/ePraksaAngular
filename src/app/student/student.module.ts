@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {MatDividerModule} from '@angular/material/divider';
+import { KomisijaModule } from '../komisija/komisija.module';
+import { MentorModule } from '../mentor/mentor.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {MatDividerModule} from '@angular/material/divider';
     ReactiveFormsModule,
     MatDividerModule
   ],
-  exports:[]
+  exports:[SutdentProfilComponent],
+  providers:[KomisijaModule,MentorModule]
 })
 export class StudentModule { }

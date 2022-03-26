@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-prakse/detaljan-pregled-prakse.component';
+import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { AuthGuard } from '../_guards/auth.guard';
 import { KomisijaGuard } from '../_guards/komisija.guard';
 import { KomisijaWrapperComponent } from './components/komisija-wrapper/komisija-wrapper.component';
@@ -14,11 +15,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path:'', redirectTo: 'internships', pathMatch: 'full',
+        path: '', redirectTo: 'internships', pathMatch: 'full',
       },
       {
-        path:'internships', component: ZahtjeviZaPrakseComponent,
-        children:[
+        path: 'internships', component: ZahtjeviZaPrakseComponent,
+        children: [
           {
             path: ':id/details',
             component: DetaljanPregledPrakseComponent
@@ -30,8 +31,12 @@ const routes: Routes = [
       //   component: DetaljanPregledPrakseComponent
       // },
       {
-        path: 'spisak_praktikanata', component: PregledPraktikanataComponent
-      }
+        path: 'students', component: PregledPraktikanataComponent,
+        // children: [
+        //   { path: ':id/profile', component: SutdentProfilComponent }
+        // ]
+      },
+      { path: ':id/profile', component: SutdentProfilComponent }
     ]
   }
 ];

@@ -16,8 +16,8 @@ export class Student {
     lastName!:string;
     year!:number;
     address!:Address;
-    emails!:[Email];
-    numbers!:[PhoneNumber];
+    emails!:Email[];
+    numbers!:PhoneNumber[];
 
     constructor() { }
 
