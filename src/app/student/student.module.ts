@@ -10,11 +10,13 @@ import { ApplicationComponent } from './application/application.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {MatDividerModule} from '@angular/material/divider';
 import { KomisijaModule } from '../komisija/komisija.module';
 import { MentorModule } from '../mentor/mentor.module';
-
+import { MyApplicaitonsComponent } from './my-applicaitons/my-applicaitons.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+import { FirmaModule } from '../firma/firma.module';
 @NgModule({
   declarations: [
     StudentComponent,
@@ -22,6 +24,7 @@ import { MentorModule } from '../mentor/mentor.module';
     SutdentProfilComponent,
     NavBarStudentComponent,
     ApplicationComponent,
+    MyApplicaitonsComponent,
   ],
   imports: [
     CommonModule,
@@ -31,9 +34,11 @@ import { MentorModule } from '../mentor/mentor.module';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule,
+    MatButtonModule
   ],
   exports:[SutdentProfilComponent],
-  providers:[KomisijaModule,MentorModule]
+  providers:[KomisijaModule,MentorModule,FirmaModule]
 })
 export class StudentModule { }

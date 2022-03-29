@@ -7,30 +7,27 @@
         </div>
     </div>
 
-  <mat-form-field [formGroup]="selectKonkurs" appearance="fill">
+  <mat-form-field [formGroup]="form" appearance="fill">
     <mat-label>Konkursi</mat-label>
-    <mat-select formControlName="konkurs" >
-      <mat-option *ngFor="let konkurs of aktivniKonkursi;" (click)="getAplikacije()" [value]="konkurs.id" >
-        {{konkurs.naziv}}
+    <mat-select formControlName="internshipId" (selectionChange)="getAplikacije()">
+      <mat-option *ngFor="let item of internships$ | async;" [value]="item.internshipId" >
+        {{item.title}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <ng-container *ngIf="isVisible; then prijave"> </ng-container>
+  <ng-container >
+    <div class="aplikacija" *ngFor="let item of applications; let i = index;">
+      <div class="row align-items-center">
+        <div class="col-md-6 imeFlex">
+          <a class="ime" (click)="getStudent(item.studentId)">{{item.studentFirstName}} {{item.studentLastName}}</a>
+        </div>
+        <div class="col-md-6 flex">
+          <button class="pismo">Pismo</button>
+          <button (click)="approveApplication(item.studentId)" class="btnOdobri">Odobri</button>
+          <button (click)="showPopUp(item.studentId)">Odbij</button>
+        </div>
+      </div>
+    </div> </ng-container>
+
 </div>
-
-
-<ng-template #prijave>
-  <div class="aplikacija" *ngFor="let item of podaciOKonkursu.studenti; let i = index;">
-    <div class="row align-items-center">
-      <div class="col-md-6 imeFlex">
-        <a [routerLink]="['/student/profil']" routerLinkActive="router-link-active"  class="ime" (click)="getStudent(i)">{{item.ime}} {{item.prezime}}</a>
-      </div>
-      <div class="col-md-6 flex">
-        <button class="pismo">Pismo</button>
-        <button class="btnOdobri">Odobri</button>
-        <button (click)="showPopUp()">Odbij</button>
-      </div>
-    </div>
-  </div>
-</ng-template>

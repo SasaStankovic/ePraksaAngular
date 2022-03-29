@@ -19,7 +19,9 @@ export class DnevnikRadaComponent implements OnInit {
           'dan': new FormControl({value: '',disabled:false}, [Validators.required]),
           'od': new FormControl({value: '',disabled:false}, Validators.required),
           'do': new FormControl({value: '',disabled:false}, Validators.required),
-          'izvjestaj': new FormControl({value: '',disabled:false},Validators.required)
+          'izvjestaj': new FormControl({value: '',disabled:false},Validators.required),
+          'edit':[true],
+          'save':[false],
         })
       ])
     });
@@ -31,11 +33,12 @@ export class DnevnikRadaComponent implements OnInit {
 
   addNewReport() {
     const input = this.formBuilder.group({
-      dan: '',
-      od: '',
-      do: '',
-      izvjestaj:'',
-      disabled: true
+      dan: [null,Validators.required],
+      od: [null,Validators.required],
+      do: [null,Validators.required],
+      izvjestaj:[null,Validators.required],
+      edit: [true],
+      save:[false],
     });
     this.dnevnikRada.push(input);
   }
@@ -48,11 +51,21 @@ export class DnevnikRadaComponent implements OnInit {
     // if(this.dnevnikRada.controls[index].valid)
     {
       console.log("index:"+index);
-      console.log(this.dnevnikRada.controls[index].get('disabled'));
+      console.log("DNEVNIK RADA.CONTROLS",(this.dnevnikRada.controls[index] as FormGroup).controls);
+      this.setEdit(index,false);
       // console.log("Sacuvano"+this.disabled);
     }
   }
   uredi(index:number){
     // this.disabled = !this.disabled;
+  }
+
+  setEdit(index:number,value:boolean){
+    (this.dnevnikRada.controls[index] as FormGroup).controls['edit'].setValue(value);
+    //['edit'].setValue(value)
+  }
+
+  setSave(value:boolean){
+    this.form.controls['save'].setValue(value);
   }
 }

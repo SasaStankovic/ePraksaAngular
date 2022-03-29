@@ -37,18 +37,12 @@
                   <label for="od">Od:</label>
                   <select name="od" id="od" formControlName="od">
                     <option value="7">7:00</option>
-                    <option value="8">8:00</option>
-                    <option value="9">9:00</option>
-                    <option value="10">10:00</option>
                   </select>
                 </div>
                 <div class="col">
                   <label for="do">Do:</label>
                   <select name="do" id="do" formControlName="do">
                     <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                    <option value="17">17:00</option>
                   </select>
                 </div>
               </div>
@@ -77,7 +71,7 @@
                   <label>19.1.2022</label>
                 </div>
                 <div class="col-md buttons">
-                  <button class="btnUredi" (click)="uredi(i)" >Uredi</button>
+                  <button class="btnUredi" (click)="uredi(i)" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value" >Uredi {{$any(dnevnikRada.controls[i]).controls['edit'].value}}</button>
                   <button class="btnSacuvaj" (click)="save(i)" >Sacuvaj</button>
                   <button class="btnObrisi" (click)="delete(i)"> Izbrisi</button>
                 </div>

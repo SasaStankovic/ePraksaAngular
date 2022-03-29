@@ -5,6 +5,7 @@ import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.compon
 import { AuthGuard } from '../_guards/auth.guard';
 import { StudentGuard } from '../_guards/student.guard';
 import { ApplicationComponent } from './application/application.component';
+import { MyApplicaitonsComponent } from './my-applicaitons/my-applicaitons.component';
 import { PocetnaStranaComponent } from './pocetna-strana/pocetna-strana.component';
 import { StudentComponent } from './student.component';
 import { SutdentProfilComponent } from './sutdent-profil/sutdent-profil.component';
@@ -35,6 +36,9 @@ export const routes: Routes = [
       },
       {
         path: 'dnevnik-rada', component: DnevnikRadaComponent
+      },
+      {
+        path: 'my-applicaitons', component: MyApplicaitonsComponent
       },
       {
         path: '**', redirectTo: '', pathMatch: 'full'

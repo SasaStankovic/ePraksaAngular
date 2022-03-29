@@ -2,12 +2,17 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscribable, Subscription } from 'rxjs';
 import { OdbijanjeComponent } from 'src/app/shared/odbijanje/odbijanje.component';
+import { Application } from 'src/app/tipovi/application';
+import { Praksa } from 'src/app/tipovi/Praksa';
 import { Student } from 'src/app/tipovi/Student';
+import { ApplicationsService } from 'src/app/_servisi/applications.service';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { FirmaService } from 'src/app/_servisi/firma.service';
+import { PrakseService } from 'src/app/_servisi/prakse.service';
 import { StudentService } from 'src/app/_servisi/student.service';
 
 @Component({
@@ -21,7 +26,9 @@ export class PrijaveNaKonkursComponent implements OnInit {
   student!: Student;
 
   isVisible!: boolean;
-  indexStudenta!: number;
+
+  internships$!: Subscribable<Praksa[]>;
+  applications!: Application[];
 
   podaciOKonkursu = {
     idKonkursa: "",
@@ -31,71 +38,59 @@ export class PrijaveNaKonkursComponent implements OnInit {
   unsubscribe!: any;
 
   selectedKonkurs = "Odaberite konkurs!";
-  selectKonkurs!: FormGroup;
+  form!: FormGroup;
 
 
   constructor(private formBuilder: FormBuilder,
-    private firmaService: FirmaService,
-    private studentService: StudentService,
     private dialog: MatDialog,
-    private authService:AuthService,) {
-    this.selectKonkurs = formBuilder.group({
-      konkurs: [null]
+    private authService: AuthService,
+    private prakseService: PrakseService,
+    private appService: ApplicationsService,
+    private route:Router,
+    private snackBar:MatSnackBar) {
+    this.form = formBuilder.group({
+      internshipId: [null]
     });
     this.student = new Student;
   }
 
   ngOnInit(): void {
     this.isVisible = false;
+    this.internships$ = this.prakseService.getInternshipByCompany(this.authService.userData.id, true);
+    // .subscribe(res=>console.log(res),err=>console.log(err));
   }
 
   aktivniKonkursi = [{ id: "11", naziv: "Praksa 11" }, { id: "12", naziv: "Praksa 12" }, { id: "13", naziv: "Praksa 13" }];
 
   getAplikacije() {
-
-    this.selectedKonkurs = this.selectKonkurs.value['konkurs'];
-    if (this.selectedKonkurs == "11") {
-      this.unsubscribe = this.firmaService.getAplikacije11(this.selectedKonkurs).subscribe((res: any) => {
-        this.podaciOKonkursu = res;
-        console.log(this.podaciOKonkursu);
-        this.isVisible = true;
-      });
-    }
-    else if (this.selectedKonkurs == "12") {
-      this.unsubscribe = this.firmaService.getAplikacije12(this.selectedKonkurs).subscribe((res: any) => {
-        this.podaciOKonkursu = res;
-        console.log(this.podaciOKonkursu);
-        this.isVisible = true;
-      });
-    }
-    // this.firmaService.getAplikacije(this.selectedKonkurs).subscribe({
-    //   next:(data)=>{
-    //     console.log(data);
-    //   },
-    //   error: (err)=>console.log(err)
-    // });
+    // this.applications$ = this.appService.getApplicationsByCompanyId(this.authService.userData.id);
+    this.appService.getApplicationsByCompanyId(this.form.value.internshipId).subscribe(
+      res=>{console.log("aplikacije na praksu",res);this.applications = res;},
+      err=>console.log(err),
+    )
   }
 
-
-
-  getStudent(i: number) {
-    console.log(this.podaciOKonkursu.studenti[i]);
-    // this.studentService.getStudentById(i.toString());
-    this.studentService.getStudentById(this.authService.userData.id).subscribe((res: any) => {
-      this.student = res;
-      console.log(this.student);
-    });
+  getStudent(id: number) {
+    this.route.navigate(['/company/students/',id]);
   }
 
-  showPopUp() {
+  showPopUp(studentId:number) {
     this.dialog.open(OdbijanjeComponent, {
-      // data: {
-      //   data: this.praksa
-      // }
+      data: {
+        studentId: studentId,
+        internshipId: this.form.value.internshipId
+      }
     });
+  }
+
+  approveApplication(studentId:number){
+    this.appService.putApplication(this.form.value.internshipId,studentId,"accepted").subscribe({
+      next:res=>{location.reload(); this.snackBar.open("Uspjesno ste odobrili prijavu","OK");},
+      error:err=> {console.log(err);console.log("PRAKSA ID = ",this.form.value.internshipId,"STUDENT ID =",studentId)},
+    }) 
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.unsubscribe();
+    // this.unsubscribe.unsubscribe();
   }
 }

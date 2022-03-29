@@ -95,3 +95,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btnGreen:hover{
   background-color: var(--zelenaMouseOver);
 }
+
+.mat-primary{
+  background-color: var(--zelena) !important;
+}
+
+.mat-secondary{
+  background-color: red;
+  color: white;
+}

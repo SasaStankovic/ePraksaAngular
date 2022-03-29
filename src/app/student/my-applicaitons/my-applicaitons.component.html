@@ -1,0 +1,28 @@
+<div class="container">
+    <div *ngFor="let item of applications$ | async">
+        <div class="margin">
+            <mat-accordion>
+                <!-- (opened)="" (closed)="" -->
+                <mat-expansion-panel style="background-color: #f0f0f0;">
+                    <mat-expansion-panel-header>
+                        <div class="col-6">
+                            <mat-panel-title>
+                                {{item?.companyName}} - {{item?.internshipName}}
+                            </mat-panel-title>
+                        </div>
+                        <div class="col-6">
+                            <mat-panel-description>
+                                Status: {{item.state}}
+                            </mat-panel-description>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+
+                        <button class="col-2" mat-stroked-button (click)="viewInternship(item.internshipId);">Pregled prakse</button>
+                        <button class="col-2" mat-raised-button (click)="cancelApplicaiton(item.internshipId)" color="secondary"> Otkaži prijavu</button>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</div>

@@ -59,4 +59,8 @@ export class PrakseService {
     return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/true",{});
   }
 
+  getInternshipByCompany(companyId:number,isPublished:boolean){
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isPublished="+isPublished);
+  }
+
 }
