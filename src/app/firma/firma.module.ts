@@ -14,11 +14,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prijave-na-konkurs.component';
-
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
+import { MentorsComponent } from './components/mentors/mentors.component';
 @NgModule({
   declarations: [
     ObjavaPrakseComponent,
-    PrijaveNaKonkursComponent
+    PrijaveNaKonkursComponent,
+    MentorsComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,9 @@ import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prija
     MatRadioModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDividerModule,
+    MatCardModule
   ],
   providers:[
     MatDatepickerModule

@@ -53,7 +53,7 @@ export class PraksaItemDetaildComponent implements OnInit {
   startInternship(){
     this.praksaService.startInternship(this.internship.internshipId).subscribe({
       next: res=>{
-        this.snackBar.open("uspjesno ste zapoceli praksu!","Ok");
+        this.snackBar.open("Uspješno ste započeli praksu!","Ok");
       },
       error: err=>console.log("GERSKA>>",err),
     });
@@ -61,7 +61,7 @@ export class PraksaItemDetaildComponent implements OnInit {
 
   closeInternship(){
     this.praksaService.closeInternship(this.internship.internshipId).subscribe({
-      next: res=>{this.snackBar.open("Uspjesno ste zatvorili braksu!","Ok"); this.router.navigate(['/mentor'])},
+      next: res=>{this.snackBar.open("Uspješno ste završili praksu!","Ok"); this.router.navigate(['/mentor'])},
       error: err=>{console.log("gerska>>",err)},
     });
   }

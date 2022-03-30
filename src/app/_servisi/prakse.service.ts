@@ -17,7 +17,7 @@ export class PrakseService {
   }
 
   getPrakse(){
-   return this.httpPrakse.get("http://localhost:8080/internships");
+   return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships");
   }
 
   getZahtjeviZaPrakse(){
@@ -26,9 +26,7 @@ export class PrakseService {
 
   postInternShip(obj:any)
   {
-    return this.httpPrakse.post<any>("http://localhost:8080/internships", obj,{
-
-    });
+    return this.httpPrakse.post<any>("http://localhost:8080/internships", obj,{});
   }
 
   accetpInternship(id:string){
@@ -43,6 +41,11 @@ export class PrakseService {
     return this.httpPrakse.get<Praksa>("http://localhost:8080/internships/"+id);
   }
   
+  getInternsipByIdAndStatus(companyId:number, isPublished:boolean)
+  {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isPublished="+isPublished);
+  }
+
   getStudentsOnInternship(id:number){
     return this.httpPrakse.get<Student[]>("http://localhost:8080/internships/"+id+"/students");
   }
@@ -61,6 +64,10 @@ export class PrakseService {
 
   getInternshipByCompany(companyId:number,isPublished:boolean){
     return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isPublished="+isPublished);
+  }
+
+  getInternshipByIdAndAccepted(companyId:number,isAccepted:boolean){
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isAccepted="+isAccepted);
   }
 
 }

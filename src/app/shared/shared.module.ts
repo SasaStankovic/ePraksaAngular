@@ -10,6 +10,7 @@ import { OdbijanjeComponent } from './odbijanje/odbijanje.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PraksaItemComponent } from '../mentor/praksa-item/praksa-item.component';
+import { InternshipViewComponent } from './internship-view/internship-view.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PraksaItemComponent } from '../mentor/praksa-item/praksa-item.component
     DnevnikRadaComponent,
     OdbijanjeComponent,
     PraksaItemComponent,
+    InternshipViewComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,6 @@ import { PraksaItemComponent } from '../mentor/praksa-item/praksa-item.component
     MatFormFieldModule,
     MatInputModule
   ],
-  exports:[FooterComponent,PrikazprakseComponent,DetaljanPregledPrakseComponent, DnevnikRadaComponent]
+  exports:[FooterComponent,PrikazprakseComponent,DetaljanPregledPrakseComponent, DnevnikRadaComponent,InternshipViewComponent]
 })
 export class SharedModule { }

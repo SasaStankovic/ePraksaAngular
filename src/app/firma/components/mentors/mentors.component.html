@@ -1,0 +1,6 @@
+<div class="container">
+    <h1>Mentori</h1>
+    <li *ngFor="let item of mentors$ | async">
+        <i>{{item.firstName}} {{item.lastName}}</i>
+    </li>
+</div>

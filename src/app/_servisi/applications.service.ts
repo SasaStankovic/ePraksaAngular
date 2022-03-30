@@ -13,8 +13,8 @@ export class ApplicationsService {
     return this.http.get<Application[]>("http://localhost:8080/applications/student/"+id);
   }
 
-  public getApplicationsByCompanyId(id:number){
-    return this.http.get<Application[]>("http://localhost:8080/applications/"+id+"?state=PENDING");
+  public getApplicationsByCompanyId(id:number,status:string){
+    return this.http.get<Application[]>("http://localhost:8080/applications/"+id+"?state="+status);
   }
 
   public putApplication(internshipId:number,studentId:number, status:string,data:any = {}){

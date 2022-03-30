@@ -6,4 +6,5 @@ export class Application {
     studentLastName!:string;
     companyName!:string;
     internshipName!:string;
+    motivationalLetter!:string;
 }

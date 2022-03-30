@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,15 @@ $ePraksa-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$ePraksa-theme: mat.define-light-theme((
-  color: (
-    primary: $ePraksa-primary,
-    accent: $ePraksa-accent,
-    warn: $ePraksa-warn,
+$ePraksa-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $ePraksa-primary,
+      accent: $ePraksa-accent,
+      warn: $ePraksa-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,32 +36,41 @@ $ePraksa-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { 
-    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
- }
-
-:root 
-{
-    --zelena: #5FB34F;
-    --zelenaMouseOver: #327825;
-    --plavaMouseOver:#66bfb6;
-    --bojaMenija: #105c6e;
-    --plavaOtkaziButton : #5BA7B9;
-    --plavaZaLinkoveFooter: #4AD5D4;
-    --crvenaZaButtone: #F81A1A;
-    --bojaTamnoZelenaSlova: #105c6e;
-    --sivaBackground:#E5E5E5;
-    --zelenaCheckbox:#5fb34f;
+html,
+body {
+  height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-.btn:hover{
+:root {
+  --zelena: #5fb34f;
+  --zelenaMouseOver: #327825;
+  --plavaMouseOver: #66bfb6;
+  --bojaMenija: #105c6e;
+  --plavaOtkaziButton: #5ba7b9;
+  --plavaZaLinkoveFooter: #4ad5d4;
+  --crvenaZaButtone: #f81a1a;
+  --bojaTamnoZelenaSlova: #105c6e;
+  --sivaBackground: #e5e5e5;
+  --zelenaCheckbox: #5fb34f;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn:hover {
   background-color: var(--zelenaMouseOver);
 }
 
-.btnRed{
+.btnRed {
   border: none;
   width: 120px;
   height: 35px;
@@ -74,11 +84,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: 5px;
 }
 
-.btnRed:hover{
-  opacity: .6;
+.btnRed:hover {
+  opacity: 0.6;
 }
 
-.btnGreen{
+.btnGreen {
   border: none;
   width: 120px;
   height: 35px;
@@ -92,15 +102,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: 5px;
 }
 
-.btnGreen:hover{
+.btnGreen:hover {
   background-color: var(--zelenaMouseOver);
 }
 
-.mat-primary{
+.mat-green {
   background-color: var(--zelena) !important;
+  color: white;
 }
 
-.mat-secondary{
+.mat-red {
   background-color: red;
   color: white;
+}
+
+.subTitle {
+  h2 {
+    // font-weight: 400;
+    text-align: left;
+    color: rgb(73, 73, 73);
+  }
+}
+
+mat-divider{
+  margin-bottom: 1em!important;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }

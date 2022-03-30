@@ -8,8 +8,6 @@
         <hr>
       </div>
     </div>
-
-    <!-- wraper za element za prikaz prakse -->
     <div *ngFor="let item of prakseList; index as i" class="prakseContent">
       <app-prikazprakse [praksa]="prakseList[i]"></app-prikazprakse>
     </div>

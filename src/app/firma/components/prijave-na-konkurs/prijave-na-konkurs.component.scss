@@ -1,69 +1,55 @@
-hr{
+hr {
     opacity: 1;
 }
 
-.imeFlex{
-    display: flex;
-}
-.flex{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
 
-.ime{
-    text-decoration: none;
-    color: var(--bojaMenija);
-    font-size: 20px;
-    justify-self: flex-start !important;
-    cursor: pointer;
-}
-
-button{
-    border:none;
-    border-radius: 25px;
-    color: white;
-    background-color: red;
-    padding: 7px 25px;
-    font-size: 20px;
-    margin: 5px 5px;
-}
-
-
-.btnOdobri{
-    background-color: var(--zelena);
-    justify-self: flex-end;
-    
-}
-
-.pismo{
-    background-color: var(--bojaMenija);
-}
-
-.aplikacija{
+.aplikacija {
     background-color: #f0f0f0;
     border-radius: 10px;
     padding: 10px;
     margin-top: 10px;
 }
 
-.headerlbl{
+.headerlbl {
     font-size: 22px;
     font-weight: bold;
 }
 
-@media (max-width: 768px){
-    .flex {
-        justify-content: center;
-    }
-
-    .imeFlex{
-        justify-content: center;
-    }
+.filters {
+    border-radius: 5px;
+    padding: 30px 30px 10px 30px;
+    margin-bottom: 35px;
+    border: solid 1px #e5e5e5;
 }
 
-@media (max-width:400px) {
-    .flex{
-        flex-direction: column;
-    }
+.pointer{
+    cursor: pointer;
 }
+
+mat-card{
+    background-color: #f0f0f0;
+    margin-bottom: 1em;
+}
+
+mat-form-field{
+    margin-right: 1em;
+}
+
+button{
+    margin-right: 1em;
+}
+
+// @media (max-width: 768px) {
+//     .flex {
+//         justify-content: center;
+//     }
+
+//     .imeFlex {
+//         justify-content: center;
+//     }
+// }
+// @media (max-width: 400px) {
+//     .flex {
+//         flex-direction: column;
+//     }
+// }

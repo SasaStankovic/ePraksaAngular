@@ -1,0 +1,57 @@
+.linija {
+    grid-column: 1/3;
+  }
+  
+  .linija hr {
+    opacity: 1;
+    height: 2px;
+  }
+  
+  .sadrzaj {
+    display: grid;
+  }
+  
+  
+  .topdiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  
+  .prakseContent {
+    display: grid;
+    grid-gap: 1em;
+  }
+  
+  .pretraga {
+    padding-left: 40px;
+    border-width: 0;
+    border-radius: 30px;
+    height: 30px;
+    background: url(../../../assets/resources/searchicon.svg) no-repeat scroll 10px 3px;
+    background-color: #f0f0f0;
+    justify-self: end;
+    width: 60%;
+  }
+  
+  .topdiv label {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  
+  @media all and (max-width: 768px) {
+  
+      .topdiv{
+        grid-template-rows:1fr 1fr 1fr ;
+      }
+      .topdiv label{
+        grid-column: 1/3;
+      }
+      .pretraga{
+        justify-self: start;
+      }
+    
+  
+  }
+  
