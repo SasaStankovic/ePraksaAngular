@@ -20,4 +20,5 @@ export class ApplicationsService {
   public putApplication(internshipId:number,studentId:number, status:string,data:any = {}){
     return this.http.put<any>("http://localhost:8080/applications/"+internshipId+"/"+studentId+"/"+status.toUpperCase(),data);
   }
+
 }

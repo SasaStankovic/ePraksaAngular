@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from '../../_servisi/prakse.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { PrakseService } from '../../_servisi/prakse.service';
 })
 export class PocetnaStranaComponent implements OnInit {
 
-  constructor(private prakse: PrakseService) { }
+  showChild = false;
+
+  constructor(private prakse: PrakseService,private as:AuthService) { }
   
   prakseList=[];
 
@@ -16,6 +19,12 @@ export class PocetnaStranaComponent implements OnInit {
     this.prakse.getPrakse().subscribe((result:any)=>{
       this.prakseList = result;
       console.log(this.prakseList);
+      this.showChild = false;
     })
+  }
+
+  hideParent()
+  {
+    this.showChild = true;
   }
 }

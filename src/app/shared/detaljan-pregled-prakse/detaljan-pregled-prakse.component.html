@@ -1,10 +1,11 @@
-<div id="popUp-Id" class="popUp-klasa">
-  <form class="popUp-content-klasa animate-popUp" method="get">
+<div #details class="container">
+  <!-- <form class="popUp-content-klasa animate-popUp" method="get"> -->
+    <form>
 
     <div class="naslov-iznad-hr">
       <div class="row align-items-center">
         <div class="col">
-          <label for="">{{praksa.company.name}}</label>
+          <label for="">{{praksa?.company?.name}}</label>
         </div>
         <div class="col al">
           <button type="reset" class="otkaziBtn" (click)="closePopUp()"></button>
@@ -18,7 +19,7 @@
         <p>Vrsta Prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.internshipType}}</p>
+        <p>{{praksa?.internshipType}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -26,7 +27,7 @@
         <p>Godina fakulteta:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.years}}</p>
+        <p>{{praksa?.years}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -34,7 +35,7 @@
         <p>Period trajanja prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.startDate}} - {{praksa.endDate}}</p>
+        <p>{{praksa?.startDate}} - {{praksa?.endDate}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -42,7 +43,7 @@
         <p>Ukupan broj radnih sati:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.workHours}}</p>
+        <p>{{praksa?.workHours}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -50,7 +51,7 @@
         <p>Oblast rada prakse:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.internshipField}}</p>
+        <p>{{praksa?.internshipField}}</p>
       </div>
     </div>
     <div class="sadrzaj">
@@ -58,28 +59,28 @@
         <p>Smjer:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.courses}}</p>
+        <p>{{praksa?.courses}}</p>
       </div>
     </div>
     <div class="naslov-pasusa">
       <p>Plan rada prakse i planirane aktivnosti:</p>
     </div>
     <div class="pasus">
-      <p>{{praksa.schedule}}</p>
+      <p>{{praksa?.schedule}}</p>
     </div>
     <div class="naslov-pasusa">
       <p>Detalji:</p>
     </div>
     <div class="pasus">
-      <p>{{praksa.details}}</p>
+      <p>{{praksa?.details}}</p>
     </div>
-    <div *ngIf="praksa.requiredCV || praksa.requiredLetter" class="sadrzaj">
+    <div *ngIf="praksa?.requiredCV || praksa?.requiredLetter" class="sadrzaj">
       <div class="stavke-prakse">
         <p>Potrebni dokumenti za apliciranje:</p>
       </div>
       <div  class="vrijednost-stavke">
-        <label style="padding-right:10px;" *ngIf="praksa.requiredCV">Biografija</label>
-        <label *ngIf="praksa.requiredLetter">Motivaciono pismo</label>
+        <label style="padding-right:10px;" *ngIf="praksa?.requiredCV">Biografija</label>
+        <label *ngIf="praksa?.requiredLetter">Motivaciono pismo</label>
       </div>
     </div>
     <div class="sadrzaj">
@@ -87,7 +88,7 @@
         <p>Link do prakse:</p>
       </div>
       <div class="sadrzaj vrijednost-stavke">
-        <a [attr.href]="praksa.link" target="_blank">link</a>
+        <a [attr.href]="praksa?.link" target="_blank">link</a>
       </div>
     </div>
     <div class="sadrzaj stavke-prakse">
@@ -95,21 +96,24 @@
         <p>Rok za prijavu:</p>
       </div>
       <div class="vrijednost-stavke">
-        <p>{{praksa.submissionDue}}</p>
+        <p>{{praksa?.submissionDue}}</p>
       </div>
     </div>
     <!------------------------------------------>
     <!-- <div class="center"> -->
 
     <div class="row">
-      <div class="col-4 d-flex justify-content-end">
+      <div class="col-3 d-flex justify-content-end">
         <button class="potvrdiBtn"  [hidden]="isStudent" (click)="approveInternship()">Odobri praksu</button>
       </div>
-      <div class="col-4 d-flex justify-content-center">
-        <button (click)="apliciraj()" class="potvrdiBtn" [hidden]="!isStudent">Apliciraj</button>
+      <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
+        <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
       </div>
-      <div class="col-4 d-flex justify-content-start">
-        <button class="OtkaziPraksuBtn"  [hidden]="isStudent">Otkazi praksu</button>
+      <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
+        <button class="OtkaziPraksuBtn">Otkazi praksu</button>
+      </div>
+      <div *ngIf="isCompany" class="col-3 d-flex justify-content-start">
+        <button class="OtkaziPraksuBtn">Uredi</button>
       </div>
     </div>
     <!-- </div> -->

@@ -2,72 +2,79 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Praksa } from '../tipovi/Praksa';
 import { Student } from '../tipovi/Student';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrakseService {
 
+  private internshipSource = new BehaviorSubject(new Praksa());
+  currentInternshipStatus = this.internshipSource.asObservable();
+  
+
   defaultHeaders: HttpHeaders = new HttpHeaders();
 
-  constructor(private httpPrakse: HttpClient) { 
-    this.defaultHeaders.set('Accept','application/json');
-    this.defaultHeaders.set('Content-Type','application/json');
-    this.defaultHeaders.set('Authorization','Bearer '+localStorage.getItem('token'));
+  constructor(private httpPrakse: HttpClient) {
+    this.defaultHeaders.set('Accept', 'application/json');
+    this.defaultHeaders.set('Content-Type', 'application/json');
+    this.defaultHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
   }
 
-  getPrakse(){
-   return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships");
+  setInternship(data: Praksa) {
+    this.internshipSource.next(data);
   }
 
-  getZahtjeviZaPrakse(){
+  getPrakse() {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships");
+  }
+
+  getZahtjeviZaPrakse() {
     return this.httpPrakse.get("http://localhost:8080/internships?isPublished=false&type=STRUCNA");
   }
 
-  postInternShip(obj:any)
-  {
-    return this.httpPrakse.post<any>("http://localhost:8080/internships", obj,{});
+  postInternShip(obj: any) {
+    return this.httpPrakse.post<any>("http://localhost:8080/internships", obj, {});
   }
 
-  accetpInternship(id:string){
-    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/acceptance/true",{});
+  accetpInternship(id: number) {
+    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/acceptance/true", {});
   }
 
-  getInternshipByMentorId(id:number){
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?mentorId="+id);
+  getInternshipByMentorId(id: number) {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?mentorId=" + id);
   }
 
-  getInternshipById(id:number){
-    return this.httpPrakse.get<Praksa>("http://localhost:8080/internships/"+id);
-  }
-  
-  getInternsipByIdAndStatus(companyId:number, isPublished:boolean)
-  {
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isPublished="+isPublished);
+  getInternshipById(id: number) {
+    return this.httpPrakse.get<Praksa>("http://localhost:8080/internships/" + id);
   }
 
-  getStudentsOnInternship(id:number){
-    return this.httpPrakse.get<Student[]>("http://localhost:8080/internships/"+id+"/students");
+  getInternsipByIdAndStatus(companyId: number, isPublished: boolean) {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId=" + companyId + "&isPublished=" + isPublished);
   }
 
-  submitApplication(application:any){
-    return this.httpPrakse.post<any>("http://localhost:8080/applications",application);
+  getStudentsOnInternship(id: number) {
+    return this.httpPrakse.get<Student[]>("http://localhost:8080/internships/" + id + "/students");
   }
 
-  startInternship(id:number){
-    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/activate",{});
+  submitApplication(application: any) {
+    return this.httpPrakse.post<any>("http://localhost:8080/applications", application);
   }
 
-  closeInternship(id:number){
-    return this.httpPrakse.put("http://localhost:8080/internships/"+id+"/true",{});
+  startInternship(id: number) {
+    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/activate", {});
   }
 
-  getInternshipByCompany(companyId:number,isPublished:boolean){
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isPublished="+isPublished);
+  closeInternship(id: number) {
+    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/true", {});
   }
 
-  getInternshipByIdAndAccepted(companyId:number,isAccepted:boolean){
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId="+companyId+"&isAccepted="+isAccepted);
+  getInternshipByCompany(companyId: number, isPublished: boolean) {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId=" + companyId + "&isPublished=" + isPublished);
+  }
+
+  getInternshipByIdAndAccepted(companyId: number, isAccepted: boolean) {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId=" + companyId + "&isAccepted=" + isAccepted);
   }
 
 }

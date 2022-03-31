@@ -17,8 +17,6 @@ export class AuthService {
     token:'',
   }
 
-  private LOGIN_URL = "http://localhost:3000/postojeciKorisnici";
-
   defaultHeaders: HttpHeaders = new HttpHeaders();
 
   constructor(private http: HttpClient,
@@ -75,8 +73,22 @@ export class AuthService {
       obj = JSON.parse(tmp);
       this.userData.id = obj.jti;
       this.userData.role = obj.role.toLowerCase();
-    }
+    } 
+  }
 
-    
+  isStudent():boolean{
+    return this.userData.role == 'student';
+  }
+
+  isCommision():boolean{
+    return this.userData.role == 'commission_member';
+  }
+
+  isCompany():boolean{
+    return this.userData.role == 'company';
+  }
+
+  isMentor():boolean{
+    return this.userData.role == 'mentor';
   }
 }
