@@ -19,22 +19,13 @@ const routes: Routes = [
       },
       {
         path: 'internships', component: ZahtjeviZaPrakseComponent,
-        children: [
-          {
-            path: ':id/details',
-            component: DetaljanPregledPrakseComponent
-          },
-        ]
       },
-      // {
-      //   path: 'internship/:id/details',
-      //   component: DetaljanPregledPrakseComponent
-      // },
+      {
+        path: 'internships/:id/details',
+        component: DetaljanPregledPrakseComponent
+      },
       {
         path: 'students', component: PregledPraktikanataComponent,
-        // children: [
-        //   { path: ':id/profile', component: SutdentProfilComponent }
-        // ]
       },
       { path: ':id/profile', component: SutdentProfilComponent }
     ]

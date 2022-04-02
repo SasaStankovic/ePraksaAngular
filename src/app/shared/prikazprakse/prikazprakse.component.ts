@@ -32,7 +32,6 @@ export class PrikazprakseComponent implements OnInit {
 
   showDetails() {
     console.log(this.authService.userData.role + "/internships/" + this.praksa.internshipId + "/details");
-    console.log("KLIKNUO NA>>>", this.praksa)
     this.router.navigate([this.authService.userData.role + "/internships/" + this.praksa.internshipId + "/details"]);
   }
 
