@@ -103,17 +103,17 @@
     <!-- <div class="center"> -->
 
     <div class="row">
-      <div class="col-3 d-flex justify-content-end">
-        <button class="potvrdiBtn"  [hidden]="isStudent" (click)="approveInternship()">Odobri praksu</button>
-      </div>
-      <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
-        <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
+      <div *ngIf="isCommission" class="col-3 d-flex justify-content-end">
+        <button class="potvrdiBtn"  (click)="approveInternship()">Odobri praksu</button>
       </div>
       <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
         <button class="OtkaziPraksuBtn">Otkazi praksu</button>
       </div>
+      <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
+        <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
+      </div>
       <div *ngIf="isCompany" class="col-3 d-flex justify-content-start">
-        <button class="OtkaziPraksuBtn">Uredi</button>
+        <button class="OtkaziPraksuBtn" (click)="redirectToEdit(praksa.internshipId)">Uredi</button>
       </div>
     </div>
     <!-- </div> -->

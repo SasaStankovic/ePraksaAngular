@@ -3,7 +3,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Praksa } from 'src/app/tipovi/Praksa';
 import { Mentor } from 'src/app/tipovi/mentor';
 import { AuthService } from 'src/app/_servisi/auth.service';
@@ -17,7 +17,7 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
 })
 export class ObjavaPrakseComponent implements OnInit {
 
-  mentors!:Array<Mentor>;
+  mentors!: Array<Mentor>;
 
   today: Date = new Date();
 
@@ -38,13 +38,44 @@ export class ObjavaPrakseComponent implements OnInit {
     private snackBar: MatSnackBar,
     private datePipe: DatePipe,
     private firmaService: FirmaService,
-    private authService: AuthService,) { }
+    private authService: AuthService,
+    private route: ActivatedRoute,) { }
 
 
   ngOnInit(): void {
     this.firstFormGroup = this.formBuilder.group({
       'nazivPrakse': new FormControl("", [Validators.required])
     });
+
+    this.route.params.subscribe({
+      next: param => {
+        if (param['id'] != undefined) {
+          //TODO ucitati podatke o praksi i patchovati formu
+          this.praksaServis.getInternshipById(param['id']).subscribe({
+            next: res => {
+              console.log(res);
+              this.firstFormGroup.controls['nazivPrakse'].setValue(res.title);
+              this.secondFormGroup.patchValue({
+                vrstaPrakse: res.internshipType,
+                SI:res.courses.includes('Softversko inzenjerstvo'),
+                RI:res.courses.includes('Racunarsko inzenjerstvo'),
+                EL:res.courses.includes('Elektronika'),
+                TEL:res.courses.includes('Telekomunikacije'),
+                god1:res.years.includes(1),
+                god2:res.years.includes(2) ,
+                god3:res.years.includes(3) ,
+                god4:res.years.includes(4) ,
+                brojSati:res.workHours,
+              });
+              console.log("TESTTTTTTTTT",res.courses.includes('re'))
+            },
+            error: err => console.log("GRESKA", err),
+          });
+
+        }
+      },
+      error: err => console.log("GRESKA", err),
+    })
 
 
     this.secondFormGroup = this.formBuilder.group({
@@ -87,10 +118,10 @@ export class ObjavaPrakseComponent implements OnInit {
     }
 
     let unsub = this.firmaService.getMentors(this.authService.userData.id).subscribe(
-      data=>{
+      data => {
         console.log(data);
         this.mentors = data;
-      },err=>console.log(err)
+      }, err => console.log(err)
     );
 
 

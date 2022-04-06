@@ -21,12 +21,6 @@ export const routes: Routes = [
       },
       {
         path: 'internships', component: PocetnaStranaComponent,
-        // children:[
-        //   {
-        //     path: ':id/details',
-        //     component: DetaljanPregledPrakseComponent,
-        //   },
-        // ]
       },
       {
         path: 'internships/:id/details',

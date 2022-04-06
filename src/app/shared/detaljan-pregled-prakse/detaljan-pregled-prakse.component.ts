@@ -13,12 +13,12 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
 })
 export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
 
-  isStudent!:boolean;
+  isStudent!: boolean;
   isCompany!: boolean;
   isCommission!: boolean;
 
   praksa!: Praksa;
-  unsub!:Unsubscribable;
+  unsub!: Unsubscribable;
 
   constructor(
     private prakseServis: PrakseService,
@@ -28,34 +28,34 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private prakseService: PrakseService,) {
 
-    
+
 
     prakseService.currentInternshipStatus.subscribe(res => {
       this.praksa = res;
-      console.log("AAAAAAAAAAAA",this.praksa)
+      console.log("AAAAAAAAAAAA", this.praksa)
     }
     )
   }
 
   ngOnInit() {
 
-      this.isStudent = this.authService.isStudent();
-      this.isCommission = this.authService.isCommision();
-      this.isCompany = this.authService.isCompany();
+    this.isStudent = this.authService.isStudent();
+    this.isCommission = this.authService.isCommision();
+    this.isCompany = this.authService.isCompany();
 
     let unsub1 = this.route.params.subscribe({
-      next:res=>{
-       let unsub2 = this.prakseService.getInternshipById(res['id']).subscribe({
-          next:data=>{
+      next: res => {
+        let unsub2 = this.prakseService.getInternshipById(res['id']).subscribe({
+          next: data => {
             this.praksa = Object.assign(data);
             unsub2.unsubscribe();
             unsub1.unsubscribe();
           },
-          error:err=>console.log(err),
-          
+          error: err => console.log(err),
+
         });
       },
-      error: err=> console.log("GERSKA>>",err),
+      error: err => console.log("GERSKA>>", err),
     })
   }
 
@@ -69,7 +69,7 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
         this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
 
         this.router.navigate([this.authService.userData.role]);
-        this.router.navigate(['student/internships'],{replaceUrl:true});
+        this.router.navigate(['student/internships'], { replaceUrl: true });
         // window.location.reload();
       },
       error: err => console.log(err)
@@ -94,11 +94,15 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.router.navigate(['student/internships'],{replaceUrl:true});
+    this.router.navigate(['student/internships'], { replaceUrl: true });
   }
 
-ngOnDestroy(): void {
-  // this.unsub?.unsubscribe();
-}
+  redirectToEdit(id:number){
+    this.router.navigate(['company','internships',id,'edit']);
+  }
+
+  ngOnDestroy(): void {
+    // this.unsub?.unsubscribe();
+  }
 
 }

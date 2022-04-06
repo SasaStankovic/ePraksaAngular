@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_servisi/auth.service';
 import { KomisijaService } from 'src/app/_servisi/komisija.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { KomisijaService } from 'src/app/_servisi/komisija.service';
 })
 export class NavBarKomisijaComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -45,8 +46,7 @@ export class NavBarKomisijaComponent implements OnInit {
     }
   }
   public logOut() {
-    localStorage.removeItem('user');
-    this.router.navigate(['welcome']);
+    this.authService.logout();
   }
 
   @HostListener('window:mouseup', ['$event'])

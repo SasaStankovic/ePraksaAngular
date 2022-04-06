@@ -5,9 +5,9 @@
     <div class="grid">
       <label>Email:</label>
       <input type="email" formControlName="email" placeholder="Studentski emali">
-      <span *ngIf="form.get('email')?.hasError('email')" class="danger-text">Unesite studentski email!</span>
+      <span *ngIf="form.get('email')?.hasError('email')" class="danger-text">Unesite validan email!</span>
 
-      <span [hidden]="hide">Pogresni pristupni podaci!</span>
+      <span [hidden]="hide">Pogrešni pristupni podaci!</span>
 
       <label>Lozinka:</label>
       <input type="password" formControlName="password" placeholder="Lozinka">
