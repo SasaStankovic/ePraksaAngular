@@ -67,7 +67,28 @@ export class ObjavaPrakseComponent implements OnInit {
                 god4:res.years.includes(4) ,
                 brojSati:res.workHours,
               });
-              console.log("TESTTTTTTTTT",res.courses.includes('re'))
+
+              this.thirdForm.patchValue({
+                oblastRada:res.internshipField,
+                programRada:res.schedule
+              });
+
+              this.fourthForm.patchValue({
+                detalji:res.details,
+                reklamniTekst: res.description,
+                mentor:res.mentor.id,
+                grad:res.city,
+                cv:res.requiredCV,
+                motPismo:res.requiredLetter,
+                link:res.link
+              });
+
+              this.fifthForm.patchValue({
+                periodOd:res.startDate,
+                periodDo:res.endDate,
+                rok:res.submissionDue
+              });
+
             },
             error: err => console.log("GRESKA", err),
           });
@@ -203,9 +224,6 @@ export class ObjavaPrakseComponent implements OnInit {
 
 
     this.praksa.mentorId = this.fourthForm.value['mentor'];
-    //TODO Dohvatanje mentora svih i dodjela IDa
-    // this.praksa.mentorId = 13;
-
     let companyId;
     let tmpObj;
     if ((tmpObj = localStorage.getItem('user')) != null)
