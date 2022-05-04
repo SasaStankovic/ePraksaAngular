@@ -41,7 +41,7 @@ export class ApplicationComponent implements OnInit {
   submitData() {
     this.prakseService.submitApplication(this.form.value).subscribe({
       next: res => { console.log("Uspjesno", this.form.value); this.snackBar.open("Uspjesno ste poslali prijavu za praksu!","Ok"); this.router.navigate(['/student/internships']); },
-      error: err => console.log(err),
+      error: err => {this.snackBar.open(err.error, "Ok"); this.router.navigate(['/student/internships']) },
     });
   }
 

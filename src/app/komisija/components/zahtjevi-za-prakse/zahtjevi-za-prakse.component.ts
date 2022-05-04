@@ -18,7 +18,8 @@ export class ZahtjeviZaPrakseComponent implements OnInit {
     this.prakseService.getZahtjeviZaPrakse().subscribe((response:any)=>{
       this.prakseList = response;
       console.log("zahtjevi za objavu>>",response);
-    })
+    },
+    err=>console.log(err))
   }
 
 }

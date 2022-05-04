@@ -1,5 +1,4 @@
 import { DatePipe } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, _SnackBarContainer } from '@angular/material/snack-bar';
@@ -18,6 +17,8 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
 export class ObjavaPrakseComponent implements OnInit {
 
   mentors!: Array<Mentor>;
+
+  currentInternshipId!: number;
 
   today: Date = new Date();
 
@@ -50,6 +51,7 @@ export class ObjavaPrakseComponent implements OnInit {
     this.route.params.subscribe({
       next: param => {
         if (param['id'] != undefined) {
+          this.currentInternshipId = param['id'];
           //TODO ucitati podatke o praksi i patchovati formu
           this.praksaServis.getInternshipById(param['id']).subscribe({
             next: res => {
@@ -57,36 +59,36 @@ export class ObjavaPrakseComponent implements OnInit {
               this.firstFormGroup.controls['nazivPrakse'].setValue(res.title);
               this.secondFormGroup.patchValue({
                 vrstaPrakse: res.internshipType,
-                SI:res.courses.includes('Softversko inzenjerstvo'),
-                RI:res.courses.includes('Racunarsko inzenjerstvo'),
-                EL:res.courses.includes('Elektronika'),
-                TEL:res.courses.includes('Telekomunikacije'),
-                god1:res.years.includes(1),
-                god2:res.years.includes(2) ,
-                god3:res.years.includes(3) ,
-                god4:res.years.includes(4) ,
-                brojSati:res.workHours,
+                SI: res.courses.includes('Softversko inzenjerstvo'),
+                RI: res.courses.includes('Racunarsko inzenjerstvo'),
+                EL: res.courses.includes('Elektronika'),
+                TEL: res.courses.includes('Telekomunikacije'),
+                god1: res.years.includes(1),
+                god2: res.years.includes(2),
+                god3: res.years.includes(3),
+                god4: res.years.includes(4),
+                brojSati: res.workHours,
               });
 
               this.thirdForm.patchValue({
-                oblastRada:res.internshipField,
-                programRada:res.schedule
+                oblastRada: res.internshipField,
+                programRada: res.schedule
               });
 
               this.fourthForm.patchValue({
-                detalji:res.details,
+                detalji: res.details,
                 reklamniTekst: res.description,
-                mentor:res.mentor.id,
-                grad:res.city,
-                cv:res.requiredCV,
-                motPismo:res.requiredLetter,
-                link:res.link
+                mentor: res.mentor.id,
+                grad: res.city,
+                cv: res.requiredCV,
+                motPismo: res.requiredLetter,
+                link: res.link
               });
 
               this.fifthForm.patchValue({
-                periodOd:res.startDate,
-                periodDo:res.endDate,
-                rok:res.submissionDue
+                periodOd: res.startDate,
+                periodDo: res.endDate,
+                rok: res.submissionDue
               });
 
             },
@@ -144,7 +146,6 @@ export class ObjavaPrakseComponent implements OnInit {
         this.mentors = data;
       }, err => console.log(err)
     );
-
 
   }
 
@@ -234,17 +235,30 @@ export class ObjavaPrakseComponent implements OnInit {
 
     console.log(this.praksa);
 
-    this.praksaServis.postInternShip(this.praksa).subscribe({
-      next: (d) => {
-        if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
-          this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
-        else
-          this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
+    if (!this.currentInternshipId)
+      this.praksaServis.postInternShip(this.praksa).subscribe({
+        next: (d) => {
+          if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
+            this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
+          else
+            this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
 
-        this.router.navigateByUrl('/company');
-      },
-      error: (err) => { console.log("Greska!", err); }
-    });
+          this.router.navigateByUrl('/company');
+        },
+        error: (err) => { console.log("Greska!", err); }
+      });
+      else{
+        this.praksa.internshipId = this.currentInternshipId;
+        this.praksaServis.editInternship(this.currentInternshipId,this.praksa).subscribe(res=>{
+          if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
+            this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
+          else
+            this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
+
+          this.router.navigateByUrl('/company');
+        },
+        err=>console.log(err))
+      }
 
   }
 

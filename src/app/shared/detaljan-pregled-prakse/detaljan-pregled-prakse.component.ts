@@ -101,6 +101,13 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
     this.router.navigate(['company','internships',id,'edit']);
   }
 
+  denideInternship(){
+    this.prakseService.accetpInternship(this.praksa.internshipId,false).subscribe({
+      next: ()=>{this.snackBar.open("Praksa je odbijena", "Ok"); this.router.navigate(['/student/internships']);},
+      error:err=>{this.snackBar.open("Doslo je do greske", "Ok"); console.log(err); this.router.navigate(['/student/internships']);}
+    })
+  }
+
   ngOnDestroy(): void {
     // this.unsub?.unsubscribe();
   }

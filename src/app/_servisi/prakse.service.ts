@@ -37,8 +37,8 @@ export class PrakseService {
     return this.httpPrakse.post<any>("http://localhost:8080/internships", obj, {});
   }
 
-  accetpInternship(id: number) {
-    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/acceptance/true", {});
+  accetpInternship(id: number,status=true) {
+    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/acceptance/"+status, {});
   }
 
   getInternshipByMentorId(id: number) {
@@ -75,6 +75,10 @@ export class PrakseService {
 
   getInternshipByIdAndAccepted(companyId: number, isAccepted: boolean) {
     return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId=" + companyId + "&isAccepted=" + isAccepted);
+  }
+
+  editInternship(id:number, data:Praksa){
+    return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/10",data);
   }
 
 }

@@ -107,7 +107,7 @@
         <button class="potvrdiBtn"  (click)="approveInternship()">Odobri praksu</button>
       </div>
       <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
-        <button class="OtkaziPraksuBtn">Otkazi praksu</button>
+        <button class="OtkaziPraksuBtn" (click)="denideInternship()">Otkazi praksu</button>
       </div>
       <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
         <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
