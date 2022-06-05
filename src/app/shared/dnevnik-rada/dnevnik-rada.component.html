@@ -58,7 +58,8 @@
               <hr>
               <div class="row">
                 <div class="col d-flex justify-content-center">
-                  <span *ngIf="!dnevnikRada.controls[i].valid && dnevnikRada.controls[i].touched" class="danger-text">Popunite sva polja!</span>
+                  <span *ngIf="!dnevnikRada.controls[i].valid && dnevnikRada.controls[i].touched"
+                    class="danger-text">Popunite sva polja!</span>
                 </div>
               </div>
               <div class="row d-flex align-items-center">
@@ -71,8 +72,10 @@
                   <label>19.1.2022</label>
                 </div>
                 <div class="col-md buttons">
-                  <button class="btnUredi" (click)="uredi(i)" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value" >Uredi {{$any(dnevnikRada.controls[i]).controls['edit'].value}}</button>
-                  <button class="btnSacuvaj" (click)="save(i)" >Sacuvaj</button>
+                  <button class="btnUredi" (click)="uredi(i)"
+                    [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value">Uredi
+                    {{$any(dnevnikRada.controls[i]).controls['edit'].value}}</button>
+                  <button class="btnSacuvaj" (click)="save(i)">Sacuvaj</button>
                   <button class="btnObrisi" (click)="delete(i)"> Izbrisi</button>
                 </div>
               </div>
@@ -84,3 +87,18 @@
   </form>
 
 </div>
+
+
+<!-- <form [formGroup]="forma">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="forma.value.name != 'hide'">
+    <mat-label>age</mat-label>
+    <input matInput formControlName="age">
+  </mat-form-field>
+</form>
+<button (click)="f()"></button>
+<button (click)="print()">print</button> -->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscribable } from 'rxjs';
+import { InternshipStatus } from 'src/app/tipovi/internshipStatus';
 import { Praksa } from 'src/app/tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
@@ -22,12 +23,12 @@ export class InternshipViewComponent implements OnInit {
     this.route.params.subscribe(param => {
       if (param['type'] == 'published')
       {
-        this.internships$ = this.prakseService.getInternsipByIdAndStatus(this.authService.userData.id, true);
+        this.internships$ = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Published);
         this.title = "Objavljene prakse"
       }
       else if (param['type'] == 'denied')
       {
-        this.internships$ = this.prakseService.getInternshipByIdAndAccepted(this.authService.userData.id, false);
+        this.internships$ = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Denied);
         this.title = "Odbijene stručne prakse"
       }
 

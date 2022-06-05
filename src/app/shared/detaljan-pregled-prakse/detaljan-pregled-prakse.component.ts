@@ -88,7 +88,7 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
       }
       this.prakseService.submitApplication(submitData).subscribe({
         next: res => { console.log("Uspjesno", submitData); this.snackBar.open("Uspjesno ste poslali prijavu za praksu!", "Ok"); this.router.navigate(['/student/internships']); },
-        error: err => console.log(err),
+        error: err => {this.snackBar.open(err.error, "Ok"); this.router.navigate(['/student/internships']);},
       });
     }
   }

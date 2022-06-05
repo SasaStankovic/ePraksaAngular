@@ -15,7 +15,7 @@ export class ZahtjeviZaPrakseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.prakseService.getZahtjeviZaPrakse().subscribe((response:any)=>{
+    this.prakseService.getInternshipRequests().subscribe((response:any)=>{
       this.prakseList = response;
       console.log("zahtjevi za objavu>>",response);
     },

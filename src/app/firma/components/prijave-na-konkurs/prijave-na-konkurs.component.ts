@@ -1,19 +1,17 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscribable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscribable } from 'rxjs';
 import { OdbijanjeComponent } from 'src/app/shared/odbijanje/odbijanje.component';
 import { Application } from 'src/app/tipovi/application';
+import { InternshipStatus } from 'src/app/tipovi/internshipStatus';
 import { Praksa } from 'src/app/tipovi/Praksa';
 import { Student } from 'src/app/tipovi/Student';
 import { ApplicationsService } from 'src/app/_servisi/applications.service';
 import { AuthService } from 'src/app/_servisi/auth.service';
-import { FirmaService } from 'src/app/_servisi/firma.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
-import { StudentService } from 'src/app/_servisi/student.service';
 
 @Component({
   selector: 'app-prijave-na-konkurs',
@@ -53,8 +51,8 @@ export class PrijaveNaKonkursComponent implements OnInit {
 
   ngOnInit(): void {
     this.isVisible = false;
-    this.internships$ = this.prakseService.getInternshipByCompany(this.authService.userData.id, true);
-    let unsub = this.prakseService.getInternshipByCompany(this.authService.userData.id, true)
+    this.internships$ = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Published);
+    let unsub = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Published)
       .subscribe({
         next: res => {
           console.log(res);
@@ -66,10 +64,7 @@ export class PrijaveNaKonkursComponent implements OnInit {
       });
   }
 
-  aktivniKonkursi = [{ id: "11", naziv: "Praksa 11" }, { id: "12", naziv: "Praksa 12" }, { id: "13", naziv: "Praksa 13" }];
-
   getAplikacije() {
-    // this.applications$ = this.appService.getApplicationsByCompanyId(this.authService.userData.id);
     this.appService.getApplicationsByCompanyId(this.form.value.internshipId,this.form.value.status).subscribe(
       res => { console.log("aplikacije na praksu", res); this.applications = res; },
       err => console.log(err),

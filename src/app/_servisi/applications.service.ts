@@ -14,7 +14,7 @@ export class ApplicationsService {
   }
 
   public getApplicationsByCompanyId(id:number,status:string){
-    return this.http.get<Application[]>("http://localhost:8080/applications/"+id+"?state="+status);
+    return this.http.get<Application[]>("http://localhost:8080/applications/"+id+"?state="+status.toUpperCase());
   }
 
   public putApplication(internshipId:number,studentId:number, status:string,data:any = {}){
