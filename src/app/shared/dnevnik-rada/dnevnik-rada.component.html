@@ -8,11 +8,11 @@
   <div class="row align-items-center ">
     <div class="col header2 d-flex justify-content-center">
       <label>Broj unosa:</label>
-      <label id="brojUnosa">20</label>
+      <label id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
     </div>
     <div class="col header2 d-flex justify-content-center">
       <label>Broj odradjenih sati:</label>
-      <label>150</label>
+      <label>{{workedHours}}</label>
     </div>
     <div class="col d-flex justify-content-center">
       <button (click)="addNewReport()" class="btnDodaj">Dodaj izvještaj</button>
@@ -37,6 +37,7 @@
                   <label for="od">Od:</label>
                   <select name="od" id="od" formControlName="fromTime">
                     <option value="07:00">7:00</option>
+                    <option value="07:30">7:30</option>
                   </select>
                 </div>
                 <div class="col">
@@ -80,10 +81,8 @@
                   <button class="btnSacuvaj" [disabled]="getEntryForm(i).value?.save"
                     (click)="setEditable(i,false);submitWorkDiaryId(i);">Sacuvaj</button>
 
-
-
-                  <button class="btnObrisi" [disabled]="false" (click)="print(i)">
-                    Izbrisi</button>
+                  <!-- <button class="btnObrisi" [disabled]="false" (click)="print(i)">
+                    Izbrisi</button> -->
                 </div>
               </div>
             </div>

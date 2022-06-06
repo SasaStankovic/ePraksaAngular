@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { WorkDioryService } from 'src/app/_servisi/work-diory.service';
 
@@ -13,9 +14,12 @@ export class DnevnikRadaComponent implements OnInit {
   form!: FormGroup;
   workDiaryId!:number;
 
+  workedHours!:number;
+
   constructor(private formBuilder: FormBuilder,
     public workDiaryService:WorkDioryService,
-    public auth:AuthService,) { }
+    public auth:AuthService,
+    public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -37,10 +41,9 @@ export class DnevnikRadaComponent implements OnInit {
 
     this.workDiaryService.getWorkDiaryByStudentId(this.auth.userData.id).subscribe({
       next: (res:any)=> {
-        console.log(res);
+        this.workedHours = res[0].workedHours;
         this.workDiaryId = res[0].workDiaryId;
         res[0].workDairyEntries.forEach((e:any,i:number) => {
-          console.log("kkk",res[0].workDairyEntries);
           this.addNewReport(e);
           this.getEntryForm(i+1).disable();
         });
@@ -86,22 +89,32 @@ export class DnevnikRadaComponent implements OnInit {
   }
 
   submitWorkDiaryId(index:number){
-    console.log('index',index);
-    console.log('blas',this.getEntryForm(index));
+
+    if(!this.getEntryForm(index).value.text ||!this.getEntryForm(index).value.day ||
+    !this.getEntryForm(index).value.fromTime || !this.getEntryForm(index).value.toTime)
+      return;
+
     if(!this.getEntryForm(index).value.entryId)
     {
       this.getEntryForm(index).controls['workDiaryId'].setValue(this.workDiaryId);
       this.workDiaryService.submitInput(this.getEntryForm(index).value).subscribe({
-        next:res=>{console.log(res); window.location.reload();},
-        error:err=>console.log(err),
+        next:res=>{ let k = this.snackBar.open("Uspješno ste sačuvali izvještaj!","Ok").onAction().subscribe(()=>{
+          location.reload();
+          k.unsubscribe();
+        });},
+        error:err=>this.snackBar.open(err.error,"ok")
       });
     }
     else{
-      console.log("WORKDIARY ID",this.workDiaryId);
+      if(!this.getEntryForm(index).dirty) 
+        return;
       let tmp = this.getEntryForm(index).value;
       this.workDiaryService.editWorkDiaryEntry(tmp,this.workDiaryId,tmp.entryId).subscribe({
-        next:()=>{console.log("uspjesno editovan entry");window.location.reload()},
-        error: err=>console.log(err),
+        next:()=>{let k = this.snackBar.open("Izmjena je sačuvana","Ok").onAction().subscribe(res=>{
+          location.reload();
+          k.unsubscribe();
+        });},
+        error: err=>this.snackBar.open(err.error,"ok"),
       })
     }
   }
