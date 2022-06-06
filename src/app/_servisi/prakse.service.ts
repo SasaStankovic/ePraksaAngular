@@ -36,6 +36,7 @@ export class PrakseService {
   }
 
   getInternshipRequests(){
+    // /internships?status=PENDING&type=STRUCNA
     return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint+"?status=PENDING&type=STRUCNA");
   }
 
@@ -44,9 +45,8 @@ export class PrakseService {
     return this.httpPrakse.post<any>("http://localhost:8080/internships", obj, {});
   }
 
-  ///internships/{internshipId}/{approved}
   accetpInternship(id: number,status=true) {
-    return this.httpPrakse.put(PrakseService.rootEndpint+'/'+id + "/"+status, {});
+    return this.httpPrakse.put(PrakseService.rootEndpint+'/'+id + "/accept/"+status, {});
   }
 
   getInternshipByMentorId(id: number) {

@@ -11,11 +11,12 @@ export class PocetnaStranaComponent implements OnInit {
 
   showChild = false;
 
-  constructor(private prakse: PrakseService,private as:AuthService) { }
+  constructor(private prakse: PrakseService,private auth:AuthService) { }
   
   prakseList=[];
 
   ngOnInit(): void {
+    // if(this.auth.isStudent())
     this.prakse.getPrakse().subscribe((result:any)=>{
       this.prakseList = result;
       console.log(this.prakseList);

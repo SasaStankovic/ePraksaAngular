@@ -22,27 +22,27 @@
   <form [formGroup]="form">
     <div formArrayName="dnevnikRada">
       <ng-container *ngFor="let item of dnevnikRada.controls; let i = index;" [formGroupName]="i">
-        <div class="form">
+        <div class="form" [ngClass]="!getEntryForm(i).disabled ? 'form' : 'disabled-form'">
           <div class="row">
             <div class="col">
               <div class="row d-flex align-items-center">
-                <div class="col">
+                <!-- <div class="col">
                   Datum:
-                  <label>19.1.2022</label>
-                </div>
+                  <label>{{getEntryForm(i).value.createdAt}}</label>
+                </div> -->
                 <div class="col">Dan:
-                  <input type="number" style="width: 50px;" formControlName="dan">
+                  <input type="number" style="width: 50px;" formControlName="day">
                 </div>
                 <div class="col">
                   <label for="od">Od:</label>
-                  <select name="od" id="od" formControlName="od">
-                    <option value="7">7:00</option>
+                  <select name="od" id="od" formControlName="fromTime">
+                    <option value="07:00">7:00</option>
                   </select>
                 </div>
                 <div class="col">
                   <label for="do">Do:</label>
-                  <select name="do" id="do" formControlName="do">
-                    <option value="14">14:00</option>
+                  <select name="do" id="do" formControlName="toTime">
+                    <option value="14:00">14:00</option>
                   </select>
                 </div>
               </div>
@@ -51,32 +51,39 @@
                 <div class="col-12">
                   <textarea class="izvjestaj" rows="4"
                     placeholder="Ovde unesite dnevne zadatke, misljenja, prednosti, mane i probleme..."
-                    formControlName="izvjestaj">
+                    formControlName="text">
                 </textarea>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col d-flex justify-content-center">
-                  <span *ngIf="!dnevnikRada.controls[i].valid && dnevnikRada.controls[i].touched"
-                    class="danger-text">Popunite sva polja!</span>
+                  <span *ngIf="getEntryForm(i).invalid && getEntryForm(i).touched" class="danger-text">Popunite sva
+                    polja!</span>
                 </div>
               </div>
               <div class="row d-flex align-items-center">
                 <div class="col">
                   <label> Datum unosa izvjestaja: </label>
-                  <label>19.1.2022</label>
+                  <label>{{getEntryForm(i).value.createdAt | date: "dd.MM.yyyy"}}</label>
                 </div>
                 <div class="col">
                   <label>Datum poslednje izmjene:</label>
-                  <label>19.1.2022</label>
+                  <label>{{getEntryForm(i).value?.lastModifiedDate | date: "dd.MM.yyyy"}}</label>
                 </div>
                 <div class="col-md buttons">
-                  <button class="btnUredi" (click)="uredi(i)"
-                    [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value">Uredi
-                    {{$any(dnevnikRada.controls[i]).controls['edit'].value}}</button>
-                  <button class="btnSacuvaj" (click)="save(i)">Sacuvaj</button>
-                  <button class="btnObrisi" (click)="delete(i)"> Izbrisi</button>
+                  <!-- (click)="uredi(i) -->
+                  <button class="btnUredi" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value"
+                    [disabled]="getEntryForm(i).value?.edit" (click)="setEditable(i,true)">Uredi
+                  </button>
+                  <!-- save(i); -->
+                  <button class="btnSacuvaj" [disabled]="getEntryForm(i).value?.save"
+                    (click)="setEditable(i,false);submitWorkDiaryId(i);">Sacuvaj</button>
+
+
+
+                  <button class="btnObrisi" [disabled]="false" (click)="print(i)">
+                    Izbrisi</button>
                 </div>
               </div>
             </div>
@@ -85,20 +92,4 @@
       </ng-container>
     </div>
   </form>
-
 </div>
-
-
-<!-- <form [formGroup]="forma">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-
-  <mat-form-field *ngIf="forma.value.name != 'hide'">
-    <mat-label>age</mat-label>
-    <input matInput formControlName="age">
-  </mat-form-field>
-</form>
-<button (click)="f()"></button>
-<button (click)="print()">print</button> -->

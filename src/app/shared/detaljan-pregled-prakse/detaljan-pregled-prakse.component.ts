@@ -69,7 +69,7 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
         this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
 
         this.router.navigate([this.authService.userData.role]);
-        this.router.navigate(['student/internships'], { replaceUrl: true });
+        // this.router.navigate(['student/internships'], { replaceUrl: true });
         // window.location.reload();
       },
       error: err => console.log(err)

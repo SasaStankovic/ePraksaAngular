@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/_servisi/auth.service';
+import { WorkDioryService } from 'src/app/_servisi/work-diory.service';
 
 @Component({
   selector: 'app-dnevnik-rada',
@@ -9,36 +11,60 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class DnevnikRadaComponent implements OnInit {
 
   form!: FormGroup;
+  workDiaryId!:number;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    public workDiaryService:WorkDioryService,
+    public auth:AuthService,) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       'dnevnikRada': new FormArray([
         this.formBuilder.group({
-          'dan': new FormControl({ value: '', disabled: false }, [Validators.required]),
-          'od': new FormControl({ value: '', disabled: false }, Validators.required),
-          'do': new FormControl({ value: '', disabled: false }, Validators.required),
-          'izvjestaj': new FormControl({ value: '', disabled: false }, Validators.required),
-          'edit': [true],
-          'save': [false],
+          entryId:[null],
+          day:[null,Validators.required],
+          fromTime:[null,Validators.required],
+          toTime:[null,Validators.required],
+          text:[null,Validators.required],
+          workDiaryId:[null],
+          lastModifiedDate:[null],
+          createdAt:[null],
+          edit:[true],
+          save:[false],
         })
       ])
     });
+
+    this.workDiaryService.getWorkDiaryByStudentId(this.auth.userData.id).subscribe({
+      next: (res:any)=> {
+        console.log(res);
+        this.workDiaryId = res[0].workDiaryId;
+        res[0].workDairyEntries.forEach((e:any,i:number) => {
+          console.log("kkk",res[0].workDairyEntries);
+          this.addNewReport(e);
+          this.getEntryForm(i+1).disable();
+        });
+      },
+      error: err=> console.log(err),
+    });
+
   }
 
   get dnevnikRada() {
     return this.form.controls['dnevnikRada'] as FormArray;
   }
 
-  addNewReport() {
+  addNewReport(data:any=null) {
     const input = this.formBuilder.group({
-      dan: [null, Validators.required],
-      od: [null, Validators.required],
-      do: [null, Validators.required],
-      izvjestaj: [null, Validators.required],
-      edit: [true],
-      save: [false],
+      entryId:[data?.entryId],
+      day:[data?.day,Validators.required],
+      fromTime:[data?.fromTime,Validators.required],
+      toTime:[data?.toTime,Validators.required],
+      text:[data?.text,Validators.required],
+      lastModifiedDate:[data?.lastModifiedDate],
+      createdAt:[data?.createdAt],
+      edit:[false],
+      save:[true],
     });
     this.dnevnikRada.push(input);
   }
@@ -47,47 +73,43 @@ export class DnevnikRadaComponent implements OnInit {
     this.dnevnikRada.removeAt(index);
   }
 
-  save(index: number) {
-    // if(this.dnevnikRada.controls[index].valid)
+  getEntryForm(i:number):FormGroup{
+    return this.dnevnikRada.controls[i] as FormGroup;
+  }
+
+
+  setEditable(index: number, value: boolean) {
+    this.getEntryForm(index).controls['edit'].setValue(value);
+    this.getEntryForm(index).controls['save'].setValue(!value);
+    value ? this.getEntryForm(index).enable() : this.getEntryForm(index).disable();
+    
+  }
+
+  submitWorkDiaryId(index:number){
+    console.log('index',index);
+    console.log('blas',this.getEntryForm(index));
+    if(!this.getEntryForm(index).value.entryId)
     {
-      console.log("index:" + index);
-      console.log("DNEVNIK RADA.CONTROLS", (this.dnevnikRada.controls[index] as FormGroup).controls);
-      this.setEdit(index, false);
-      // console.log("Sacuvano"+this.disabled);
+      this.getEntryForm(index).controls['workDiaryId'].setValue(this.workDiaryId);
+      this.workDiaryService.submitInput(this.getEntryForm(index).value).subscribe({
+        next:res=>{console.log(res); window.location.reload();},
+        error:err=>console.log(err),
+      });
+    }
+    else{
+      console.log("WORKDIARY ID",this.workDiaryId);
+      let tmp = this.getEntryForm(index).value;
+      this.workDiaryService.editWorkDiaryEntry(tmp,this.workDiaryId,tmp.entryId).subscribe({
+        next:()=>{console.log("uspjesno editovan entry");window.location.reload()},
+        error: err=>console.log(err),
+      })
     }
   }
-  uredi(index: number) {
-    // this.disabled = !this.disabled;
-  }
 
-  setEdit(index: number, value: boolean) {
-    (this.dnevnikRada.controls[index] as FormGroup).controls['edit'].setValue(value);
-    //['edit'].setValue(value)
-  }
-
-  setSave(value: boolean) {
-    this.form.controls['save'].setValue(value);
+  print(i:number){
+    console.log(this.getEntryForm(i).value);
   }
 
 
-  forma: FormGroup = this.formBuilder.group({
-    name: ['bojan'],
-    age: [22]
-  });
-
-  f() {
-    this.forma.controls['name'].valueChanges.subscribe({
-      next: val => {
-        if (val !== 'hide') 
-          return;
-        this.forma.controls['age'].reset();
-        this.forma.controls['age'].updateValueAndValidity();
-      },
-      error: err => console.log(err),
-    })
-  }
-
-  print() {
-    console.log(this.forma.value);
-  }
+  
 }
