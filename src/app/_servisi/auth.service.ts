@@ -76,6 +76,10 @@ export class AuthService {
     } 
   }
 
+  public getRole(){
+    return this.userData.role.toLocaleLowerCase();
+  }
+
   isStudent():boolean{
     return this.userData.role == 'student';
   }

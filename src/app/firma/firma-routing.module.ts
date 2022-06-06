@@ -4,6 +4,7 @@ import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-praks
 import { InternshipViewComponent } from '../shared/internship-view/internship-view.component';
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { AuthGuard } from '../_guards/auth.guard';
+import { InternshipGuard } from '../_guards/internship.guard';
 import { MentorsComponent } from './components/mentors/mentors.component';
 import { ObjavaPrakseComponent } from './components/objava-prakse/objava-prakse.component';
 import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prijave-na-konkurs.component';
@@ -15,7 +16,7 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     children:[
       {
-        path:'objava-prakse', component:ObjavaPrakseComponent
+        path:'objava-prakse', component:ObjavaPrakseComponent,
       },
       {
         path:'prijave-na-konkurs', component: PrijaveNaKonkursComponent
@@ -24,7 +25,8 @@ const routes: Routes = [
         path:'students/:id', component: SutdentProfilComponent
       },
       {
-        path:'internships_view/:type', component: InternshipViewComponent
+        path:'internships_view/:type', component: InternshipViewComponent,
+        
       },
       {
         path:'mentors', component: MentorsComponent,
@@ -33,7 +35,8 @@ const routes: Routes = [
         path:'internships/:id/details', component: DetaljanPregledPrakseComponent
       },
       {
-        path:'internships/:id/edit', component: ObjavaPrakseComponent
+        path:'internships/:id/edit', component: ObjavaPrakseComponent,
+        
       },
       {
         path:'**', redirectTo:'', pathMatch:'full',

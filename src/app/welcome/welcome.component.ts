@@ -19,5 +19,14 @@ export class WelcomeComponent implements OnInit {
       data: rola
     });
   }
+  count=0;
+  sorti(){
+    this.count++;
+    if(this.count == 3)
+    {
 
+      let array = ['🥚','🐤'];
+      window.alert("sta je prvo nastalo?"+array+" Prvo je nastalo"+array.sort());
+    }
+  }
 }
