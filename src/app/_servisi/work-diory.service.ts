@@ -21,4 +21,8 @@ public getWorkDiaryByStudentId(id:number){
     return this.http.post<WorkDiaryEntry>("http://localhost:8080/workdiaries/entries",data);
   }
 
+  public approveWorkDiary(status:string,workDiaryId:number){
+    return this.http.put<WorkDiary>("http://localhost:8080/workdiaries/workDiary/"+workDiaryId+"?state="+status.toUpperCase(),{});
+  }
+
 }

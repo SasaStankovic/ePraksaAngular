@@ -31,6 +31,10 @@ export class InternshipViewComponent implements OnInit {
         this.internships$ = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Denied);
         this.title = "Odbijene stručne prakse"
       }
+      else if(param['type'] == 'pending'){
+        this.internships$ = this.prakseService.getInternshipsByIdAndStatus(this.authService.userData.id, InternshipStatus.Pendin);
+        this.title = "Prakse koje su na čekanju za odobrenje";
+      }
 
     })
   }

@@ -20,7 +20,6 @@ import { InternshipViewComponent } from './internship-view/internship-view.compo
     DetaljanPregledPrakseComponent,
     DnevnikRadaComponent,
     OdbijanjeComponent,
-    PraksaItemComponent,
     InternshipViewComponent,
   ],
   imports: [

@@ -26,7 +26,6 @@ const routes: Routes = [
       },
       {
         path:'internships_view/:type', component: InternshipViewComponent,
-        
       },
       {
         path:'mentors', component: MentorsComponent,
@@ -36,7 +35,6 @@ const routes: Routes = [
       },
       {
         path:'internships/:id/edit', component: ObjavaPrakseComponent,
-        
       },
       {
         path:'**', redirectTo:'', pathMatch:'full',

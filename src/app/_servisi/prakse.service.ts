@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Praksa } from '../tipovi/Praksa';
 import { Student } from '../tipovi/Student';
 import { BehaviorSubject } from 'rxjs';
+import { InternshipStatus } from '../tipovi/internshipStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +50,8 @@ export class PrakseService {
     return this.httpPrakse.put(PrakseService.rootEndpint+'/'+id + "/accept/"+status, {});
   }
 
-  getInternshipByMentorId(id: number) {
-    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?mentorId=" + id);
+  getInternshipByMentorId(id: number,status:InternshipStatus) {
+    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint+"?mentorId=" + id+'&status='+status);
   }
 
   getInternshipById(id: number) {

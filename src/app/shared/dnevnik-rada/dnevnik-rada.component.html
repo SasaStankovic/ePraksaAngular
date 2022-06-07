@@ -6,17 +6,25 @@
     </div>
   </div>
   <div class="row align-items-center ">
-    <div class="col header2 d-flex justify-content-center">
-      <label>Broj unosa:</label>
+    <div class="col-3">
+      <label style="font-weight:600;">Student:</label>
+      <label>{{studentName}}</label>
+    </div>
+    <div class="col-3 header2 d-flex justify-content-center">
+      <label style="font-weight:600;">Broj unosa:</label>
       <label id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
     </div>
-    <div class="col header2 d-flex justify-content-center">
-      <label>Broj odradjenih sati:</label>
+    <div class="col-3 header2 d-flex justify-content-center">
+      <label style="font-weight:600;">Broj odradjenih sati:</label>
       <label>{{workedHours}}</label>
     </div>
-    <div class="col d-flex justify-content-center">
-      <button (click)="addNewReport()" class="btnDodaj">Dodaj izvještaj</button>
+    <div *ngIf="auth.isMentor()" class="col-3 header2 d-flex justify-content-end gap-3">
+      <button mat-button class="btnObrisi" (click)="deniedWorkDiary()">Odbij</button>
+      <button mat-button class="btnSacuvaj" (click)="approveWorkDiary()">Odobri</button>
     </div>
+    <!-- <div class="col d-flex justify-content-center">
+      <button *ngIf="auth.isStudent()" (click)="addNewReport()" class="btnDodaj">Dodaj izvještaj</button>
+    </div> -->
   </div>
 
   <form [formGroup]="form">
@@ -26,24 +34,19 @@
           <div class="row">
             <div class="col">
               <div class="row d-flex align-items-center">
-                <!-- <div class="col">
-                  Datum:
-                  <label>{{getEntryForm(i).value.createdAt}}</label>
-                </div> -->
                 <div class="col">Dan:
                   <input type="number" style="width: 50px;" formControlName="day">
                 </div>
                 <div class="col">
-                  <label for="od">Od:</label>
-                  <select name="od" id="od" formControlName="fromTime">
-                    <option value="07:00">7:00</option>
-                    <option value="07:30">7:30</option>
+                  <label for="od">Pocetak rada:</label>
+                  <select formControlName="fromTime">
+                    <option *ngFor="let item of hours" [value]="item">{{item}}</option>
                   </select>
                 </div>
                 <div class="col">
-                  <label for="do">Do:</label>
+                  <label for="do">Kraj rada:</label>
                   <select name="do" id="do" formControlName="toTime">
-                    <option value="14:00">14:00</option>
+                    <option *ngFor="let item of hours" [value]="item">{{item}}</option>
                   </select>
                 </div>
               </div>
@@ -72,7 +75,7 @@
                   <label>Datum poslednje izmjene:</label>
                   <label>{{getEntryForm(i).value?.lastModifiedDate | date: "dd.MM.yyyy"}}</label>
                 </div>
-                <div class="col-md buttons">
+                <div *ngIf="auth.isStudent()" class="col-md buttons">
                   <!-- (click)="uredi(i) -->
                   <button class="btnUredi" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value"
                     [disabled]="getEntryForm(i).value?.edit" (click)="setEditable(i,true)">Uredi

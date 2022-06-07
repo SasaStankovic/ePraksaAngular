@@ -1,19 +1,63 @@
-.parent{
+.parent {
     width: 100%;
     height: 4em;
     background-color: #F0F0F0;
     border-radius: 20px;
     padding: 7px 20px 5px 20px;
     margin-bottom: 1em !important;
-    
+
     // background-image: linear-gradient(to right,#f7f7f7, #e4e4e4 , #f7f7f7);
 }
 
-.name{
+.name {
     font-weight: 500;
     font-size: 18px;
 }
 
-.button{
+.button {
     float: right;
+}
+
+mat-list-option {
+    box-shadow: 0 5px 5px -3px #0003,
+        0 8px 10px 1px #00000024,
+        0 3px 14px 2px #0000001f;
+
+    display: flex !important;
+    background-color: #fffdfd;
+
+    div {
+        flex: 1;
+        display: inline-block;
+        width: 33%;
+        padding: 1%;
+    }
+}
+
+::ng-deep {
+
+    .mat-list-base .mat-list-item .mat-list-text,
+    .mat-list-base .mat-list-option .mat-list-text {
+        display: inline !important;
+    }
+}
+
+.row {
+    margin-left: 1px !important;
+}
+
+.header {
+
+    div {
+        color: #0000008a;
+        font-weight: bold !important;
+        font-size: 15px;
+        pointer-events: none;
+    }
+}
+
+.item {
+    div {
+        font-size: 13px;
+    }
 }

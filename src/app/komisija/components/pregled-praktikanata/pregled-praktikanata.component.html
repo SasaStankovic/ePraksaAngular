@@ -2,6 +2,6 @@
   <h1>Spisak praktikanata</h1>
   <hr>
 </div>
-<ng-container *ngFor="let item of praktikanti; let i = index;">
-  <app-pregled-studenta [student]="praktikanti[i]"> </app-pregled-studenta>
+<ng-container *ngFor="let item of praktikanti;">
+  <app-pregled-studenta [student]="item"> </app-pregled-studenta>
 </ng-container>

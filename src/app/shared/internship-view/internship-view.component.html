@@ -1,16 +1,17 @@
 <div class="container">
-    <div class="sadrzaj" id="sadrzajdiv">
-  
-      <div class="topdiv">
-        <label >{{title}}</label>
-        <input placeholder="Pretraži" class="pretraga" id="txtPretraga" type="text" name="search" id="search">
-        <div class="linija">
-          <hr>
-        </div>
-      </div>
-      <div *ngFor="let item of internships$ | async; index as i" class="prakseContent">
-        <app-prikazprakse [praksa]="item"></app-prikazprakse>
+  <div class="sadrzaj" id="sadrzajdiv">
+
+    <div class="topdiv">
+      <label>{{title}}</label>
+      <input placeholder="Pretraži" class="pretraga" id="txtPretraga" type="text" name="search" id="search">
+      <div class="linija">
+        <hr>
       </div>
     </div>
+    <div *ngFor="let item of internships$ | async; index as i" class="prakseContent">
+      <app-prikazprakse [praksa]="item"></app-prikazprakse>
+    </div>
+    <p *ngIf="!(internships$ |async)?.length" style="font-size: 22px; color: rgb(135, 135, 135)">Trenutno nema praksi..
+    </p>
   </div>
-  
+</div>

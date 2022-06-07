@@ -2,17 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MentorRoutingModule } from './mentor-routing.module';
-import { NavBarMentorComponent } from './nav-bar-mentor/nav-bar-mentor.component';
 import { PraksaItemDetaildComponent } from './praksa-item-detaild/praksa-item-detaild.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { PraksaItemComponent } from './praksa-item/praksa-item.component';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
-    // NavBarMentorComponent
-  
+    PraksaItemComponent,
     PraksaItemDetaildComponent
   ],
   imports: [
@@ -22,7 +26,22 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     MatCardModule,
     MatButtonModule,
     MatExpansionModule,
-    // CdkAccordionModule,
+    MatOptionModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDividerModule,
+    MatCardModule,
+    MatListModule,
   ]
 })
 export class MentorModule { }

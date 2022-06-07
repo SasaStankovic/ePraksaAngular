@@ -16,11 +16,18 @@ import { KomisijaModule } from './komisija/komisija.module';
 import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
 import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MentorWrapperComponent } from './mentor/mentor-wrapper/mentor-wrapper.component';
 import { NavBarMentorComponent } from './mentor/nav-bar-mentor/nav-bar-mentor.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -45,6 +52,18 @@ import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDividerModule,
+    MatSelectModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [AuthGuard,DatePipe],
   bootstrap: [AppComponent]

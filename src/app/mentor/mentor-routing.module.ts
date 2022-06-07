@@ -5,6 +5,7 @@ import { MentorWrapperComponent } from './mentor-wrapper/mentor-wrapper.componen
 import { PraksaItemDetaildComponent } from './praksa-item-detaild/praksa-item-detaild.component';
 import { AuthGuard } from '../_guards/auth.guard';
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
+import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
       },
       {
         path: 'students/:id', component: SutdentProfilComponent,
+      },
+      {
+        path: 'work-diaries/:id', component:DnevnikRadaComponent
       }
     ]
   },

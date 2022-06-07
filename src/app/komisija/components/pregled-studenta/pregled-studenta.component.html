@@ -1,7 +1,10 @@
 <div class="container">
   <div class="parent">
-    <a  [routerLink]="['/commission_member/'+student.id+'/profile']" routerLinkActive="router-link-active">{{student.firstName}} {{student.lastName}}</a>
-    <button class="dnevnikRada">Dnevnik rada</button>
-    <button class="izvejstajMentora">Izvještaj mentora</button>
+    <a [routerLink]="['/commission_member/'+student.id+'/profile']"
+      routerLinkActive="router-link-active">{{student.firstName}} {{student.lastName}}</a>
+    <button [routerLink]="['/commission_member/students/'+student.id+'/work-diary']" class="dnevnikRada">Dnevnik
+      rada</button>
+    <button class="izvejstajMentora">Izvještaj
+      mentora</button>
   </div>
 </div>

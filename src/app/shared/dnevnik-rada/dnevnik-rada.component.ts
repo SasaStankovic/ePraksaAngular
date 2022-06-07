@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { WorkDioryService } from 'src/app/_servisi/work-diory.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-dnevnik-rada',
@@ -11,46 +13,56 @@ import { WorkDioryService } from 'src/app/_servisi/work-diory.service';
 })
 export class DnevnikRadaComponent implements OnInit {
 
-  form!: FormGroup;
   workDiaryId!:number;
-
   workedHours!:number;
+  studentId!:number;
+  studentName!:string;
+
+  hours = ['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+
+  form = this.formBuilder.group({
+    'dnevnikRada': new FormArray([
+      this.formBuilder.group({
+        entryId:[null],
+        day:[null,Validators.required],
+        fromTime:[null,Validators.required],
+        toTime:[null,Validators.required],
+        text:[null,Validators.required],
+        workDiaryId:[null],
+        lastModifiedDate:[null],
+        createdAt:[null],
+        edit:[true],
+        save:[false],
+      })
+    ])
+  });
 
   constructor(private formBuilder: FormBuilder,
     public workDiaryService:WorkDioryService,
     public auth:AuthService,
-    public snackBar:MatSnackBar) { }
+    public snackBar:MatSnackBar,
+    public route:ActivatedRoute,
+    private _location:Location) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      'dnevnikRada': new FormArray([
-        this.formBuilder.group({
-          entryId:[null],
-          day:[null,Validators.required],
-          fromTime:[null,Validators.required],
-          toTime:[null,Validators.required],
-          text:[null,Validators.required],
-          workDiaryId:[null],
-          lastModifiedDate:[null],
-          createdAt:[null],
-          edit:[true],
-          save:[false],
-        })
-      ])
-    });
-
-    this.workDiaryService.getWorkDiaryByStudentId(this.auth.userData.id).subscribe({
-      next: (res:any)=> {
-        this.workedHours = res[0].workedHours;
-        this.workDiaryId = res[0].workDiaryId;
-        res[0].workDairyEntries.forEach((e:any,i:number) => {
-          this.addNewReport(e);
-          this.getEntryForm(i+1).disable();
+    
+    this.route.params.subscribe((x:any)=>{
+      this.studentId = x['id'] ? x['id'] : this.auth.userData.id;
+        this.workDiaryService.getWorkDiaryByStudentId(this.studentId).subscribe({
+          next: (res:any)=> {
+            this.studentName = res[0].studentFullName;
+            this.workedHours = res[0].workedHours;
+            this.workDiaryId = res[0].workDiaryId;
+            res[0].workDairyEntries.forEach((e:any,i:number) => {
+              this.addNewReport(e);
+              this.getEntryForm(i+1).disable();
+            });
+            if(!this.auth.isStudent()) 
+              this.delete(0);
+          },
+          error: err=> console.log(err),
         });
-      },
-      error: err=> console.log(err),
     });
-
   }
 
   get dnevnikRada() {
@@ -119,8 +131,24 @@ export class DnevnikRadaComponent implements OnInit {
     }
   }
 
-  print(i:number){
-    console.log(this.getEntryForm(i).value);
+  deniedWorkDiary(){
+    this.workDiaryService.approveWorkDiary("DENIED",this.workDiaryId).subscribe({
+      next:()=> {let k = this.snackBar.open("Uspjesno!","Ok").onAction().subscribe(()=>{
+        this._location.back();
+        k.unsubscribe();
+      })},
+      error:err=>this.snackBar.open(err.error,"ok"),
+    });
+  }
+
+  approveWorkDiary(){
+    this.workDiaryService.approveWorkDiary("ACCEPTED",this.workDiaryId).subscribe({
+      next:()=> {let k = this.snackBar.open("Uspjesno ste odobrili dnevnik rada!","Ok").onAction().subscribe(()=>{
+        this._location.back();
+        k.unsubscribe();
+      })},
+      error:err=>this.snackBar.open(err.error,"ok"),
+    });
   }
 
 
