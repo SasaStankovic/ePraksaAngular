@@ -15,9 +15,9 @@
             <a>Uredi profil</a>
             <a [routerLink]="['']" (click)="logOut()">Odjavi se</a>
           </div>
-         
+
         </div>
-        <a >Izvještaj Mentora</a>
+        <a [routerLink]="['/student/mentor-report']">Izvještaj Mentora</a>
         <a [routerLink]="['/student/dnevnik-rada']">Dnevnik Rada</a>
         <a [routerLink]="['/student']" routerLinkActive="router-link-active">Prakse</a>
         <a [routerLink]="['/student/my-applicaitons']">Moji konkursi</a>

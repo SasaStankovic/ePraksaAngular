@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrijaveNaKonkursComponent } from './prijave-na-konkurs.component';
+import { MenotrReportComponent } from './menotr-report.component';
 
-describe('PrijaveNaKonkursComponent', () => {
-  let component: PrijaveNaKonkursComponent;
-  let fixture: ComponentFixture<PrijaveNaKonkursComponent>;
+describe('MenotrReportComponent', () => {
+  let component: MenotrReportComponent;
+  let fixture: ComponentFixture<MenotrReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrijaveNaKonkursComponent ]
+      declarations: [ MenotrReportComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrijaveNaKonkursComponent);
+    fixture = TestBed.createComponent(MenotrReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

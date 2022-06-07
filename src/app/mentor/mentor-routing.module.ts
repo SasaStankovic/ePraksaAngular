@@ -6,6 +6,7 @@ import { PraksaItemDetaildComponent } from './praksa-item-detaild/praksa-item-de
 import { AuthGuard } from '../_guards/auth.guard';
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
+import { MenotrReportComponent } from '../shared/menotr-report/menotr-report.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
       },
       {
         path: 'work-diaries/:id', component:DnevnikRadaComponent
+      },
+      {
+        path: 'report/:id', component:MenotrReportComponent
       }
     ]
   },

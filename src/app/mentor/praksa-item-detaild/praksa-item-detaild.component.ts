@@ -47,7 +47,9 @@ export class PraksaItemDetaildComponent implements OnInit {
 
   viewStudent(studentId:number){
     this.router.navigate(['mentor/students/'+studentId]);
-    console.log('student id',studentId)
+  }
+  viewReport(studentId:number){
+    this.router.navigate(['mentor/report/'+studentId]);
   }
 
   startInternship(){

@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
+import { MenotrReportComponent } from '../shared/menotr-report/menotr-report.component';
 import { AuthGuard } from '../_guards/auth.guard';
 import { StudentGuard } from '../_guards/student.guard';
 import { ApplicationComponent } from './application/application.component';
@@ -34,6 +35,9 @@ export const routes: Routes = [
       },
       {
         path: 'dnevnik-rada', component: DnevnikRadaComponent
+      }, 
+      {
+        path: 'mentor-report', component: MenotrReportComponent
       },
       {
         path: 'my-applicaitons', component: MyApplicaitonsComponent
