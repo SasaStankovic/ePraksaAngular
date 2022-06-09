@@ -50,10 +50,10 @@ export class DnevnikRadaComponent implements OnInit {
       this.studentId = x['id'] ? x['id'] : this.auth.userData.id;
         this.workDiaryService.getWorkDiaryByStudentId(this.studentId).subscribe({
           next: (res:any)=> {
-            this.studentName = res[0].studentFullName;
-            this.workedHours = res[0].workedHours;
-            this.workDiaryId = res[0].workDiaryId;
-            res[0].workDairyEntries.forEach((e:any,i:number) => {
+            this.studentName = res[0]?.studentFullName;
+            this.workedHours = res[0]?.workedHours;
+            this.workDiaryId = res[0]?.workDiaryId;
+            res[0]?.workDairyEntries.forEach((e:any,i:number) => {
               this.addNewReport(e);
               this.getEntryForm(i+1).disable();
             });

@@ -2,7 +2,7 @@ import { ArrayType } from '@angular/compiler';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscribable, Unsubscribable } from 'rxjs';
-import { Student } from 'src/app/tipovi/Student';
+import { Student } from 'src/app/_tipovi/Student';
 import { AuthService } from 'src/app/_servisi/auth.service';
 
 import { StudentService } from 'src/app/_servisi/student.service';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from 'src/app/tipovi/Student';
+import { Student } from 'src/app/_tipovi/Student';
 import { StudentService } from 'src/app/_servisi/student.service';
 
 @Component({
@@ -20,5 +20,7 @@ export class PregledPraktikanataComponent implements OnInit {
       console.log("prakstikanti>>",res);
     });
   }
+
+
 
 }

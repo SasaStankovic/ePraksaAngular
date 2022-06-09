@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Praksa } from 'src/app/tipovi/Praksa';
+import { Praksa } from 'src/app/_tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 

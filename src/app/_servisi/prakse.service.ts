@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Praksa } from '../tipovi/Praksa';
-import { Student } from '../tipovi/Student';
+import { Praksa } from '../_tipovi/Praksa';
+import { Student } from '../_tipovi/Student';
 import { BehaviorSubject } from 'rxjs';
-import { InternshipStatus } from '../tipovi/internshipStatus';
+import { InternshipStatus } from '../_tipovi/internshipStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -73,10 +73,6 @@ export class PrakseService {
   closeInternship(id: number) {
     return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/true", {});
   }
-
-  // getInternshipByCompany(companyId: number, isPublished: boolean) {
-  //   return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?companyId=" + companyId + "&isPublished=" + isPublished);
-  // }
 
   editInternship(id:number, data:Praksa){
     return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/10",data);

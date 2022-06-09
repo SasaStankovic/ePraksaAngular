@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { InternshipType } from 'src/app/tipovi/internship-type';
-import { InternshipStatus } from 'src/app/tipovi/internshipStatus';
-import { Praksa } from 'src/app/tipovi/Praksa';
+import { InternshipType } from 'src/app/_tipovi/internship-type';
+import { InternshipStatus } from 'src/app/_tipovi/internshipStatus';
+import { Praksa } from 'src/app/_tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 

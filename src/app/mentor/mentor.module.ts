@@ -39,7 +39,6 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatDividerModule,
     MatCardModule,
     MatListModule,
   ]

@@ -1,9 +1,9 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Company } from 'src/app/tipovi/company';
-import { Mentor } from 'src/app/tipovi/mentor';
-import { Praksa } from 'src/app/tipovi/Praksa';
+import { Company } from 'src/app/_tipovi/company';
+import { Mentor } from 'src/app/_tipovi/mentor';
+import { Praksa } from 'src/app/_tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 import { DetaljanPregledPrakseComponent } from '../detaljan-pregled-prakse/detaljan-pregled-prakse.component';

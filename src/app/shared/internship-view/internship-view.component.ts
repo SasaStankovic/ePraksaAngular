@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscribable } from 'rxjs';
-import { InternshipStatus } from 'src/app/tipovi/internshipStatus';
-import { Praksa } from 'src/app/tipovi/Praksa';
+import { InternshipStatus } from 'src/app/_tipovi/internshipStatus';
+import { Praksa } from 'src/app/_tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 

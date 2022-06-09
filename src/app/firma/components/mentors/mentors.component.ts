@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscribable } from 'rxjs';
-import { Mentor } from 'src/app/tipovi/mentor';
+import { Mentor } from 'src/app/_tipovi/mentor';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { FirmaService } from 'src/app/_servisi/firma.service';
 

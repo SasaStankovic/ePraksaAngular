@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-import { SutdentProfilComponent } from 'src/app/student/sutdent-profil/sutdent-profil.component';
-import { Praksa } from 'src/app/tipovi/Praksa';
-import { Student } from 'src/app/tipovi/Student';
-import { AuthService } from 'src/app/_servisi/auth.service';
+import { Praksa } from 'src/app/_tipovi/Praksa';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
 
 @Component({
@@ -49,7 +45,7 @@ export class PraksaItemDetaildComponent implements OnInit {
     this.router.navigate(['mentor/students/'+studentId]);
   }
   viewReport(studentId:number){
-    this.router.navigate(['mentor/report/'+studentId]);
+    this.router.navigate(['mentor/internships/'+this.internship.internshipId+'/students/'+studentId+'/report']);
   }
 
   startInternship(){

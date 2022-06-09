@@ -36,7 +36,7 @@ const routes: Routes = [
         path: 'students/:id/work-diary', component: DnevnikRadaComponent,
       },
       {
-        path: 'students/:id/mentor-report', component: MenotrReportComponent
+        path: 'students/:studentId/mentor-report', component: MenotrReportComponent
       }
     ]
   }

@@ -1,1 +1,103 @@
-<p>menotr-report works!</p>
+<button [disabled]="!isMentor" (click)="print();patchValues();">x</button>
+
+<mat-tab-group mat-align-tabs="start">
+   <mat-tab label="Upitnik" (click)="setTitle1()">
+      <div class="col-12">
+         <div class="col-3 mt-3">
+            <h3>{{title}}</h3>
+         </div>
+      </div>
+      <form [formGroup]="form">
+         <ng-container *ngFor="let item of questionsArr; let i = index;">
+            <div class="table-row" formArrayName="input">
+               <div class="row align-items-center" [formGroupName]="i">
+                  <div class="col-7">
+                     {{item.question}}
+                  </div>
+                  <div class="col-5 d-flex justify-content-end">
+                     <mat-form-field>
+                        <mat-label>Odgovor</mat-label>
+                        <mat-select formControlName="answer" [disabled]="!isMentor">
+                           <mat-option *ngFor="let item of answers" [value]="item?.value">
+                              {{item?.name}}
+                           </mat-option>
+                        </mat-select>
+                     </mat-form-field>
+                  </div>
+               </div>
+            </div>
+         </ng-container>
+         <mat-form-field class="width-100 mt-3">
+            <mat-label>Komentar mentora</mat-label>
+            <textarea style="resize: none;" matInput rows="5" formControlName="mentorsComment"></textarea>
+         </mat-form-field>
+      </form>
+   </mat-tab>
+   <mat-tab (click)="setTitle1()" [disabled]="form.invalid" label="Misljenje">
+
+      <form [formGroup]="form2">
+         <div class="d-flex">
+
+            <div class="col-3 mt-3">
+               <h3>{{title}}</h3>
+            </div>
+            <div class=" col-4 d-flex justify-content-end">
+               <button *ngIf="!getFlag()" (click)="submit();" mat-raised-button [disabled]="form2.invalid"
+                  color="primary" class="mt-3">Sačuvaj izvještaj</button>
+            </div>
+         </div>
+         <div class="d-grid gap-3">
+            <div class="d-flex">
+               <mat-form-field class="col-3 mt-3 ">
+                  <mat-label>Broj dana na praksi</mat-label>
+                  <input type="number" min="0" matInput formControlName="numberOfDays">
+               </mat-form-field>
+               <div class="col-1"></div>
+               <mat-form-field class="col-3 mt-3">
+                  <mat-label>Broj sati na praksi</mat-label>
+                  <input type="number" min="0" matInput formControlName="numberOfHours">
+               </mat-form-field>
+            </div>
+            <div class="d-flex">
+               <mat-form-field class="col-3" color="accent" appearance="fill">
+                  <mat-label>Datum početka prakse</mat-label>
+                  <input matInput [matDatepicker]="picker1" [max]="form2.value.periodOfInternshipUntil"
+                     formControlName="periodOfInternshipFrom">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1 color="primary"></mat-datepicker>
+               </mat-form-field>
+               <div class="col-1"></div>
+               <mat-form-field class="col-3" color="accent" appearance="fill">
+                  <mat-label>Datum završetka prakse</mat-label>
+                  <input matInput [matDatepicker]="picker2" [min]="form2.value.periodOfInternshipFrom"
+                     formControlName="periodOfInternshipUntil">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
+               </mat-form-field>
+            </div>
+            <ng-container *ngFor="let item of obligations.controls; let in = index;">
+               <ng-container formArrayName="obligations">
+                  <div [formGroupName]="in">
+                     <div class="d-flex">
+                        <mat-form-field class=" col-6">
+                           <mat-label>Kratak opis obaveze studenta</mat-label>
+                           <input matInput formControlName="descriptionOfTheObligation">
+                        </mat-form-field>
+                        <div class="col-1 d-flex justify-content-center">
+                           <button mat-icon-button *ngIf="in > 0 && isMentor" (click)="delete(in)">
+                              <mat-icon>cancel</mat-icon>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </ng-container>
+            </ng-container>
+         </div>
+
+         <div class="col-7 d-flex justify-content-start">
+            <button mat-stroked-button *ngIf="!getFlag()" (click)="addObligation()">Dodaj opis</button>
+         </div>
+      </form>
+      <p *ngIf="!isMentor">Mentor: {{form2.value.mentor}}</p>
+   </mat-tab>
+</mat-tab-group>

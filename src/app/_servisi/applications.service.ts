@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Application } from '../tipovi/application';
+import { Application } from '../_tipovi/application';
 
 @Injectable({
   providedIn: 'root'

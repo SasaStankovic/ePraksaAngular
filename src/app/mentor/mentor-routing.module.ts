@@ -29,7 +29,7 @@ const routes: Routes = [
         path: 'work-diaries/:id', component:DnevnikRadaComponent
       },
       {
-        path: 'report/:id', component:MenotrReportComponent
+        path: 'internships/:internshipId/students/:studentId/report', component:MenotrReportComponent
       }
     ]
   },

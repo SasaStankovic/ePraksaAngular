@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscribable } from 'rxjs';
-import { Application } from 'src/app/tipovi/application';
+import { Application } from 'src/app/_tipovi/application';
 import { ApplicationsService } from 'src/app/_servisi/applications.service';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { WorkDiary, WorkDiaryEntry } from '../tipovi/work-diary';
+import { WorkDiary, WorkDiaryEntry } from '../_tipovi/work-diary';
 
 @Injectable({
   providedIn: 'root'
