@@ -9,11 +9,11 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getPraktikanti(){
-    return this.http.get("http://localhost:8080/student/practicants");
+  getPraktikanti(id: number) {
+    return this.http.get("http://localhost:8080/internships/" + id + "/students");
   }
 
-  getStudentById(id:number){
-    return this.http.get<Student>("http://localhost:8080/student/"+id);
+  getStudentById(id: number) {
+    return this.http.get<Student>("http://localhost:8080/student/" + id);
   }
 }

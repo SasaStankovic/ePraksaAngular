@@ -6,6 +6,7 @@ import { MenotrReportComponent } from '../shared/menotr-report/menotr-report.com
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { AuthGuard } from '../_guards/auth.guard';
 import { KomisijaGuard } from '../_guards/komisija.guard';
+import { InternshipsComponent } from './components/internships/internships.component';
 import { KomisijaWrapperComponent } from './components/komisija-wrapper/komisija-wrapper.component';
 import { PregledPraktikanataComponent } from './components/pregled-praktikanata/pregled-praktikanata.component';
 import { PregledStudentaComponent } from './components/pregled-studenta/pregled-studenta.component';
@@ -27,16 +28,19 @@ const routes: Routes = [
         component: DetaljanPregledPrakseComponent
       },
       {
-        path: 'students', component: PregledPraktikanataComponent,
-      },
-      { 
-        path: ':id/profile', component: SutdentProfilComponent 
+        path: 'internships/:internshipId/students', component: PregledPraktikanataComponent,
       },
       {
-        path: 'students/:id/work-diary', component: DnevnikRadaComponent,
+        path: ':id/profile', component: SutdentProfilComponent
       },
       {
-        path: 'students/:studentId/mentor-report', component: MenotrReportComponent
+        path: 'internships/:internshipId/students/:studentId/work-diary', component: DnevnikRadaComponent,
+      },
+      {
+        path: 'internships/:internshipId/students/:studentId/mentor-report', component: MenotrReportComponent
+      },
+      {
+        path: 'internships_view', component: InternshipsComponent
       }
     ]
   }

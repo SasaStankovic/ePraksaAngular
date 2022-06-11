@@ -16,7 +16,19 @@
             <a routerLink="['']" (click)="logOut()">Odjavi se</a>
           </div>
         </div>
-
+        <a style="margin-top: 6px;">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
+              notifications_active</mat-icon>
+            <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="!notifications?.length"><span>Nema notifikacija</span></button>
+            <button *ngFor="let item of notifications" mat-menu-item>
+              <span [matTooltip]="item.text">{{item.subject}}</span>
+            </button>
+          </mat-menu>
+        </a>
         <a [routerLink]="['/company/prijave-na-konkurs']" routerLinkActive="active">Prijave na konkurs</a>
         <a [routerLink]="['/company/internships_view/published']">Objavljene prakse</a>
         <a [routerLink]="['/company/internships_view/denied']">Odbijene prakse</a>

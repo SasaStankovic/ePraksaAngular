@@ -4,6 +4,7 @@ import { Praksa } from '../_tipovi/Praksa';
 import { Student } from '../_tipovi/Student';
 import { BehaviorSubject } from 'rxjs';
 import { InternshipStatus } from '../_tipovi/internshipStatus';
+import { InternshipType } from '../_tipovi/internship-type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PrakseService {
 
   private internshipSource = new BehaviorSubject(new Praksa());
   currentInternshipStatus = this.internshipSource.asObservable();
-  
+
 
   defaultHeaders: HttpHeaders = new HttpHeaders();
 
@@ -24,8 +25,8 @@ export class PrakseService {
     this.defaultHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
   }
 
-  getInternshipsByIdAndStatus(comapnyId:number,status:string){
-    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint+'?companyId='+comapnyId+'&status='+status.toUpperCase());
+  getInternshipsByIdAndStatus(comapnyId: number, status: string) {
+    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint + '?companyId=' + comapnyId + '&status=' + status.toUpperCase());
   }
 
   setInternship(data: Praksa) {
@@ -36,9 +37,12 @@ export class PrakseService {
     return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?status=PUBLISHED");
   }
 
-  getInternshipRequests(){
-    // /internships?status=PENDING&type=STRUCNA
-    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint+"?status=PENDING&type=STRUCNA");
+  getPrakseByStatusAndType(status: InternshipStatus, type: InternshipType) {
+    return this.httpPrakse.get<Praksa[]>("http://localhost:8080/internships?status=" + status + "&type=" + type);
+  }
+
+  getInternshipRequests() {
+    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint + "?status=PENDING&type=STRUCNA");
   }
 
 
@@ -46,12 +50,12 @@ export class PrakseService {
     return this.httpPrakse.post<any>("http://localhost:8080/internships", obj, {});
   }
 
-  accetpInternship(id: number,status=true) {
-    return this.httpPrakse.put(PrakseService.rootEndpint+'/'+id + "/accept/"+status, {});
+  accetpInternship(id: number, status = true, data: any = {}) {
+    return this.httpPrakse.put(PrakseService.rootEndpint + '/' + id + "/accept/" + status, data);
   }
 
-  getInternshipByMentorId(id: number,status:InternshipStatus) {
-    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint+"?mentorId=" + id+'&status='+status);
+  getInternshipByMentorId(id: number, status: InternshipStatus) {
+    return this.httpPrakse.get<Praksa[]>(PrakseService.rootEndpint + "?mentorId=" + id + '&status=' + status);
   }
 
   getInternshipById(id: number) {
@@ -71,11 +75,11 @@ export class PrakseService {
   }
 
   closeInternship(id: number) {
-    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/true", {});
+    return this.httpPrakse.put("http://localhost:8080/internships/" + id + "/finish", {});
   }
 
-  editInternship(id:number, data:Praksa){
-    return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/10",data);
+  editInternship(id: number, data: Praksa) {
+    return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/10", data);
   }
 
 }

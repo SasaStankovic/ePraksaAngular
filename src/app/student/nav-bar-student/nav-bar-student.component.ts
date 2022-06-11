@@ -8,8 +8,10 @@ import { AuthService } from 'src/app/_servisi/auth.service';
   styleUrls: ['./nav-bar-student.component.scss']
 })
 export class NavBarStudentComponent implements OnInit {
-
-  constructor(private authService:AuthService) { }
+  notifications!:any[];
+  constructor(private authService:AuthService) {
+    this.notifications = authService.userData.notifications;
+   }
 
   ngOnInit(): void {
   }

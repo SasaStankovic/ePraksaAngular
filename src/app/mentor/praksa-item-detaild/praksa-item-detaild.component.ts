@@ -12,28 +12,28 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
 export class PraksaItemDetaildComponent implements OnInit {
 
   internship!: Praksa;
-  students:any;
+  students: any;
   id = -1;
 
   constructor(public route: ActivatedRoute,
     public praksaService: PrakseService,
-    public router:Router,public snackBar:MatSnackBar) { }
+    public router: Router, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['internshipId'];
     console.log(this.id);
     this.praksaService.getInternshipById(this.id).subscribe(
       {
         next: data => {
-          console.log("Praksa>>",data);
+          console.log("Praksa>>", data);
           this.internship = data;
           console.log(data);
           this.praksaService.getStudentsOnInternship(this.id).subscribe(
             {
-              next:res=>{
-                console.log("studenti na praksi>>",res);
+              next: res => {
+                console.log("studenti na praksi>>", res);
                 this.students = res;
-              } 
+              }
             });
         },
         error: err => console.log(err),
@@ -41,26 +41,30 @@ export class PraksaItemDetaildComponent implements OnInit {
     );
   }
 
-  viewStudent(studentId:number){
-    this.router.navigate(['mentor/students/'+studentId]);
+  viewStudent(studentId: number) {
+    this.router.navigate(['mentor/students/' + studentId]);
   }
-  viewReport(studentId:number){
-    this.router.navigate(['mentor/internships/'+this.internship.internshipId+'/students/'+studentId+'/report']);
+  viewReport(studentId: number) {
+    this.router.navigate(['mentor/internships/' + this.internship.internshipId + '/students/' + studentId + '/report']);
   }
 
-  startInternship(){
+  viewWorkDiary(studentId: number) {
+    this.router.navigate(['/mentor', 'internships', this.internship.internshipId, 'students', studentId, 'work-diaries']);
+  }
+
+  startInternship() {
     this.praksaService.startInternship(this.internship.internshipId).subscribe({
-      next: res=>{
-        this.snackBar.open("Uspješno ste započeli praksu!","Ok");
+      next: res => {
+        this.snackBar.open("Uspješno ste započeli praksu!", "Ok");
       },
-      error: err=>console.log("GERSKA>>",err),
+      error: err => console.log("GERSKA>>", err),
     });
   }
 
-  closeInternship(){
+  closeInternship() {
     this.praksaService.closeInternship(this.internship.internshipId).subscribe({
-      next: res=>{this.snackBar.open("Uspješno ste završili praksu!","Ok"); this.router.navigate(['/mentor'])},
-      error: err=>{console.log("gerska>>",err)},
+      next: res => { this.snackBar.open("Uspješno ste završili praksu!", "Ok"); this.router.navigate(['/mentor']) },
+      error: err => { console.log("gerska>>", err) },
     });
   }
 

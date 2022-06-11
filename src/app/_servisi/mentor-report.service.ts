@@ -8,26 +8,26 @@ import { MentorReport } from '../_tipovi/mentor-report';
 })
 export class MentorReportService {
 
-  constructor(public http:HttpClient) { }
+  constructor(public http: HttpClient) { }
 
-  public getMentorReport(internshipId:number,studentId:number){
-    return this.http.get<MentorReport>("http://localhost:8080/internships/"+internshipId+"/"+studentId+"/report");
+  public getMentorReport(internshipId: number, studentId: number) {
+    return this.http.get<MentorReport>("http://localhost:8080/reportbymentor/" + internshipId + "/" + studentId);
   }
 
-  public postMentorReport(internshipId:number,studentId:number,data:any){
-    return this.http.put<MentorReport>("http://localhost:8080/internships/"+internshipId+"/"+studentId+"/report",data);
+  public postMentorReport(internshipId: number, studentId: number, data: any) {
+    return this.http.put<MentorReport>("http://localhost:8080/reportbymentor/" + internshipId + "/" + studentId, data);
   }
 
-  public getQuestions(){
-    return this.http.get<any>("http://localhost:8080/internships/questions");
+  public getQuestions() {
+    return this.http.get<any>("http://localhost:8080/reportbymentor/questions");
   }
 
-  public getOneMentor(id:number){
-    return this.http.get<Mentor>("http://localhost:8080/mentors/"+id);
+  public getOneMentor(id: number) {
+    return this.http.get<Mentor>("http://localhost:8080/mentors/" + id);
   }
 
-  public gerMentorReportByStydentId(studentId:number){
-    return this.http.get<MentorReport>("http://localhost:8080/internships/"+studentId+"/latestReport");
+  public gerMentorReportByStydentId(studentId: number) {
+    return this.http.get<MentorReport>("http://localhost:8080/reportbymentor/" + studentId + "/latestReport");
   }
 
 }

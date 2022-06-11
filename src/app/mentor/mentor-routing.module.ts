@@ -11,25 +11,25 @@ import { MenotrReportComponent } from '../shared/menotr-report/menotr-report.com
 const routes: Routes = [
   {
     path: '', component: MentorWrapperComponent,
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '', redirectTo: 'internships', pathMatch: 'full'
       },
       {
-        path:'internships', component:PraksaItemComponent,
+        path: 'internships', component: PraksaItemComponent,
       },
       {
-        path: 'internships/:id/details', component:PraksaItemDetaildComponent ,
+        path: 'internships/:internshipId/details', component: PraksaItemDetaildComponent,
       },
       {
         path: 'students/:id', component: SutdentProfilComponent,
       },
       {
-        path: 'work-diaries/:id', component:DnevnikRadaComponent
+        path: 'internships/:internshipId/students/:studentId/work-diaries', component: DnevnikRadaComponent
       },
       {
-        path: 'internships/:internshipId/students/:studentId/report', component:MenotrReportComponent
+        path: 'internships/:internshipId/students/:studentId/report', component: MenotrReportComponent
       }
     ]
   },

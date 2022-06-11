@@ -5,6 +5,8 @@ import { Unsubscribable } from 'rxjs';
 import { Praksa } from 'src/app/_tipovi/Praksa';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { PrakseService } from 'src/app/_servisi/prakse.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-detaljan-pregled-prakse',
@@ -20,19 +22,22 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
   praksa!: Praksa;
   unsub!: Unsubscribable;
 
+  form = this.fb.group({
+    comment:[null,Validators.required],
+  })
+
   constructor(
     private prakseServis: PrakseService,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private prakseService: PrakseService,) {
-
-
-
+    private prakseService: PrakseService,
+    public fb:FormBuilder,
+    public dialig:MatDialog,  
+  ) {
     prakseService.currentInternshipStatus.subscribe(res => {
       this.praksa = res;
-      console.log("AAAAAAAAAAAA", this.praksa)
     }
     )
   }
@@ -59,18 +64,15 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
     })
   }
 
-  closePopUp() {
-    this.router.navigate([this.authService.userData.role])
-  }
+  // closePo() {
+  //   this.router.navigate([this.authService.userData.role])
+  // }
 
   approveInternship() {
     this.prakseServis.accetpInternship(this.praksa.internshipId).subscribe({
       next: data => {
         this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
-
         this.router.navigate([this.authService.userData.role]);
-        // this.router.navigate(['student/internships'], { replaceUrl: true });
-        // window.location.reload();
       },
       error: err => console.log(err)
     });
@@ -102,9 +104,19 @@ export class DetaljanPregledPrakseComponent implements OnInit, OnDestroy {
   }
 
   denideInternship(){
-    this.prakseService.accetpInternship(this.praksa.internshipId,false).subscribe({
-      next: ()=>{this.snackBar.open("Praksa je odbijena", "Ok"); this.router.navigate(['/student/internships']);},
-      error:err=>{this.snackBar.open("Doslo je do greske", "Ok"); console.log(err); this.router.navigate(['/student/internships']);}
+    this.prakseService.accetpInternship(this.praksa.internshipId,false,this.form.value).subscribe({
+      next: ()=>{this.snackBar.open("Praksa je odbijena", "Ok"); this.router.navigate(['/commission_member/internships']);},
+      error:err=>{this.snackBar.open("Doslo je do greske", "Ok"); console.log(err); this.router.navigate(['/commission_member/internships']);}
+    })
+  }
+
+  openDialog(dialogRef:any){
+    let dialog = this.dialig.open(dialogRef,{
+      height: 'auto',
+      width: '500px',
+    });
+    dialog.afterClosed().subscribe((result:any)=>{
+      this.denideInternship();
     })
   }
 

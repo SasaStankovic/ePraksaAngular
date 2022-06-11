@@ -11,7 +11,7 @@
       <mat-vertical-stepper linear="true">
         <mat-step label="Naziv prakse" [stepControl]="firstFormGroup">
           <div>
-            <h1>Prvi korak naslov</h1>
+            <!-- <h1>Naziv prakse</h1> -->
           </div>
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Naziv prakse</ng-template>
@@ -187,10 +187,30 @@
               <h3>Period trajanja prakse:</h3>
               <div class="col">
                 <mat-form-field appearance="fill" class="example-form-field">
+                  <mat-label>Rok prijave na konkurs</mat-label>
+                  <input matInput [matDatepicker]="datepicker" formControlName="rok"
+                    [max]="this.fifthForm.controls['periodOd'].value" [min]="today">
+                  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                      <button mat-button matDatepickerCancel>Cancel</button>
+                      <button mat-raised-button color="green" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                  </mat-datepicker>
+                </mat-form-field>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="fill" class="example-form-field">
                   <mat-label>Period trajanja prakse</mat-label>
-                  <mat-date-range-input [rangePicker]="rangePicker" required [min]="today">
-                    <input matStartDate placeholder="Start date" formControlName="periodOd" >
-                    <input matEndDate placeholder="End date" formControlName="periodDo">
+                  <mat-date-range-input [rangePicker]="rangePicker" required [min]="fifthForm.value.rok">
+                    <input [disabled]="!fifthForm.value.rok" matStartDate placeholder="Start date"
+                      formControlName="periodOd">
+                    <input [disabled]="!fifthForm.value.rok" matEndDate placeholder="End date"
+                      formControlName="periodDo">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
                   <mat-date-range-picker #rangePicker>
@@ -199,22 +219,6 @@
                       <button mat-raised-button color="green" matDateRangePickerApply>Primjeni</button>
                     </mat-date-range-picker-actions>
                   </mat-date-range-picker>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <mat-form-field appearance="fill" class="example-form-field">
-                  <mat-label>Rok prijave na konkurs</mat-label>
-                  <input matInput [matDatepicker]="datepicker" formControlName="rok" [max]="this.fifthForm.controls['periodOd'].value" [min]="today">
-                  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                  <mat-datepicker #datepicker>
-                    <mat-datepicker-actions>
-                      <button mat-button matDatepickerCancel>Cancel</button>
-                      <button mat-raised-button color="green" matDatepickerApply>Apply</button>
-                    </mat-datepicker-actions>
-                  </mat-datepicker>
                 </mat-form-field>
               </div>
             </div>
@@ -236,7 +240,8 @@
               </ng-template>
 
               <ng-template #ljetnaInfo>
-                <div *ngIf="this.secondFormGroup.controls['vrstaPrakse'].value == 'STRUCNA'" style="margin:10px;"> Prije objavljivanja oglas ce biti pregledan od strane strucne komisije!</div>
+                <div *ngIf="this.secondFormGroup.controls['vrstaPrakse'].value == 'STRUCNA'" style="margin:10px;"> Prije
+                  objavljivanja oglas ce biti pregledan od strane strucne komisije!</div>
               </ng-template>
               <button class="btnNazad" mat-raised-button (click)="cancel()">Otkazi</button>
               <button class="daljeBtn" mat-raised-button (click)="submitData()">Objavi</button>

@@ -6,13 +6,14 @@ import { AuthService } from 'src/app/_servisi/auth.service';
   templateUrl: './nav-bar-mentor.component.html',
   styleUrls: ['./nav-bar-mentor.component.scss']
 })
-export class NavBarMentorComponent implements OnInit {
-  
+export class NavBarMentorComponent {
 
-  constructor(private authService:AuthService) { }
+  notifications!:any[];
 
-  ngOnInit(): void {
+  constructor(private authService:AuthService) { 
+    this.notifications = authService.userData.notifications;
   }
+
 
   public profilDropdown() {
 

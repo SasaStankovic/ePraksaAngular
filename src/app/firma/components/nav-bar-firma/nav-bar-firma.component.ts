@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_servisi/auth.service';
 
 @Component({
@@ -7,12 +6,14 @@ import { AuthService } from 'src/app/_servisi/auth.service';
   templateUrl: './nav-bar-firma.component.html',
   styleUrls: ['./nav-bar-firma.component.scss']
 })
-export class NavBarFirmaComponent implements OnInit {
+export class NavBarFirmaComponent {
 
-  constructor(private authService:AuthService) { }
+  notifications!:any[];
 
-  ngOnInit(): void {
+  constructor(private authService:AuthService) { 
+    this.notifications = authService.userData.notifications;
   }
+
 
   public profilDropdown() {
 

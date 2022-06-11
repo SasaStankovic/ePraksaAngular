@@ -2,9 +2,10 @@
   <div class="parent">
     <a [routerLink]="['/commission_member/'+student.id+'/profile']"
       routerLinkActive="router-link-active">{{student.firstName}} {{student.lastName}}</a>
-    <button [routerLink]="['/commission_member/students/'+student.id+'/work-diary']" class="dnevnikRada">Dnevnik
+    <button [routerLink]="['/commission_member/internships/'+internshipId+'/students/'+student.id+'/work-diary']"
+      class="dnevnikRada">Dnevnik
       rada</button>
-    <button [routerLink]="['/commission_member','students',student.id,'mentor-report']"
+    <button [routerLink]="['/commission_member','internships',internshipId,'students',student.id,'mentor-report']"
       class="izvejstajMentora">Izvještaj mentora</button>
   </div>
 </div>

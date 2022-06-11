@@ -1,97 +1,101 @@
-<div class="container">
-  <div class="row">
-    <div class="col header1">
-      <label>Dnevnik rada</label>
-      <hr>
+<ng-container *ngIf="hasWD">
+  <div class="container">
+    <div class="row">
+      <div class="col header1">
+        <label>Dnevnik rada</label>
+        <hr>
+      </div>
     </div>
-  </div>
-  <div class="row align-items-center ">
-    <div class="col-3">
-      <label style="font-weight:600;">Student:</label>
-      <label>{{studentName}}</label>
-    </div>
-    <div class="col-3 header2 d-flex justify-content-center">
-      <label style="font-weight:600;">Broj unosa:</label>
-      <label id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
-    </div>
-    <div class="col-3 header2 d-flex justify-content-center">
-      <label style="font-weight:600;">Broj odradjenih sati:</label>
-      <label>{{workedHours}}</label>
-    </div>
-    <div *ngIf="auth.isMentor()" class="col-3 header2 d-flex justify-content-end gap-3">
-      <button mat-button class="btnObrisi" (click)="deniedWorkDiary()">Odbij</button>
-      <button mat-button class="btnSacuvaj" (click)="approveWorkDiary()">Odobri</button>
-    </div>
-    <!-- <div class="col d-flex justify-content-center">
-      <button *ngIf="auth.isStudent()" (click)="addNewReport()" class="btnDodaj">Dodaj izvještaj</button>
-    </div> -->
-  </div>
+    <div class="row align-items-center ">
+      <div class="col-2 header2 d-flex justify-content-center">
+        <label style="font-weight:600;">{{internshipName}}</label>
+      </div>
+      <div class="col-2">
+        <label style="font-weight:600;">Student:</label>
+        <label>{{studentName}}</label>
+      </div>
+      <div class="col-2 header3 d-flex justify-content-center">
+        <label style="font-weight:600;">Broj unosa:</label>
+        <label id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
+      </div>
+      <div class="col-2 header3 d-flex justify-content-center">
+        <label style="font-weight:600;">Broj odradjenih sati:</label>
+        <label>{{workedHours}}</label>
+      </div>
 
-  <form [formGroup]="form">
-    <div formArrayName="dnevnikRada">
-      <ng-container *ngFor="let item of dnevnikRada.controls; let i = index;" [formGroupName]="i">
-        <div class="form" [ngClass]="!getEntryForm(i).disabled ? 'form' : 'disabled-form'">
-          <div class="row">
-            <div class="col">
-              <div class="row d-flex align-items-center">
-                <div class="col">Dan:
-                  <input type="number" style="width: 50px;" formControlName="day">
+      <div *ngIf="auth.isMentor()" class="col-3 header2 d-flex justify-content-end gap-3">
+        <button mat-button class="btnObrisi" (click)="deniedWorkDiary()">Odbij</button>
+        <button mat-button class="btnSacuvaj" (click)="approveWorkDiary()">Odobri</button>
+      </div>
+
+    </div>
+
+    <form [formGroup]="form">
+      <div formArrayName="dnevnikRada">
+        <ng-container *ngFor="let item of dnevnikRada.controls; let i = index;" [formGroupName]="i">
+          <div class="form" [ngClass]="!getEntryForm(i).disabled ? 'form' : 'disabled-form'">
+            <div class="row">
+              <div class="col">
+                <div class="row d-flex align-items-center">
+                  <div class="col">Dan:
+                    <input type="number" style="width: 50px;" formControlName="day">
+                  </div>
+                  <div class="col">
+                    <label for="od">Pocetak rada:</label>
+                    <select formControlName="fromTime">
+                      <option *ngFor="let item of hours" [value]="item">{{item}}</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <label for="do">Kraj rada:</label>
+                    <select name="do" id="do" formControlName="toTime">
+                      <option *ngFor="let item of hours" [value]="item">{{item}}</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="col">
-                  <label for="od">Pocetak rada:</label>
-                  <select formControlName="fromTime">
-                    <option *ngFor="let item of hours" [value]="item">{{item}}</option>
-                  </select>
-                </div>
-                <div class="col">
-                  <label for="do">Kraj rada:</label>
-                  <select name="do" id="do" formControlName="toTime">
-                    <option *ngFor="let item of hours" [value]="item">{{item}}</option>
-                  </select>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-12">
-                  <textarea class="izvjestaj" rows="4"
-                    placeholder="Ovde unesite dnevne zadatke, misljenja, prednosti, mane i probleme..."
-                    formControlName="text">
+                <hr>
+                <div class="row">
+                  <div class="col-12">
+                    <textarea class="izvjestaj" rows="4"
+                      placeholder="Ovde unesite dnevne zadatke, misljenja, prednosti, mane i probleme..."
+                      formControlName="text">
                 </textarea>
+                  </div>
                 </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col d-flex justify-content-center">
-                  <span *ngIf="getEntryForm(i).invalid && getEntryForm(i).touched" class="danger-text">Popunite sva
-                    polja!</span>
+                <hr>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <span *ngIf="getEntryForm(i).invalid && getEntryForm(i).touched" class="danger-text">Popunite sva
+                      polja!</span>
+                  </div>
                 </div>
-              </div>
-              <div class="row d-flex align-items-center">
-                <div class="col">
-                  <label> Datum unosa izvjestaja: </label>
-                  <label>{{getEntryForm(i).value.createdAt | date: "dd.MM.yyyy"}}</label>
-                </div>
-                <div class="col">
-                  <label>Datum poslednje izmjene:</label>
-                  <label>{{getEntryForm(i).value?.lastModifiedDate | date: "dd.MM.yyyy"}}</label>
-                </div>
-                <div *ngIf="auth.isStudent()" class="col-md buttons">
-                  <!-- (click)="uredi(i) -->
-                  <button class="btnUredi" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value"
-                    [disabled]="getEntryForm(i).value?.edit" (click)="setEditable(i,true)">Uredi
-                  </button>
-                  <!-- save(i); -->
-                  <button class="btnSacuvaj" [disabled]="getEntryForm(i).value?.save"
-                    (click)="setEditable(i,false);submitWorkDiaryId(i);">Sacuvaj</button>
-
-                  <!-- <button class="btnObrisi" [disabled]="false" (click)="print(i)">
-                    Izbrisi</button> -->
+                <div class="row d-flex align-items-center">
+                  <div class="col">
+                    <label> Datum unosa izvjestaja: </label>
+                    <label>{{getEntryForm(i).value.createdAt | date: "dd.MM.yyyy"}}</label>
+                  </div>
+                  <div class="col">
+                    <label>Datum poslednje izmjene:</label>
+                    <label>{{getEntryForm(i).value?.lastModifiedDate | date: "dd.MM.yyyy"}}</label>
+                  </div>
+                  <div *ngIf="auth.isStudent()" class="col-md buttons">
+                    <!-- (click)="uredi(i) -->
+                    <button class="btnUredi" [disabled]="$any(dnevnikRada.controls[i]).controls['edit'].value"
+                      [disabled]="getEntryForm(i).value?.edit" (click)="setEditable(i,true)">Uredi
+                    </button>
+                    <!-- save(i); -->
+                    <button class="btnSacuvaj" [disabled]="getEntryForm(i).value?.save"
+                      (click)="setEditable(i,false);submitWorkDiaryId(i);">Sacuvaj</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </ng-container>
-    </div>
-  </form>
-</div>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<ng-container *ngIf="!hasWD">
+  <h3>Trenutno nema praksi za koje vam je potreban Dnevnik rada</h3>
+</ng-container>

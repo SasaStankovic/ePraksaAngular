@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { KomisijaService } from 'src/app/_servisi/komisija.service';
+import { NotificationsService } from 'src/app/_servisi/notifications.service';
 
 @Component({
   selector: 'app-nav-bar-komisija',
@@ -10,9 +11,16 @@ import { KomisijaService } from 'src/app/_servisi/komisija.service';
 })
 export class NavBarKomisijaComponent implements OnInit {
 
-  constructor(private router: Router, private authService:AuthService) { }
+  notifications!:any[];
+
+  constructor(private router: Router,
+    private authService:AuthService,
+  ) { 
+    this.notifications = authService.userData.notifications;
+  }
 
   ngOnInit(): void {
+
   }
 
   public profilDropdown() {

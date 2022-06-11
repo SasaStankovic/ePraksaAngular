@@ -11,7 +11,7 @@ export class FirmaService {
   constructor(private http:HttpClient) { }
 
   getMentors(id:number){
-    return this.http.get<Mentor[]>("http://localhost:8080/mentors/"+id+"/");
+    return this.http.get<Mentor[]>("http://localhost:8080/mentors/company/"+id);
   }
   
 }

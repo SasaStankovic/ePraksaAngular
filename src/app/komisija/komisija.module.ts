@@ -8,8 +8,8 @@ import { PregledPraktikanataComponent } from './components/pregled-praktikanata/
 import { PregledStudentaComponent } from './components/pregled-studenta/pregled-studenta.component';
 import { ZahtjeviZaPrakseComponent } from './components/zahtjevi-za-prakse/zahtjevi-za-prakse.component';
 import { SharedModule } from '../shared/shared.module';
-
-
+import { MatTableModule } from '@angular/material/table';
+import { InternshipsComponent } from './components/internships/internships.component';
 @NgModule({
   declarations: [
     KomisijaWrapperComponent,
@@ -17,12 +17,14 @@ import { SharedModule } from '../shared/shared.module';
     PregledStudentaComponent,
     PregledPraktikanataComponent,
     ZahtjeviZaPrakseComponent,
-    NavBarKomisijaComponent
+    NavBarKomisijaComponent,
+    InternshipsComponent
   ],
   imports: [
     CommonModule,
     KomisijaRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ]
 })
 export class KomisijaModule { }

@@ -3,8 +3,8 @@
     <div class="col-sm-12">
       <div class="topdiv">
         <label for="" class="lblProfil">Profil</label>
-        <hr>
       </div>
+      <hr>
     </div>
   </div>
 
@@ -51,18 +51,18 @@
             </div>
 
             <div class="">
-              <label  class="lblNested">Adresa stanovanja:</label>
-              <label >{{student?.address?.city}}, {{student?.address?.street}}, {{student?.address?.number}}</label>
+              <label class="lblNested">Adresa stanovanja:</label>
+              <label>{{student?.address?.city}}, {{student?.address?.street}}, {{student?.address?.number}}</label>
 
             </div>
 
             <div class="col">
-              <label  class="lblNested">Email:</label>
+              <label class="lblNested">Email:</label>
               <label *ngFor="let item of student?.emails">{{item.mail}}</label>
 
             </div>
             <div class="col">
-              <label  class="lblNested">Telefon:</label>
+              <label class="lblNested">Telefon:</label>
               <label *ngFor="let item of student?.numbers">{{item.number}}</label>
             </div>
           </div>
@@ -181,7 +181,7 @@
         <div class="kontent">
           <label for="" class="lbl">Hobiji</label>
           <div class="div">
-            <label *ngFor="let item of student?.cv?.hobbies" >-{{item}}</label>
+            <label *ngFor="let item of student?.cv?.hobbies">-{{item}}</label>
           </div>
         </div>
       </div>

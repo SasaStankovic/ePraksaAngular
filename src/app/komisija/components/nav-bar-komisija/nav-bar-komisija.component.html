@@ -1,28 +1,40 @@
 <div class="container">
-    <div id="navbar-custom" class="sticky12">
-      <!---- NAV MENI ------------------------------------------------>
-      <div class="topnav" id="myTopnav">
-        <div class="container">
-          <div class="logo-klasa">
-            <a class="active"><img src="../../../assets//resources/ePraksaLogo602x197.PNG" alt="logoAlt"></a>
-          </div>
-          <div class="dropdown-klasa">
-            <button class="dropbtn" id="dropbtn-ID" (click)="profilDropdown()">Profil
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content-klasa" id="dropdown-content-klasa-ID">
-              <a >Prikaži profil</a>
-              <a >Uredi profil</a>
-              <a routerLink="['']" (click)="logOut()">Odjavi se</a>
-            </div>
-           
-          </div>
-          <a [routerLink]="['/commission_member/internships']" routerLinkActive="active" >Zahtjevi za prakse</a>
-          <a [routerLink]="['/commission_member/students']" routerLinkActive="active" >Spisak praktikanata</a>
-          <a style="font-size:15px;" class="icon" (click)="myFunction()"><img></a>
-          <!-- tri crtice -->
+  <div id="navbar-custom" class="sticky12">
+    <!---- NAV MENI ------------------------------------------------>
+    <div class="topnav" id="myTopnav">
+      <div class="container">
+        <div class="logo-klasa">
+          <a class="active"><img src="../../../assets//resources/ePraksaLogo602x197.PNG" alt="logoAlt"></a>
         </div>
+        <div class="dropdown-klasa">
+          <button class="dropbtn" id="dropbtn-ID" (click)="profilDropdown()">Profil
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content-klasa" id="dropdown-content-klasa-ID">
+            <a>Prikaži profil</a>
+            <a>Uredi profil</a>
+            <a routerLink="['']" (click)="logOut()">Odjavi se</a>
+          </div>
+
+        </div>
+        <a style="margin-top: 6px;">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
+              notifications_active</mat-icon>
+            <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="!notifications?.length"><span>Nema notifikacija</span></button>
+            <button *ngFor="let item of notifications" mat-menu-item>
+              <span [matTooltip]="item.text">{{item.subject}}</span>
+            </button>
+          </mat-menu>
+        </a>
+        <a [routerLink]="['/commission_member/internships']" routerLinkActive="active">Zahtjevi za prakse</a>
+        <a [routerLink]="['/commission_member/internships_view']" routerLinkActive="active">Spisak praktikanata</a>
+        <a style="font-size:15px;" class="icon" (click)="myFunction()"><img></a>
+        <!-- tri crtice -->
       </div>
     </div>
   </div>
-  
+</div>
