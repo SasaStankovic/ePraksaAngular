@@ -86,13 +86,13 @@
 <div class="container btns">
   <div class="row">
     <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
-      <button mat-raised-button (click)="openDialog(templ)">Otkazi praksu</button>
+      <button mat-raised-button color="warn" (click)="openDialog(templ)">Otkazi praksu</button>
     </div>
-    <div *ngIf="isCommission" color="red" class="col-3 d-flex justify-content-end">
+    <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
       <button mat-raised-button color="green" (click)="approveInternship()">Odobri praksu</button>
     </div>
     <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
-      <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
+      <button mat-raised-button color="green" (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
     </div>
     <div *ngIf="isCompany" class="col-3 d-flex justify-content-start">
       <button mat-raised-button (click)="redirectToEdit(praksa.internshipId)">Uredi</button>
