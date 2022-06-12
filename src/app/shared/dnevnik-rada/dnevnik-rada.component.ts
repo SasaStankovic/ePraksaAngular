@@ -81,7 +81,7 @@ export class DnevnikRadaComponent implements OnInit {
     this.workedHours = res?.workedHours;
     this.workDiaryId = res?.workDiaryId;
     this.internshipName = res?.internshipName;
-    res?.workDairyEntries.forEach((e: any, i: number) => {
+    res?.workDiaryEntries?.forEach((e: any, i: number) => {
       this.addNewReport(e);
       this.getEntryForm(i + 1).disable();
     });

@@ -16,7 +16,8 @@
       </div>
       <div class="col-2 header3 d-flex justify-content-center">
         <label style="font-weight:600;">Broj unosa:</label>
-        <label id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
+        <label *ngIf="auth.isStudent(); else bla" id="brojUnosa">{{this.dnevnikRada.length-1}}</label>
+        <ng-template #bla> <label #bla>{{this.dnevnikRada.length}}</label></ng-template>
       </div>
       <div class="col-2 header3 d-flex justify-content-center">
         <label style="font-weight:600;">Broj odradjenih sati:</label>
@@ -38,7 +39,7 @@
               <div class="col">
                 <div class="row d-flex align-items-center">
                   <div class="col">Dan:
-                    <input type="number" style="width: 50px;" formControlName="day">
+                    <input type="number" style="width: 50px;" formControlName="day" min="1">
                   </div>
                   <div class="col">
                     <label for="od">Pocetak rada:</label>

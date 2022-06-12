@@ -57,7 +57,7 @@ export class PraksaItemDetaildComponent implements OnInit {
       next: res => {
         this.snackBar.open("Uspješno ste započeli praksu!", "Ok");
       },
-      error: err => console.log("GERSKA>>", err),
+      error: err => this.snackBar.open(err.error, "Ok")
     });
   }
 
