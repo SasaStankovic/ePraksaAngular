@@ -11,7 +11,7 @@ export class StudentGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!(this.auth.isCompany())) {
+    if (!(this.auth.isStudent())) {
       this.router.navigateByUrl(this.auth.getRole());
       return false;
     }
