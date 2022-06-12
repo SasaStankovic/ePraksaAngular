@@ -15,7 +15,7 @@ import { ZahtjeviZaPrakseComponent } from './components/zahtjevi-za-prakse/zahtj
 const routes: Routes = [
   {
     path: '', component: KomisijaWrapperComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, KomisijaGuard],
     children: [
       {
         path: '', redirectTo: 'internships', pathMatch: 'full',

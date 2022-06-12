@@ -6,12 +6,14 @@ import { AuthService } from '../_servisi/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentGuard implements CanActivate {
+export class MentorGuard implements CanActivate {
+
   constructor(private router: Router, private auth: AuthService) { }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!(this.auth.isCompany())) {
+    if (!(this.auth.isMentor())) {
       this.router.navigateByUrl(this.auth.getRole());
       return false;
     }

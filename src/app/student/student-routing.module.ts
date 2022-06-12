@@ -14,11 +14,10 @@ import { SutdentProfilComponent } from './sutdent-profil/sutdent-profil.componen
 export const routes: Routes = [
   {
     path: '', component: StudentComponent,
-    // canActivate:[AuthGuard, StudentGuard],
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, StudentGuard],
     children: [
       {
-        path:'', redirectTo: 'internships', pathMatch: 'full'
+        path: '', redirectTo: 'internships', pathMatch: 'full',
       },
       {
         path: 'internships', component: PocetnaStranaComponent,
@@ -28,14 +27,14 @@ export const routes: Routes = [
         component: DetaljanPregledPrakseComponent,
       },
       {
-        path:'internships/:id/application',component: ApplicationComponent
+        path: 'internships/:id/application', component: ApplicationComponent
       },
       {
         path: 'profil', component: SutdentProfilComponent
       },
       {
         path: 'dnevnik-rada', component: DnevnikRadaComponent
-      }, 
+      },
       {
         path: 'mentor-report', component: MenotrReportComponent
       },

@@ -7,11 +7,12 @@ import { AuthGuard } from '../_guards/auth.guard';
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
 import { MenotrReportComponent } from '../shared/menotr-report/menotr-report.component';
+import { MentorGuard } from '../_guards/mentor.guard';
 
 const routes: Routes = [
   {
     path: '', component: MentorWrapperComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MentorGuard],
     children: [
       {
         path: '', redirectTo: 'internships', pathMatch: 'full'
