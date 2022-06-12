@@ -1,4 +1,5 @@
 import { Company } from "./company";
+import { InternshipType } from "./internship-type";
 import { InternshipStatus } from "./internshipStatus";
 import { Mentor } from "./mentor";
 
@@ -13,7 +14,7 @@ export class Praksa {
     details!: string;
     endDate!: string | undefined;
     internshipField!: string;
-    internshipType!: string;//TODO zamjeniti sa enum tipomn
+    internshipType!: InternshipType;
     link!: string;
     mentorId!: number;
     requiredCV!: boolean;
@@ -25,7 +26,5 @@ export class Praksa {
     years!: number[];
     company!: Company;
     mentor!: Mentor;
-    isPublished!: boolean;
-    isAccepted!: boolean;
     status!: InternshipStatus;
 }

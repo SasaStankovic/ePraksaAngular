@@ -1,120 +1,103 @@
-<div #details class="container">
-  <!-- <form class="popUp-content-klasa animate-popUp" method="get"> -->
-  <!-- <div class="naslov-iznad-hr">
-      <div class="row align-items-center">
-        <div class="col">
-          <label for="">{{praksa?.company?.name}}</label>
-        </div>
-        <div class="col al">
-          <button type="reset" class="otkaziBtn" (click)="closePopUp()"></button>
-        </div>
-      </div>
-      <hr>
-    </div> -->
-  <!------------------------------------------>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Vrsta Prakse:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.internshipType}}</p>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Godina fakulteta:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.years}}</p>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Period trajanja prakse:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.startDate}} - {{praksa?.endDate}}</p>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Ukupan broj radnih sati:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.workHours}}</p>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Oblast rada prakse:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.internshipField}}</p>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Smjer:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.courses}}</p>
-    </div>
-  </div>
-  <div class="naslov-pasusa">
-    <p>Plan rada prakse i planirane aktivnosti:</p>
-  </div>
-  <div class="pasus">
-    <p>{{praksa?.schedule}}</p>
-  </div>
-  <div class="naslov-pasusa">
-    <p>Detalji:</p>
-  </div>
-  <div class="pasus">
-    <p>{{praksa?.details}}</p>
-  </div>
-  <div *ngIf="praksa?.requiredCV || praksa?.requiredLetter" class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Potrebni dokumenti za apliciranje:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <label style="padding-right:10px;" *ngIf="praksa?.requiredCV">Biografija</label>
-      <label *ngIf="praksa?.requiredLetter">Motivaciono pismo</label>
-    </div>
-  </div>
-  <div class="sadrzaj">
-    <div class="stavke-prakse">
-      <p>Link do prakse:</p>
-    </div>
-    <div class="sadrzaj vrijednost-stavke">
-      <a [attr.href]="praksa?.link" target="_blank">link</a>
-    </div>
-  </div>
-  <div class="sadrzaj stavke-prakse">
-    <div class="">
-      <p>Rok za prijavu:</p>
-    </div>
-    <div class="vrijednost-stavke">
-      <p>{{praksa?.submissionDue}}</p>
-    </div>
-  </div>
-  <!------------------------------------------>
-  <!-- <div class="center"> -->
-
+<div class="container parent">
   <div class="row">
-    <div *ngIf="isCommission" class="col-3 d-flex justify-content-end">
-      <button class="potvrdiBtn" (click)="approveInternship()">Odobri praksu</button>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="title"> Komapnija: </label>
+        <label class="content">{{praksa?.company?.name}}</label>
+      </div>
+      <div class="col">
+        <label class="title"> Praksa: </label>
+        <label class="content">{{praksa?.title}}</label>
+      </div>
     </div>
+    <div class="row  mb-3">
+      <div class="col">
+        <label class="title"> Vrsta prakse: </label>
+        <label class="content">{{praksa?.internshipType}}</label>
+      </div>
+      <div class="col">
+        <label class="title"> Vrijeme trajanje prakse: </label>
+        <label class="content"><span *ngIf="praksa?.workHours">{{praksa?.workHours}}</span><span
+            *ngIf="!praksa?.workHours">-</span> h</label>
+      </div>
+    </div>
+    <div class="row  mb-3">
+      <div class="col">
+        <label class="title"> Godina fakulteta: </label>
+        <label class="content">{{praksa?.years}}</label>
+      </div>
+      <div class="col">
+        <label class="title"> Smjerov: </label>
+        <label class="content">{{praksa?.courses}}</label>
+      </div>
+    </div>
+    <div class="row  mb-3">
+      <div class="col">
+        <label class="title"> Rok za prijavu: </label>
+        <label class="content">{{praksa?.submissionDue | date: 'dd.MM.yyyy'}}</label>
+      </div>
+      <div class="col">
+        <label class="title"> Datum trajanja: </label>
+        <label class="content">{{praksa?.startDate | date: 'dd.MM.yyyy'}} - {{praksa?.endDate | date:
+          'dd.MM.yyyy'}}</label>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="title"> Link do prakse: </label>
+        <a [attr.href]="praksa?.link" target="_blank">
+          <span *ngIf="praksa?.link">{{praksa?.link}}</span>
+          <span *ngIf="!praksa?.link">-</span>
+        </a>
+      </div>
+      <div class="col">
+        <label class="title"> Mjesto: </label>
+        <label class="content">{{praksa?.city}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="title underline"> Tekst o praksi: </label>
+        <p>{{praksa?.description}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="title underline"> Detalji o praksi: </label>
+        <p>{{praksa?.details}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="title underline"> Oblast rada prakse: </label>
+        <p>{{praksa?.internshipField}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="title underline"> Program rada prakse: </label>
+        <p>{{praksa?.schedule}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container btns">
+  <div class="row">
     <div *ngIf="isCommission" class="col-3 d-flex justify-content-start">
-      <button class="OtkaziPraksuBtn" (click)="openDialog(templ)">Otkazi praksu</button>
+      <button mat-raised-button (click)="openDialog(templ)">Otkazi praksu</button>
+    </div>
+    <div *ngIf="isCommission" color="red" class="col-3 d-flex justify-content-end">
+      <button mat-raised-button color="green" (click)="approveInternship()">Odobri praksu</button>
     </div>
     <div *ngIf="isStudent" class="col-3 d-flex justify-content-center">
       <button (click)="apliciraj()" class="potvrdiBtn">Apliciraj</button>
     </div>
     <div *ngIf="isCompany" class="col-3 d-flex justify-content-start">
-      <button class="OtkaziPraksuBtn" (click)="redirectToEdit(praksa.internshipId)">Uredi</button>
+      <button mat-raised-button (click)="redirectToEdit(praksa.internshipId)">Uredi</button>
     </div>
   </div>
-  <!-- </div> -->
 </div>
 
 <ng-template #templ>
