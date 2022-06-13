@@ -79,7 +79,7 @@ export class PrakseService {
   }
 
   editInternship(id: number, data: Praksa) {
-    return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/10", data);
+    return this.httpPrakse.put<Praksa>("http://localhost:8080/internships/" + id, data);
   }
 
 }
