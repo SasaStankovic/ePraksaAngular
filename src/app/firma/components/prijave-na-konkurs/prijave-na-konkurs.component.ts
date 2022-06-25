@@ -19,8 +19,6 @@ import { PrakseService } from 'src/app/_servisi/prakse.service';
   styleUrls: ['./prijave-na-konkurs.component.scss']
 })
 export class PrijaveNaKonkursComponent implements OnInit {
-
-
   student!: Student;
 
   isVisible!: boolean;
@@ -65,8 +63,8 @@ export class PrijaveNaKonkursComponent implements OnInit {
   }
 
   getAplikacije() {
-    this.appService.getApplicationsByCompanyId(this.form.value.internshipId,this.form.value.status).subscribe(
-      res => { console.log("aplikacije na praksu", res); this.applications = res; },
+    this.appService.getApplicationsByCompanyId(this.form.value.internshipId, this.form.value.status).subscribe(
+      res => { this.applications = res; },
       err => console.log(err),
     )
   }
@@ -87,7 +85,7 @@ export class PrijaveNaKonkursComponent implements OnInit {
   approveApplication(studentId: number) {
     this.appService.putApplication(this.form.value.internshipId, studentId, "accepted").subscribe({
       next: res => { location.reload(); this.snackBar.open("Uspjesno ste odobrili prijavu", "OK"); },
-      error: err => { console.log(err); console.log("PRAKSA ID = ", this.form.value.internshipId, "STUDENT ID =", studentId) },
+      error: err => { console.log(err); },
     })
   }
 

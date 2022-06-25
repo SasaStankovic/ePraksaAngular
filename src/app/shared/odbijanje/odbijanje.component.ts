@@ -34,7 +34,7 @@ export class OdbijanjeComponent implements OnInit {
       return;
     this.appService.putApplication(this.applicationData.internshipId, this.applicationData.studentId, "denied", this.forma.value).subscribe(
       {
-        next: res => { this.snackBar.open("Prijava na praksu j eodbijena", "Ok"); this.dialog.closeAll(); window.location.reload(); },
+        next: res => { this.snackBar.open("Prijava na praksu je odbijena", "Ok"); this.dialog.closeAll(); window.location.reload(); },
         error: err => console.log(err)
       }
     );

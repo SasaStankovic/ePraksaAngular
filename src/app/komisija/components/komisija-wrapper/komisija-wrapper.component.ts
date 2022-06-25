@@ -9,8 +9,8 @@ import { KomisijaService } from 'src/app/_servisi/komisija.service';
 })
 export class KomisijaWrapperComponent implements OnInit {
 
-  buttons = [{ name: "Spisak praktikanata", navigate: "/commission_member/internships" },
-  { name: "Zahtjevi za prakse", navigate: "/commission_member/internships_view" }];
+  buttons = [{ name: "Spisak praktikanata", navigate: "/commission_member/internships_view" },
+  { name: "Zahtjevi za prakse", navigate: "/commission_member/internships" }];
 
 
   constructor() { }

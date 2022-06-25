@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_servisi/auth.service';
@@ -13,6 +13,7 @@ import { Location } from '@angular/common'
 })
 export class DnevnikRadaComponent implements OnInit {
 
+  workDiaryStatus!: string;
   workDiaryId!: number;
   workedHours!: number;
   studentId!: number;
@@ -55,7 +56,15 @@ export class DnevnikRadaComponent implements OnInit {
       if (this.auth.isStudent()) {
         this.workDiaryService.getWorkDiaryByStudentId(this.studentId).subscribe({
           next: (res: any) => {
-            this.help(res)
+            this.help(res);
+            if (this.workDiaryStatus == "ACCEPTED") {
+              res?.workDiaryEntries?.forEach((e: any, i: number) => {
+                this.getEntryForm(i + 1).disable();
+                this.getEntryForm(i + 1).controls['edit'].setValue(true);
+                this.getEntryForm(i + 1).controls['save'].setValue(true);
+              });
+              this.dnevnikRada.removeAt(0);
+            }
           },
           error: err => { console.log(err); this.hasWD = false; },
         });
@@ -70,12 +79,11 @@ export class DnevnikRadaComponent implements OnInit {
         )
       }
     });
-
-
   }
 
   private help(res: any) {
     this.hasWD = true;
+    this.workDiaryStatus = res.state;
     console.log(res)
     this.studentName = res?.studentFullName;
     this.workedHours = res?.workedHours;

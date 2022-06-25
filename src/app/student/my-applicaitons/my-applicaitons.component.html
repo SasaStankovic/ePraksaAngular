@@ -1,43 +1,41 @@
-<div class="container">
-    <div class="topdiv">
-        <label>Prijave na konkurse</label>
-        <input placeholder="Pretraži" class="pretraga" type="text">
-        <div class="linija">
-            <hr>
-        </div>
+<div class="topdiv">
+    <label>Prijave na konkurse</label>
+    <input placeholder="Pretraži" class="pretraga" type="text">
+    <div class="linija">
+        <hr>
     </div>
-    <div style="width: 80%;">
-        <div *ngFor="let item of applications$ | async">
-            <div class="margin">
-                <mat-accordion>
-                    <mat-expansion-panel style="background-color: #f0f0f0;">
-                        <mat-expansion-panel-header>
-                            <div class="col-6">
-                                <mat-panel-title>
-                                    {{item?.companyName}} - {{item?.internshipName}}
-                                </mat-panel-title>
-                            </div>
-                            <div class="col-6">
-                                <mat-panel-description>
-                                    Status: {{item.state}}
-                                </mat-panel-description>
-                            </div>
-                        </mat-expansion-panel-header>
-                        <mat-panel-description *ngIf="item?.report">
-                            Razlog odbijanja: <br>
-                            {{item?.report}}
-                        </mat-panel-description>
+</div>
+<div style="width: 100%;">
+    <div *ngFor="let item of applications$ | async">
+        <div class="margin">
+            <mat-accordion>
+                <mat-expansion-panel style="background-color: #f0f0f0;">
+                    <mat-expansion-panel-header>
+                        <div class="col-6">
+                            <mat-panel-title>
+                                {{item?.companyName}} - {{item?.internshipName}}
+                            </mat-panel-title>
+                        </div>
+                        <div class="col-6">
+                            <mat-panel-description>
+                                Status: {{item.state}}
+                            </mat-panel-description>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <mat-panel-description *ngIf="item?.report">
+                        Razlog odbijanja: <br>
+                        {{item?.report}}
+                    </mat-panel-description>
 
-                        <mat-action-row>
-
-                            <button fxFlex mat-stroked-button (click)="viewInternship(item.internshipId);">Pregled
-                                prakse</button>
-                            <button fxFlex mat-raised-button (click)="cancelApplicaiton(item.internshipId)" color="red">
-                                Otkaži prijavu</button>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </div>
+                    <mat-action-row>
+                        <button fxFlex="20" mat-raised-button (click)="cancelApplicaiton(item.internshipId)"
+                            color="warn">
+                            Otkaži prijavu</button>
+                        <button fxFlex="20" mat-stroked-button (click)="viewInternship(item.internshipId);">Pregled
+                            prakse</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
     </div>
 </div>
