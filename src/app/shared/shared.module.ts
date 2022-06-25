@@ -22,6 +22,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -31,6 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     OdbijanjeComponent,
     InternshipViewComponent,
     MenotrReportComponent,
+    NavBarComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatBadgeModule,
     MatTooltipModule,
     MatSelectModule,
+    FlexLayoutModule,
+    MatToolbarModule,
   ],
   exports: [
     FooterComponent,
@@ -68,6 +74,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    NavBarComponent,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }

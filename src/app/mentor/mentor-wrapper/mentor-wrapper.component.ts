@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorWrapperComponent implements OnInit {
 
+  buttons = [{ name: "Pregled studenata", navigate: "/mentor/internships" },
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

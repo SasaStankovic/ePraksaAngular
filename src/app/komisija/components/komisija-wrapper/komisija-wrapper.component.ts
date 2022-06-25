@@ -9,10 +9,12 @@ import { KomisijaService } from 'src/app/_servisi/komisija.service';
 })
 export class KomisijaWrapperComponent implements OnInit {
 
-  headerText!: string;
+  buttons = [{ name: "Spisak praktikanata", navigate: "/commission_member/internships" },
+  { name: "Zahtjevi za prakse", navigate: "/commission_member/internships_view" }];
 
-  constructor(private komisijaService: KomisijaService) { }
 
-  ngOnInit(): void {  }
+  constructor() { }
+
+  ngOnInit(): void { }
 }
 

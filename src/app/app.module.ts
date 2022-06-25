@@ -14,13 +14,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KomisijaModule } from './komisija/komisija.module';
 import { WrapperComponent } from './firma/components/wrapper/wrapper.component';
-import { NavBarFirmaComponent } from './firma/components/nav-bar-firma/nav-bar-firma.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MentorWrapperComponent } from './mentor/mentor-wrapper/mentor-wrapper.component';
-import { NavBarMentorComponent } from './mentor/nav-bar-mentor/nav-bar-mentor.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,9 +34,7 @@ import { AuthInterceptorService } from './_servisi/auth-interceptor.service';
     ProfilComponent,
     LoginFormComponent,
     WrapperComponent,
-    NavBarFirmaComponent,
     MentorWrapperComponent,
-    NavBarMentorComponent,
   ],
   imports: [
     BrowserModule,

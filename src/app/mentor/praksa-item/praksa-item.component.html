@@ -1,28 +1,25 @@
-<div style="width:80%;">
-  <mat-form-field fxFlex="30" appearance="outline">
-    <mat-label>Status prakse</mat-label>
-    <mat-select [formControl]="internshipStatus" (selectionChange)="getInternship();">
-      <mat-option *ngFor="let item of internshipStatuses | keyvalue" [value]="item.value">{{item.value}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-form-field fxFlex="30" appearance="outline">
+  <mat-label>Status prakse</mat-label>
+  <mat-select [formControl]="internshipStatus" (selectionChange)="getInternship();">
+    <mat-option *ngFor="let item of internshipStatuses | keyvalue" [value]="item.value">{{item.value}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
-
-  <mat-selection-list [multiple]="false">
-    <mat-list-option class="row header">
-      <div>Naziv</div>
-      <div>Vrsta</div>
-      <div>Status</div>
-    </mat-list-option>
-    <mat-divider style="margin:0 !important;padding:0 !important;"></mat-divider>
-    <mat-list-option class="row item" fxLayout="row" fxLayoutAlign="space-between center"
-      *ngFor="let item of internships" (click)="viewDetails(item.internshipId);">
-      <div>{{item.title}}</div>
-      <div>{{item.internshipType}}</div>
-      <div>{{internshipStatus.value}}</div>
-    </mat-list-option>
-    <mat-list-option *ngIf="!internships?.length" class="row" fxLayout="row" fxLayoutAlign="space-between center">
-      <div>Nema praksi</div>
-    </mat-list-option>
-    <mat-divider style="margin:0 !important;padding:0 !important;"></mat-divider>
-  </mat-selection-list>
-</div>
+<mat-selection-list [multiple]="false">
+  <mat-list-option class="row header">
+    <div>Naziv</div>
+    <div>Vrsta</div>
+    <div>Status</div>
+  </mat-list-option>
+  <mat-divider style="margin:0 !important;padding:0 !important;"></mat-divider>
+  <mat-list-option class="row item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let item of internships"
+    (click)="viewDetails(item.internshipId);">
+    <div>{{item.title}}</div>
+    <div>{{item.internshipType}}</div>
+    <div>{{internshipStatus.value}}</div>
+  </mat-list-option>
+  <mat-list-option *ngIf="!internships?.length" class="row" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>Nema praksi</div>
+  </mat-list-option>
+  <mat-divider style="margin:0 !important;padding:0 !important;"></mat-divider>
+</mat-selection-list>

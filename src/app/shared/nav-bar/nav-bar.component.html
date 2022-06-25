@@ -1,0 +1,46 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+   <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
+      <img style="width: 160px;" src="./../../../assets/resources/logotip.PNG" alt="logo">
+      <div fxFlex></div>
+      <button mat-button *ngFor="let item of items" (click)="navigateTo(item.navigate)">{{item.name}}
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+         <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
+            notifications_active</mat-icon>
+         <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+         <mat-icon>more_vert</mat-icon>
+      </button>
+   </div>
+</div>
+
+<mat-menu #menu="matMenu">
+   <mat-divider></mat-divider>
+   <button mat-menu-item (click)="navigateToProfile()">
+      <mat-icon>person_outline</mat-icon>
+      <span>Profil</span>
+   </button>
+   <mat-divider></mat-divider>
+   <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Uredi profil</span>
+   </button>
+   <mat-divider></mat-divider>
+   <button mat-menu-item (click)="authService.logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Odjavi se</span>
+   </button>
+   <mat-divider></mat-divider>
+</mat-menu>
+
+<mat-menu #notificationsMenu="matMenu">
+   <mat-divider></mat-divider>
+   <button mat-menu-item *ngIf="!notifications?.length"><span>Nema notifikacija</span></button>
+   <ng-container *ngFor="let item of notifications">
+      <button mat-menu-item>
+         <span [matTooltip]="item.text">{{item.subject}}</span>
+      </button>
+      <mat-divider></mat-divider>
+   </ng-container>
+</mat-menu>
