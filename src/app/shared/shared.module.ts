@@ -25,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -35,6 +36,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     InternshipViewComponent,
     MenotrReportComponent,
     NavBarComponent,
+    AboutComponent,
   ],
   imports: [
     CommonModule,

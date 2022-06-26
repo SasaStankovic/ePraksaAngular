@@ -35,11 +35,13 @@ $ePraksa-theme: mat.define-light-theme((color: (primary: $ePraksa-primary,
 html,
 body {
   height: 100%;
+  font-family: 'Signika', sans-serif;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Signika', sans-serif;
 }
 
 :root {

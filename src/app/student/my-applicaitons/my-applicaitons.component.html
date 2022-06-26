@@ -28,8 +28,8 @@
                     </mat-panel-description>
 
                     <mat-action-row>
-                        <button fxFlex="20" mat-raised-button (click)="cancelApplicaiton(item.internshipId)"
-                            color="warn">
+                        <button *ngIf="item.state !='ACCEPTED'" fxFlex="20" mat-raised-button
+                            (click)="cancelApplicaiton(item.internshipId)" color="warn">
                             Otkaži prijavu</button>
                         <button fxFlex="20" mat-stroked-button (click)="viewInternship(item.internshipId);">Pregled
                             prakse</button>
