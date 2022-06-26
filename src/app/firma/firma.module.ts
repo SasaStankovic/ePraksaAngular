@@ -17,6 +17,7 @@ import { PrijaveNaKonkursComponent } from './components/prijave-na-konkurs/prija
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MentorsComponent } from './components/mentors/mentors.component';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     ObjavaPrakseComponent,
@@ -37,7 +38,8 @@ import { MentorsComponent } from './components/mentors/mentors.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    PipesModule,
   ],
   providers: [
     MatDatepickerModule

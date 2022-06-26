@@ -21,7 +21,7 @@
         <mat-label>Status prijave</mat-label>
         <mat-select formControlName="status">
           <mat-option *ngFor="let item of status;" [value]="item">
-            {{item}}
+            {{item | translate}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -38,7 +38,7 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title class="pointer" (click)="getStudent(item.studentId);">{{item.studentFirstName}}
           {{item.studentLastName}}</mat-card-title>
-        <mat-card-subtitle>Status: {{item.state | lowercase}}</mat-card-subtitle>
+        <mat-card-subtitle>Status: {{item.state | translate}}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
@@ -49,11 +49,11 @@
       </mat-card-content>
       <mat-card-actions *ngIf="form.value.status == 'PENDING'">
         <button mat-raised-button color="green" (click)="approveApplication(item.studentId)">Odobri prijavu</button>
-        <button mat-raised-button color="red" (click)="showPopUp(item.studentId)">Odbi prijavu</button>
+        <button mat-raised-button color="red" (click)="showPopUp(item.studentId)">Odbij prijavu</button>
       </mat-card-actions>
     </mat-card>
     <div *ngIf="applications == undefined || applications.length == 0"> Trenutno nema ni jedna prijava za ovaj konkurs
-      koje su u statusu {{form.value.status}}.. </div>
+      koje su u statusu {{form.value.status | translate}}.. </div>
   </ng-container>
 
 </div>

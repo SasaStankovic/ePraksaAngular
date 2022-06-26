@@ -1,7 +1,8 @@
 <mat-form-field fxFlex="30" appearance="outline">
   <mat-label>Status prakse</mat-label>
   <mat-select [formControl]="internshipStatus" (selectionChange)="getInternship();">
-    <mat-option *ngFor="let item of internshipStatuses | keyvalue" [value]="item.value">{{item.value}}</mat-option>
+    <mat-option *ngFor="let item of internshipStatuses | keyvalue" [value]="item.value">{{item.value | translate}}
+    </mat-option>
   </mat-select>
 </mat-form-field>
 
@@ -16,7 +17,7 @@
     (click)="viewDetails(item.internshipId);">
     <div>{{item.title}}</div>
     <div>{{item.internshipType}}</div>
-    <div>{{internshipStatus.value}}</div>
+    <div>{{internshipStatus.value | translate}}</div>
   </mat-list-option>
   <mat-list-option *ngIf="!internships?.length" class="row" fxLayout="row" fxLayoutAlign="space-between center">
     <div>Nema praksi</div>

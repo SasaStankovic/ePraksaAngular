@@ -9,19 +9,23 @@ import { ZahtjeviZaPrakseComponent } from './components/zahtjevi-za-prakse/zahtj
 import { SharedModule } from '../shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
 import { InternshipsComponent } from './components/internships/internships.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     KomisijaWrapperComponent,
     PregledStudentaComponent,
     PregledPraktikanataComponent,
     ZahtjeviZaPrakseComponent,
-    InternshipsComponent
+    InternshipsComponent,
   ],
   imports: [
     CommonModule,
     KomisijaRoutingModule,
     SharedModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule,
+    PipesModule,
   ]
 })
 export class KomisijaModule { }

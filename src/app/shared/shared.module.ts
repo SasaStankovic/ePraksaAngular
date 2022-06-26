@@ -26,6 +26,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AboutComponent } from './about/about.component';
+import { TranslatePipe } from '../pipes/translate.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -59,6 +61,7 @@ import { AboutComponent } from './about/about.component';
     MatSelectModule,
     FlexLayoutModule,
     MatToolbarModule,
+    PipesModule,
   ],
   exports: [
     FooterComponent,

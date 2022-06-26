@@ -16,6 +16,7 @@ import { MyApplicaitonsComponent } from './my-applicaitons/my-applicaitons.compo
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { FirmaModule } from '../firma/firma.module';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     StudentComponent,
@@ -34,7 +35,8 @@ import { FirmaModule } from '../firma/firma.module';
     ReactiveFormsModule,
     MatDividerModule,
     MatExpansionModule,
-    MatButtonModule
+    MatButtonModule,
+    PipesModule
   ],
   exports: [SutdentProfilComponent],
   providers: [KomisijaModule, MentorModule, FirmaModule]
