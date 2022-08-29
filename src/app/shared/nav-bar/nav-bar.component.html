@@ -2,7 +2,7 @@
    <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
       <img style="width: 160px;" src="./../../../assets/resources/logotip.PNG" alt="logo">
       <div fxFlex></div>
-      <button mat-button *ngFor="let item of items" (click)="navigateTo(item.navigate)">{{item.name}}
+      <button fxHide.lt-md mat-button *ngFor="let item of items" (click)="navigateTo(item.navigate)">{{item.name}}
       </button>
       <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
          <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
@@ -12,8 +12,21 @@
       <button mat-icon-button [matMenuTriggerFor]="menu">
          <mat-icon>account_circle</mat-icon>
       </button>
+      <button mat-icon-button [mat-menu-trigger-for]="vertMenu" fxHide fxShow.lt-md>
+         <mat-icon>menu</mat-icon>
+      </button>
    </div>
 </div>
+
+<mat-menu #vertMenu="matMenu" xPosition="before">
+   <mat-divider></mat-divider>
+   <ng-container *ngFor="let item of items">
+      <button mat-menu-item (click)="navigateTo(item.navigate)">
+         <span>{{item.name}}</span>
+      </button>
+      <mat-divider></mat-divider>
+   </ng-container>
+</mat-menu>
 
 <mat-menu #menu="matMenu" xPosition="before">
    <mat-divider></mat-divider>
