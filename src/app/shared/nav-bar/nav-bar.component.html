@@ -1,9 +1,9 @@
 <ng-container *ngIf="(items$ | async) as items">
    <div fxLayout="row wrap" fxLayoutAlign="center center">
       <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
-         <a (click)="navigateTo('')"><img src="./../../../assets/resources/logotip.PNG" alt="logo"></a>
+         <a (click)="navigateTo('')"><img src="assets/resources/logotip.PNG" alt="logo"></a>
          <div fxFlex></div>
-         <button fxHide.lt-md mat-button *ngFor="let item of items.items"
+         <button fxHide.lt-md mat-button *ngFor="let item of items.items" [class]="{'green-button': !items.loggedIn}"
             (click)="navigateTo(item.navigate)">{{item.name}}
          </button>
          <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" [fxShow]="items.loggedIn"
