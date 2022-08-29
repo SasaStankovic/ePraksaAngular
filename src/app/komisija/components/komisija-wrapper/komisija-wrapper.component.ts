@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { KomisijaService } from 'src/app/_servisi/komisija.service';
+import { NavMeniService } from 'src/app/_servisi/nav-meni.service';
 
 @Component({
   selector: 'app-komisija-wrapper',
@@ -13,8 +12,14 @@ export class KomisijaWrapperComponent implements OnInit {
   { name: "Zahtjevi za prakse", navigate: "/commission_member/internships" }];
 
 
-  constructor() { }
+  constructor(private navMeniService: NavMeniService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.navMeniService.setItems({
+      profilePath: "/commission_member/profil",
+      items: this.buttons,
+      loggedIn: true
+    });
+  }
 }
 

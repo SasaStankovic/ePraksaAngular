@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import jwtDecode, { JwtDecodeOptions } from 'jwt-decode';
-import { AuthGuard } from '../_guards/auth.guard';
-import { StudentGuard } from '../_guards/student.guard';
+import jwtDecode from 'jwt-decode';
+import { } from '../_guards/student.guard';
+import { NavMeniService } from './nav-meni.service';
 import { NotificationsService } from './notifications.service';
 
 @Injectable({
@@ -12,18 +11,19 @@ import { NotificationsService } from './notifications.service';
 })
 export class AuthService {
 
-  userData={
-    id:-1,
+  userData = {
+    id: -1,
     role: '',
-    token:'',
-    notifications:[],
+    token: '',
+    notifications: [],
   }
 
   defaultHeaders: HttpHeaders = new HttpHeaders();
 
   constructor(private http: HttpClient,
     private router: Router,
-    private notifyService: NotificationsService) {
+    private notifyService: NotificationsService,
+    private navMeniService: NavMeniService) {
 
     this.defaultHeaders.set('Accept', 'application/json');
     this.defaultHeaders.set('Content-Type', 'application/json');
@@ -48,8 +48,8 @@ export class AuthService {
           user.token = tmp;
 
           this.notifyService.getNotifications(tmp.jti).subscribe({
-          next: not=>{
-            console.log("NOTIFIKACIJE AUTH SERVICE GET",not)
+            next: not => {
+              console.log("NOTIFIKACIJE AUTH SERVICE GET", not)
               this.userData.notifications = not;
               localStorage.setItem("token", res.token);
               localStorage.setItem("user", JSON.stringify(tmp));
@@ -57,7 +57,7 @@ export class AuthService {
               this.getUserData();
               this.router.navigate([(tmp.role as string).toLowerCase()]);
             },
-            error: err=> console.log("auth service notiviccatoins>>.",err),
+            error: err => console.log("auth service notiviccatoins>>.", err),
           })
         },
         error: err => {
@@ -70,43 +70,43 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    localStorage.removeItem('notifications')
+    localStorage.removeItem('notifications');
+    this.navMeniService.resetNavMeni();
     this.router.navigate(['welcome']);
   }
 
-  public getUserData(){
+  public getUserData() {
     let obj;
     let tmp = localStorage.getItem('user');
-    if (tmp != null)
-    {
+    if (tmp != null) {
       obj = JSON.parse(tmp);
       this.userData.id = obj.jti;
       this.userData.role = obj.role.toLowerCase();
-    } 
+    }
     let notTmp = localStorage.getItem('notifications');
-    if(notTmp != null){
+    if (notTmp != null) {
       let obj = JSON.parse(notTmp);
       this.userData.notifications = obj;
     }
   }
 
-  public getRole(){
+  public getRole() {
     return this.userData.role.toLocaleLowerCase();
   }
 
-  isStudent():boolean{
+  isStudent(): boolean {
     return this.userData.role == 'student';
   }
 
-  isCommision():boolean{
+  isCommision(): boolean {
     return this.userData.role == 'commission_member';
   }
 
-  isCompany():boolean{
+  isCompany(): boolean {
     return this.userData.role == 'company';
   }
 
-  isMentor():boolean{
+  isMentor(): boolean {
     return this.userData.role == 'mentor';
   }
 }

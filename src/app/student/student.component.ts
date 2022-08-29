@@ -1,12 +1,14 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavMeniService } from '../_servisi/nav-meni.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss']
 })
-export class StudentComponent {
+export class StudentComponent implements OnInit {
+  constructor(private navMeniService: NavMeniService) { }
 
   title = 'student pocetna'
 
@@ -16,4 +18,8 @@ export class StudentComponent {
   { name: "Prakse", navigate: "/student" }];
 
 
+  ngOnInit(): void {
+    this.navMeniService.setItems({ profilePath: "/student/profil", items: this.buttons, loggedIn: true });
+  }
 }
+

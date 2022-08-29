@@ -9,24 +9,14 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private dialog:MatDialog) {}
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  showPopUp(rola: string){
-    this.dialog.open(LoginFormComponent,{
+  showPopUp(rola: string) {
+    this.dialog.open(LoginFormComponent, {
       data: rola
     });
-  }
-  count=0;
-  sorti(){
-    this.count++;
-    if(this.count == 3)
-    {
-
-      let array = ['🥚','🐤'];
-      window.alert("sta je prvo nastalo?"+array+" Prvo je nastalo"+array.sort());
-    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavMeniService } from 'src/app/_servisi/nav-meni.service';
 
 @Component({
   selector: 'app-mentor-wrapper',
@@ -10,9 +11,10 @@ export class MentorWrapperComponent implements OnInit {
   buttons = [{ name: "Pregled studenata", navigate: "/mentor/internships" },
   ];
 
-  constructor() { }
+  constructor(private navMeniService: NavMeniService) { }
 
   ngOnInit(): void {
+    this.navMeniService.setItems({ profilePath: "/mentor/profil", items: this.buttons, loggedIn: true });
   }
 
 }

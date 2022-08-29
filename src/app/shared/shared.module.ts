@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AboutComponent } from './about/about.component';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { PipesModule } from '../pipes/pipes.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -62,6 +63,7 @@ import { PipesModule } from '../pipes/pipes.module';
     FlexLayoutModule,
     MatToolbarModule,
     PipesModule,
+    RouterModule
   ],
   exports: [
     FooterComponent,

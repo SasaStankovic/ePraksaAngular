@@ -1,59 +1,63 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center">
-   <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
-      <img src="./../../../assets/resources/logotip.PNG" alt="logo">
-      <div fxFlex></div>
-      <button fxHide.lt-md mat-button *ngFor="let item of items" (click)="navigateTo(item.navigate)">{{item.name}}
-      </button>
-      <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
-         <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
-            notifications_active</mat-icon>
-         <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
-      </button>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-         <mat-icon>account_circle</mat-icon>
-      </button>
-      <button mat-icon-button [mat-menu-trigger-for]="vertMenu" fxHide fxShow.lt-md>
-         <mat-icon>menu</mat-icon>
-      </button>
+<ng-container *ngIf="(items$ | async) as items">
+   <div fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
+         <a (click)="navigateTo('')"><img src="./../../../assets/resources/logotip.PNG" alt="logo"></a>
+         <div fxFlex></div>
+         <button fxHide.lt-md mat-button *ngFor="let item of items.items"
+            (click)="navigateTo(item.navigate)">{{item.name}}
+         </button>
+         <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" [fxShow]="items.loggedIn"
+            matTooltip="Notifikacije">
+            <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
+               notifications_active</mat-icon>
+            <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
+         </button>
+         <button mat-icon-button [matMenuTriggerFor]="menu" [fxShow]="items.loggedIn" matTooltip="Profil">
+            <mat-icon>account_circle</mat-icon>
+         </button>
+         <button mat-icon-button [mat-menu-trigger-for]="vertMenu" fxHide fxShow.lt-md>
+            <mat-icon>menu</mat-icon>
+         </button>
+      </div>
    </div>
-</div>
 
-<mat-menu #vertMenu="matMenu" xPosition="before">
-   <mat-divider></mat-divider>
-   <ng-container *ngFor="let item of items">
-      <button mat-menu-item (click)="navigateTo(item.navigate)">
-         <span>{{item.name}}</span>
+   <mat-menu #vertMenu="matMenu" xPosition="before">
+      <mat-divider></mat-divider>
+      <ng-container *ngFor="let item of items.items">
+         <button mat-menu-item (click)="navigateTo(item.navigate)">
+            <span>{{item.name}}</span>
+         </button>
+         <mat-divider></mat-divider>
+      </ng-container>
+   </mat-menu>
+
+   <mat-menu #menu="matMenu" xPosition="before">
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="navigateTo(items.profilePath)">
+         <mat-icon>person_outline</mat-icon>
+         <span>Profil</span>
       </button>
       <mat-divider></mat-divider>
-   </ng-container>
-</mat-menu>
-
-<mat-menu #menu="matMenu" xPosition="before">
-   <mat-divider></mat-divider>
-   <button mat-menu-item (click)="navigateToProfile()">
-      <mat-icon>person_outline</mat-icon>
-      <span>Profil</span>
-   </button>
-   <mat-divider></mat-divider>
-   <button mat-menu-item>
-      <mat-icon>edit</mat-icon>
-      <span>Uredi profil</span>
-   </button>
-   <mat-divider></mat-divider>
-   <button mat-menu-item (click)="authService.logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Odjavi se</span>
-   </button>
-   <mat-divider></mat-divider>
-</mat-menu>
-
-<mat-menu #notificationsMenu="matMenu" xPosition="before">
-   <mat-divider></mat-divider>
-   <button mat-menu-item *ngIf="!notifications?.length"><span>Nema notifikacija</span></button>
-   <ng-container *ngFor="let item of notifications">
       <button mat-menu-item>
-         <span [matTooltip]="item.text">{{item.subject}}</span>
+         <mat-icon>edit</mat-icon>
+         <span>Uredi profil</span>
       </button>
       <mat-divider></mat-divider>
-   </ng-container>
-</mat-menu>
+      <button mat-menu-item (click)="authService.logout()">
+         <mat-icon>exit_to_app</mat-icon>
+         <span>Odjavi se</span>
+      </button>
+      <mat-divider></mat-divider>
+   </mat-menu>
+
+   <mat-menu #notificationsMenu="matMenu" xPosition="before">
+      <mat-divider></mat-divider>
+      <button mat-menu-item *ngIf="!notifications?.length"><span>Nema notifikacija</span></button>
+      <ng-container *ngFor="let item of notifications">
+         <button mat-menu-item>
+            <span [matTooltip]="item.text">{{item.subject}}</span>
+         </button>
+         <mat-divider></mat-divider>
+      </ng-container>
+   </mat-menu>
+</ng-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavMeniService } from 'src/app/_servisi/nav-meni.service';
 
 @Component({
   selector: 'app-wrapper',
@@ -14,9 +15,10 @@ export class WrapperComponent implements OnInit {
   { name: "Objavi praksu", navigate: "/company/objava-prakse" },
   { name: "Mentori", navigate: "/company/mentors" }];
 
-  constructor() { }
+  constructor(private navMeniService: NavMeniService) { }
 
   ngOnInit(): void {
+    this.navMeniService.setItems({ profilePath: "/company/profil", items: this.buttons, loggedIn: true });
   }
 
 }
