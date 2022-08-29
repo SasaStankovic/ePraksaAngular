@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center">
    <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
-      <img style="width: 160px;" src="./../../../assets/resources/logotip.PNG" alt="logo">
+      <img src="./../../../assets/resources/logotip.PNG" alt="logo">
       <div fxFlex></div>
       <button fxHide.lt-md mat-button *ngFor="let item of items" (click)="navigateTo(item.navigate)">{{item.name}}
       </button>

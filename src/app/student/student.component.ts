@@ -12,8 +12,8 @@ export class StudentComponent {
 
   buttons = [{ name: "Izvještaj Mentora", navigate: "/student/mentor-report" },
   { name: "Dnevnik Rada", navigate: "/student/dnevnik-rada" },
-  { name: "Prakse", navigate: "/student" },
-  { name: "Moji konkursi", navigate: "/student/my-applicaitons" }];
+  { name: "Moji konkursi", navigate: "/student/my-applicaitons" },
+  { name: "Prakse", navigate: "/student" }];
 
 
 }
