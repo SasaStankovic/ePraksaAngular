@@ -6,12 +6,13 @@
    border-radius: 0 0 10px 10px;
 }
 
-.green-button {
+.sign-in-button {
    background-color: var(--zelena);
    border-radius: 50px;
    width: 150px;
    height: 40px;
    font-size: 1rem;
+   font-weight: 600;
 }
 
 mat-divider {

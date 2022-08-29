@@ -1,13 +1,12 @@
  footer {
-   padding: 1%;
+   padding: 30px 10px;
    background-color: var(--bojaMenija);
-
    width: 100%;
    border-radius: 10px 10px 0px 0px;
    margin-top: 1em;
  }
 
- .container {
+ .container2 {
    color: var(--plavaZaLinkoveFooter);
    text-align: center;
  }
@@ -89,7 +88,6 @@
    footer ul img {
      height: 40px;
    }
-
  }
 
  @media (max-width: 575px) {
@@ -100,7 +98,6 @@
    footer ul img {
      height: 38px;
    }
-
 
    .row>:nth-child(1) {
      justify-content: center !important;

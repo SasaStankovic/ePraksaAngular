@@ -9,7 +9,7 @@ export class NavMeniService {
 
   private defaultNavMeni: NavMeniItem = {
     profilePath: "",
-    items: [{ name: "Prijavi se", navigate: "prijava" }],
+    items: [{ name: "Prijava", navigate: "prijava" }],
     loggedIn: false
   };
 

@@ -3,7 +3,7 @@
       <div class="menu pad" fxFlex="100" fxLayoutGap="15px" fxLayoutAlign="start center">
          <a (click)="navigateTo('')"><img src="assets/resources/logotip.PNG" alt="logo"></a>
          <div fxFlex></div>
-         <button fxHide.lt-md mat-button *ngFor="let item of items.items" [class]="{'green-button': !items.loggedIn}"
+         <button fxHide.lt-md mat-button *ngFor="let item of items.items" [class]="{'sign-in-button': !items.loggedIn}"
             (click)="navigateTo(item.navigate)">{{item.name}}
          </button>
          <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" [fxShow]="items.loggedIn"
