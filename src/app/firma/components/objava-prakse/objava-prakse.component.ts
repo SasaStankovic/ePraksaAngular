@@ -20,7 +20,7 @@ export class ObjavaPrakseComponent implements OnInit {
 
   currentInternshipId!: number;
 
-  today: Date = new Date();
+  today!: Date;
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -40,7 +40,10 @@ export class ObjavaPrakseComponent implements OnInit {
     private datePipe: DatePipe,
     private firmaService: FirmaService,
     private authService: AuthService,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute,) {
+    this.today = new Date();
+    this.today.setDate(this.today.getDate() + 1);
+  }
 
 
   ngOnInit(): void {
@@ -247,18 +250,18 @@ export class ObjavaPrakseComponent implements OnInit {
         },
         error: (err) => { console.log("Greska!", err); }
       });
-      else{
-        this.praksa.internshipId = this.currentInternshipId;
-        this.praksaServis.editInternship(this.currentInternshipId,this.praksa).subscribe(res=>{
-          if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
-            this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
-          else
-            this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
+    else {
+      this.praksa.internshipId = this.currentInternshipId;
+      this.praksaServis.editInternship(this.currentInternshipId, this.praksa).subscribe(res => {
+        if (this.secondFormGroup.controls['vrstaPrakse'].value == 'LJETNA')
+          this.snackBar.open("Uspjesno ste objavili praksu", "Ok");
+        else
+          this.snackBar.open("Praksa ce biti pregledana od strane strucne komisije nakon cega ce bti odbijena ili objavljena", "Ok");
 
-          this.router.navigateByUrl('/company');
-        },
-        err=>console.log(err))
-      }
+        this.router.navigateByUrl('/company');
+      },
+        err => console.log(err))
+    }
 
   }
 
