@@ -16,11 +16,18 @@ export class NavMeniService {
   private itemsSubject$: BehaviorSubject<NavMeniItem> = new BehaviorSubject(this.defaultNavMeni);
   items$: Observable<NavMeniItem> = this.itemsSubject$.asObservable();
 
+  constructor() {
+    const previousNavMeni = localStorage.getItem("navMeni");
+    if (previousNavMeni) this.itemsSubject$.next(JSON.parse(previousNavMeni));
+  }
+
   setItems(navMeniItem: NavMeniItem): void {
     this.itemsSubject$.next(navMeniItem);
+    localStorage.setItem("navMeni", JSON.stringify(navMeniItem));
   }
 
   resetNavMeni(): void {
     this.itemsSubject$.next(this.defaultNavMeni);
+    localStorage.removeItem("navMeni");
   }
 }
