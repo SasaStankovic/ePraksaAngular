@@ -12,7 +12,7 @@ export class CompanyGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (!this.authService.isMentor()) {
+    if (!this.authService.isCompany()) {
       this.router.navigateByUrl(this.authService.getRole());
       return false;
     }
