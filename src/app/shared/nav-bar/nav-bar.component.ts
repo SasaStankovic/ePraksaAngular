@@ -16,6 +16,7 @@ export class NavBarComponent {
 
   items$: Observable<NavMeniItem> = this.navMeniService.items$;
   notifications!: any[];
+  newNotifications!: number;
 
   showPopUp(rola: string) {
     this.dialog.open(LoginFormComponent, {
@@ -29,7 +30,19 @@ export class NavBarComponent {
     public authService: AuthService,
     public navMeniService: NavMeniService
   ) {
-    this.notifications = authService.userData.notifications;
+    this.notifications = this.authService.userData.notifications;
+    this.newNotifications = this.authService.userData.notifications.length;
+
+    let notificationsReadItem = localStorage.getItem("notificationsRead");
+    if (notificationsReadItem) {
+      let notificationsRead: number = parseInt(notificationsReadItem);
+      this.newNotifications = this.notifications.length - notificationsRead;
+    }
+  }
+
+  notificationsClick(): void {
+    this.newNotifications = 0;
+    localStorage.setItem("notificationsRead", this.notifications.length.toString());
   }
 
   navigateTo(path: string) {

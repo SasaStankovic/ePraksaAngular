@@ -11,11 +11,26 @@ import { NotificationsService } from './notifications.service';
 })
 export class AuthService {
 
+  exampleNotifications = [
+    {
+      notificationID: 1,
+      subject: "subject1",
+      text: "text1",
+      createdAt: "createdAt1",
+    },
+    {
+      notificationID: 2,
+      subject: "subject2",
+      text: "text2",
+      createdAt: "createdAt2",
+    }
+  ];
+
   userData = {
     id: -1,
     role: '',
     token: '',
-    notifications: [],
+    notifications: this.exampleNotifications,
   }
 
   defaultHeaders: HttpHeaders = new HttpHeaders();
@@ -29,6 +44,8 @@ export class AuthService {
     this.defaultHeaders.set('Content-Type', 'application/json');
 
     this.getUserData();
+
+    //TODO: get new notifications from backend, if user is already logged in
   }
 
   login(user: any) {
@@ -54,6 +71,7 @@ export class AuthService {
               localStorage.setItem("token", res.token);
               localStorage.setItem("user", JSON.stringify(tmp));
               localStorage.setItem("notifications", JSON.stringify(not));
+              localStorage.setItem("notificationsRead", "0"); //TODO: store notificationsRead in database and get it on logging
               this.getUserData();
               this.router.navigate([(tmp.role as string).toLowerCase()]);
             },
@@ -68,11 +86,19 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('notifications');
+    localStorage.clear();
     this.navMeniService.resetNavMeni();
+    this.resetUserData();
     this.router.navigate(['welcome']);
+  }
+
+  resetUserData(): void {
+    this.userData = {
+      id: -1,
+      role: '',
+      token: '',
+      notifications: [],
+    }
   }
 
   public getUserData() {
@@ -108,5 +134,9 @@ export class AuthService {
 
   isMentor(): boolean {
     return this.userData.role == 'mentor';
+  }
+
+  isLoggedIn(): boolean {
+    return this.userData.id !== -1;
   }
 }

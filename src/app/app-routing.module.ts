@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./mentor/mentor.module').then(m => m.MentorModule),
   },
   {
-    path: 'about',
-    component: AboutComponent,
-  },
-  {
     path: '**', redirectTo: '', pathMatch: 'full'
   }
 ];

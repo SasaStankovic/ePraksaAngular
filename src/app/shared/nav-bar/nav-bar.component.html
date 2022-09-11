@@ -7,10 +7,10 @@
             (click)="navigateTo(item.navigate)">{{item.name}}
          </button>
          <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" [fxShow]="items.loggedIn"
-            matTooltip="Notifikacije">
-            <mat-icon *ngIf="notifications?.length" [matBadge]="notifications.length" matBadgeColor="accent">
+            matTooltip="Notifikacije" (click)="notificationsClick()">
+            <mat-icon *ngIf=" newNotifications" [matBadge]="newNotifications" matBadgeColor="accent">
                notifications_active</mat-icon>
-            <mat-icon *ngIf="!notifications?.length">notifications_active</mat-icon>
+            <mat-icon *ngIf="!newNotifications">notifications_active</mat-icon>
          </button>
          <button mat-icon-button [matMenuTriggerFor]="menu" [fxShow]="items.loggedIn" matTooltip="Profil">
             <mat-icon>account_circle</mat-icon>
