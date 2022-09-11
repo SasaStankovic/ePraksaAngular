@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-prakse/detaljan-pregled-prakse.component';
 import { DnevnikRadaComponent } from '../shared/dnevnik-rada/dnevnik-rada.component';
@@ -23,8 +23,7 @@ export const routes: Routes = [
         path: 'internships', component: PocetnaStranaComponent,
       },
       {
-        path: 'internships/:id/details',
-        component: DetaljanPregledPrakseComponent,
+        path: 'internships/:id/details', component: DetaljanPregledPrakseComponent,
       },
       {
         path: 'internships/:id/application', component: ApplicationComponent

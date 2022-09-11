@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { } from '../_guards/student.guard';
+import { NotificationItem } from '../_tipovi/Notification';
 import { NavMeniService } from './nav-meni.service';
 import { NotificationsService } from './notifications.service';
 
@@ -11,18 +12,20 @@ import { NotificationsService } from './notifications.service';
 })
 export class AuthService {
 
-  exampleNotifications = [
+  exampleNotifications: NotificationItem[] = [
     {
       notificationID: 1,
       subject: "subject1",
       text: "text1",
       createdAt: "createdAt1",
+      delivered: false
     },
     {
       notificationID: 2,
       subject: "subject2",
       text: "text2",
       createdAt: "createdAt2",
+      delivered: true
     }
   ];
 
@@ -31,6 +34,7 @@ export class AuthService {
     role: '',
     token: '',
     notifications: this.exampleNotifications,
+    unreadNotificationsCount: 0
   }
 
   defaultHeaders: HttpHeaders = new HttpHeaders();
@@ -45,7 +49,14 @@ export class AuthService {
 
     this.getUserData();
 
-    //TODO: get new notifications from backend, if user is already logged in
+    if (this.isLoggedIn()) {
+      this.notifyService.getNotifications(this.userData.id).subscribe(response => this.userData.notifications = response);
+      this.checkUnreadNotifications();
+    }
+  }
+
+  checkUnreadNotifications(): void {
+    this.userData.unreadNotificationsCount = this.userData.notifications.filter(n => !n.delivered).length;
   }
 
   login(user: any) {
@@ -71,8 +82,8 @@ export class AuthService {
               localStorage.setItem("token", res.token);
               localStorage.setItem("user", JSON.stringify(tmp));
               localStorage.setItem("notifications", JSON.stringify(not));
-              localStorage.setItem("notificationsRead", "0"); //TODO: store notificationsRead in database and get it on logging
               this.getUserData();
+              this.checkUnreadNotifications();
               this.router.navigate([(tmp.role as string).toLowerCase()]);
             },
             error: err => console.log("auth service notiviccatoins>>.", err),
@@ -98,6 +109,7 @@ export class AuthService {
       role: '',
       token: '',
       notifications: [],
+      unreadNotificationsCount: 0
     }
   }
 

@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { LoginFormComponent } from 'src/app/login-form/login-form.component';
 import { AuthService } from 'src/app/_servisi/auth.service';
 import { NavMeniService } from 'src/app/_servisi/nav-meni.service';
+import { NotificationsService } from 'src/app/_servisi/notifications.service';
 import { NavMeniItem } from 'src/app/_tipovi/NavMeniItem';
+import { NotificationItem } from 'src/app/_tipovi/Notification';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,7 +17,7 @@ import { NavMeniItem } from 'src/app/_tipovi/NavMeniItem';
 export class NavBarComponent {
 
   items$: Observable<NavMeniItem> = this.navMeniService.items$;
-  notifications!: any[];
+  notifications!: NotificationItem[];
   newNotifications!: number;
 
   showPopUp(rola: string) {
@@ -28,21 +30,18 @@ export class NavBarComponent {
     private dialog: MatDialog,
     public router: Router,
     public authService: AuthService,
-    public navMeniService: NavMeniService
+    public navMeniService: NavMeniService,
+    private notificationService: NotificationsService
   ) {
     this.notifications = this.authService.userData.notifications;
-    this.newNotifications = this.authService.userData.notifications.length;
-
-    let notificationsReadItem = localStorage.getItem("notificationsRead");
-    if (notificationsReadItem) {
-      let notificationsRead: number = parseInt(notificationsReadItem);
-      this.newNotifications = this.notifications.length - notificationsRead;
-    }
+    this.newNotifications = this.authService.userData.unreadNotificationsCount;
   }
 
   notificationsClick(): void {
-    this.newNotifications = 0;
-    localStorage.setItem("notificationsRead", this.notifications.length.toString());
+    this.newNotifications = this.authService.userData.unreadNotificationsCount = 0;
+    this.notifications.forEach(notification =>
+      this.notificationService.pathchNotification(notification.notificationID)
+    );
   }
 
   navigateTo(path: string) {

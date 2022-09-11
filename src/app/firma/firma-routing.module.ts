@@ -4,6 +4,7 @@ import { DetaljanPregledPrakseComponent } from '../shared/detaljan-pregled-praks
 import { InternshipViewComponent } from '../shared/internship-view/internship-view.component';
 import { SutdentProfilComponent } from '../student/sutdent-profil/sutdent-profil.component';
 import { AuthGuard } from '../_guards/auth.guard';
+import { CompanyGuard } from '../_guards/company.guard';
 import { InternshipGuard } from '../_guards/internship.guard';
 import { MentorsComponent } from './components/mentors/mentors.component';
 import { ObjavaPrakseComponent } from './components/objava-prakse/objava-prakse.component';
@@ -12,32 +13,32 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 const routes: Routes = [
   {
-    path:'', component:WrapperComponent,
-    canActivate:[AuthGuard],
-    children:[
+    path: '', component: WrapperComponent,
+    canActivate: [AuthGuard, CompanyGuard],
+    children: [
       {
-        path:'objava-prakse', component:ObjavaPrakseComponent,
+        path: 'objava-prakse', component: ObjavaPrakseComponent,
       },
       {
-        path:'prijave-na-konkurs', component: PrijaveNaKonkursComponent
+        path: 'prijave-na-konkurs', component: PrijaveNaKonkursComponent
       },
       {
-        path:'students/:id', component: SutdentProfilComponent
+        path: 'students/:id', component: SutdentProfilComponent
       },
       {
-        path:'internships_view/:type', component: InternshipViewComponent,
+        path: 'internships_view/:type', component: InternshipViewComponent,
       },
       {
-        path:'mentors', component: MentorsComponent,
+        path: 'mentors', component: MentorsComponent,
       },
       {
-        path:'internships/:id/details', component: DetaljanPregledPrakseComponent
+        path: 'internships/:id/details', component: DetaljanPregledPrakseComponent
       },
       {
-        path:'internships/:id/edit', component: ObjavaPrakseComponent,
+        path: 'internships/:id/edit', component: ObjavaPrakseComponent,
       },
       {
-        path:'**', redirectTo:'', pathMatch:'full',
+        path: '**', redirectTo: '', pathMatch: 'full',
       }
     ]
   }
